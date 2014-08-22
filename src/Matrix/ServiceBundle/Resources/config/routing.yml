@@ -1,0 +1,40 @@
+service_login:
+    path:       /login
+    defaults:   { _controller: MatrixServiceBundle:Login:index }
+    methods:    [POST]
+
+service_logout:
+    path:       /logout
+    defaults:   { _controller: MatrixServiceBundle:Logout:index }
+    methods:    [POST]
+
+service_customers:
+    path:       /customers
+    defaults:   { _controller: MatrixServiceBundle:Customers:index }
+    methods:    [POST]
+
+service_customers_synch:
+    path:       /customers/synch
+    defaults:   { _controller: MatrixServiceBundle:Customers:synch }
+    methods:    [POST]
+
+service_items:
+    path:       /items
+    defaults:   { _controller: MatrixServiceBundle:Items:index }
+    methods:    [POST]
+
+service_orders_create:
+    path:       /orders/create
+    defaults:   { _controller: MatrixServiceBundle:Orders:index }
+    methods:    [POST]
+
+service_synch:
+    path:       /synchronize
+    defaults:   { _controller: MatrixServiceBundle:Synch:index }
+    methods:    [POST]
+
+service_404:
+    path:     /{name}
+    defaults: { _controller: MatrixServiceBundle:NotFound:index }
+    requirements:
+          name: ^(.*)$

@@ -1,0 +1,4 @@
+matrix_service:
+    resource: "@MatrixServiceBundle/Resources/config/routing.yml"
+    prefix:   /
+
