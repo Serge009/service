@@ -54,7 +54,7 @@ class OrdersController extends AppController {
 
 
         foreach($orders as $order){
-            var_dump($order);
+
             $customer = $custRepo->findOneBy(array("id" => $order->customer));
 
             $newOrder = new Orders();
