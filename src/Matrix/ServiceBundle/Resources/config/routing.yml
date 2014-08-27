@@ -33,6 +33,10 @@ service_synch:
     defaults:   { _controller: MatrixServiceBundle:Synch:index }
     methods:    [POST]
 
+service_404_1:
+    path:     /
+    defaults: { _controller: MatrixServiceBundle:NotFound:index }
+
 service_404:
     path:     /{name}
     defaults: { _controller: MatrixServiceBundle:NotFound:index }

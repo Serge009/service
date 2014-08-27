@@ -176,7 +176,7 @@ class Service{
             );
             //$test = '{"session":"d07a5600b20b27a6dc4f27e1af535779", "orders":[]}';
 
-            curl_setopt($curl, CURLOPT_URL, 'http://localhost:8080/service/' . self::$url);
+            curl_setopt($curl, CURLOPT_URL, 'http://localhost:8080/service/mobile' . self::$url);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($curl, CURLOPT_POST, true);
             curl_setopt($curl, CURLOPT_POSTFIELDS, 'data=' . json_encode($test));
@@ -189,7 +189,7 @@ class Service{
             echo "<!DOCTYPE html><html><head></head><body>";
             echo "<h3>Test " . $name . ":</h3>";
             echo "<h4>Time: ". ($end -  $start) ."</h4>";
-            echo "<h5>Url: http://localhost:8080/service/" . self::$url ."</h5>";
+            echo "<h5>Url: http://localhost:8080/service/mobile/" . self::$url ."</h5>";
             echo "<h4>Input:</h4>";
             echo json_encode($test) . "<br />";
             var_dump($test);

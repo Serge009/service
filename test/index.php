@@ -181,7 +181,7 @@ class Service{
     public static function test($name){
 
         if( $curl = curl_init() ) {
-            curl_setopt($curl, CURLOPT_URL, 'http://localhost:8080/service/index.php/' . self::$url);
+            curl_setopt($curl, CURLOPT_URL, 'http://localhost:8080/service/index.php/mobile/' . self::$url);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($curl, CURLOPT_POST, true);
             curl_setopt($curl, CURLOPT_POSTFIELDS, 'data=' . json_encode(self::$data));
@@ -194,7 +194,7 @@ class Service{
             echo "<!DOCTYPE html><html><head></head><body>";
             echo "<h3>Test " . $name . ":</h3>";
             echo "<h4>Time: ". ($end -  $start) ."</h4>";
-            echo "<h5>Url: http://localhost:8080/service/" . self::$url ."</h5>";
+            echo "<h5>Url: http://localhost:8080/service/mobile/" . self::$url ."</h5>";
             echo "<h4>Input:</h4>";
             echo json_encode(self::$data) . "<br />";
             var_dump(self::$data);

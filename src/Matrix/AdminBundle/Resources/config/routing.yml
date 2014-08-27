@@ -1,0 +1,14 @@
+
+admin_login:
+    path:      /login
+    defaults:  { _controller: MatrixAdminBundle:Login:index }
+
+admin_404_1:
+    path:     /
+    defaults: { _controller: MatrixAdminBundle:NotFound:index }
+
+admin_404:
+    path:     /{name}
+    defaults: { _controller: MatrixAdminBundle:NotFound:index }
+    requirements:
+          name: ^(.*)$

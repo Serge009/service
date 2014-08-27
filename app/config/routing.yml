@@ -1,4 +1,10 @@
 matrix_service:
     resource: "@MatrixServiceBundle/Resources/config/routing.yml"
+    prefix:   /mobile
+
+matrix_admin:
+    resource: "@MatrixAdminBundle/Resources/config/routing.yml"
     prefix:   /
+
+
 
