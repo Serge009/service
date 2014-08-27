@@ -1,12 +1,32 @@
 security:
-    providers:
-        in_memory:
-            memory: ~
-
     firewalls:
-        dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
-            security: false
+        secured_area:
+              pattern: ^/
+              anonymous: ~
+              form-login:
+                      login_path: login
+                      check_path: login_check
+              logout:
+                      path: /logout
+                      target: /login
 
-        default:
-            anonymous: ~
+    access_control:
+         - { path: ^/mobile, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+         - { path: ^/mobile$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+         - { path: ^/, roles: ROLE_ADMIN }
+    # Include the following line to also secure the /admin path itself
+     #    - { path: ^/$, roles: ROLE_ADMIN }
+
+    providers:
+          main:
+              entity:
+                    class: Matrix\AdminBundle\Entity\Users
+                    property: email
+      #  in_memory:
+       #         memory:
+        #              users:
+         #                     ryan: { password: ryanpass, roles: 'ROLE_USER' }
+          #                    admin: { password: kitten, roles: 'ROLE_ADMIN' }
+    encoders:
+        Matrix\AdminBundle\Entity\Users: plaintext

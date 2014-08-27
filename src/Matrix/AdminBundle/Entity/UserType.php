@@ -40,6 +40,28 @@ class UserType
     private $name;
 
 
+    /**
+     * @param $roleId
+     * @return string
+     */
+    public static function getRole($roleId){
+        switch($roleId){
+            case self::ADMIN:
+                return "ROLE_ADMIN";
+            case self::DISTRIBUTOR:
+                return "ROLE_DISTRIBUTOR";
+            case self::ACCOUNT_OWNER:
+                return "ROLE_ACCOUNT_OWNER";
+            case self::MANAGER:
+                return "ROLE_MANAGER";
+            case self::MOBILE_USER:
+                return "ROLE_MOBILE_USER";
+            default:
+                return "ROLE_ANONYMOUS";
+        }
+    }
+
+
 
     /**
      * Get id

@@ -16,7 +16,7 @@ class NotFoundController extends Controller{
 
     public function indexAction(){
 
-
+        var_dump($this->getUser());
         return new Response("Not Found<body></body>");
     }
 
