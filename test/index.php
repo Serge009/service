@@ -15,9 +15,18 @@ class Service{
         "password" => "test",
         "license" => "5555555555",
         "versions" => array(
-            "services" => 0,
+            "currency" => 0,
+            "customers" => 0,
+            "department" => 0,
+            "division" => 0,
+            "plant" => 0,
+            "product_prices" => 0,
             "products" => 0,
-            "customers" => 0
+            "service_prices" => 0,
+            "services" => 0,
+            "unit" => 0,
+            "unit_details" => 0,
+            "warehouse" => 0
         )
     );
 

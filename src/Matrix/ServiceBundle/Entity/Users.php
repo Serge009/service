@@ -8,7 +8,11 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Users
  *
- * @ORM\Table(name="users", uniqueConstraints={@ORM\UniqueConstraint(name="login", columns={"email"})}, indexes={@ORM\Index(name="Ref_07", columns={"company"})})
+ * @ORM\Table(name="users",
+ *          uniqueConstraints={@ORM\UniqueConstraint(name="login", columns={"email"})},
+ *          indexes={@ORM\Index(name="Ref_07", columns={"company"}),
+ *                  @ORM\Index(name="Ref_30", columns={"creator"})})
+ *
  * @ORM\Entity(repositoryClass="Matrix\ServiceBundle\Repository\UsersRepository")
  */
 class Users
@@ -53,14 +57,14 @@ class Users
     /**
      * @var string
      *
-     * @ORM\Column(name="password", type="string", length=32, nullable=false)
+     * @ORM\Column(name="password", type="string", length=60, nullable=false)
      */
     private $password;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="salt", type="string", length=5, nullable=false)
+     * @ORM\Column(name="salt", type="string", length=23, nullable=false)
      */
     private $salt;
 
@@ -80,6 +84,34 @@ class Users
      * })
      */
     private $company;
+
+    /**
+     * @var Users
+     *
+     * @ORM\ManyToOne(targetEntity="Users", fetch="EAGER")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="creator", referencedColumnName="id")
+     * })
+     */
+    private $creator;
+
+    /**
+     * @param Users $creator
+     * @return Users
+     */
+    public function setCreator($creator)
+    {
+        $this->creator = $creator;
+        return $this;
+    }
+
+    /**
+     * @return Users
+     */
+    public function getCreator()
+    {
+        return $this->creator;
+    }
 
 
 

@@ -1,0 +1,22 @@
+{% extends "MatrixAdminBundle::base.html.twig" %}
+{% block content %}
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Email</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for dist in distributors %}
+            <tr>
+                <td>{{ dist.name }}</td>
+                <td>{{ dist.surname }}</td>
+                <td>{{ dist.email }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

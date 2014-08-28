@@ -10,7 +10,10 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * Users
  *
- * @ORM\Table(name="users", uniqueConstraints={@ORM\UniqueConstraint(name="login", columns={"email"})}, indexes={@ORM\Index(name="Ref_07", columns={"company"})})
+ * @ORM\Table(name="users",
+ *          uniqueConstraints={@ORM\UniqueConstraint(name="login", columns={"email"})},
+ *          indexes={@ORM\Index(name="Ref_07", columns={"company"}),
+ *                  @ORM\Index(name="Ref_30", columns={"creator"})})
  * @ORM\Entity(repositoryClass="Matrix\AdminBundle\Repository\UsersRepository")
  */
 class Users implements UserInterface
@@ -55,14 +58,14 @@ class Users implements UserInterface
     /**
      * @var string
      *
-     * @ORM\Column(name="password", type="string", length=32, nullable=false)
+     * @ORM\Column(name="password", type="string", length=60, nullable=false)
      */
     private $password;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="salt", type="string", length=5, nullable=false)
+     * @ORM\Column(name="salt", type="string", length=23, nullable=false)
      */
     private $salt;
 
@@ -76,13 +79,51 @@ class Users implements UserInterface
     /**
      * @var Company
      *
-     * @ORM\ManyToOne(targetEntity="Company")
+     * @ORM\ManyToOne(targetEntity="Company", fetch="EAGER")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="company", referencedColumnName="id")
      * })
      */
     private $company;
 
+    /**
+     * @var Users
+     *
+     * @ORM\ManyToOne(targetEntity="Users", fetch="EAGER")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="creator", referencedColumnName="id")
+     * })
+     */
+    private $creator;
+
+    /**
+     * @param Users $creator
+     * @return Users
+     */
+    public function setCreator($creator)
+    {
+        $this->creator = $creator;
+        return $this;
+    }
+
+    /**
+     * @return Users
+     */
+    public function getCreator()
+    {
+        return $this->creator;
+    }
+
+
+
+
+
+    /**
+     * @return string
+     */
+    public static function generateSalt(){
+        return  uniqid("", true);
+    }
 
 
     /**

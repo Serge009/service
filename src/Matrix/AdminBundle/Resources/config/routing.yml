@@ -3,9 +3,47 @@ admin_login:
     path:      /login
     defaults:  { _controller: MatrixAdminBundle:Login:index }
 
-admin_404_1:
+
+admin_home:
     path:     /
-    defaults: { _controller: MatrixAdminBundle:NotFound:index }
+    defaults: { _controller: MatrixAdminBundle:Index:index }
+
+distributor_list:
+    path:     /dist
+    defaults: { _controller: MatrixAdminBundle:Index:index }
+
+licenses_list:
+    path:     /lic
+    defaults: { _controller: MatrixAdminBundle:Licenses:index }
+
+distributor_form:
+    path:     /dist/create
+    defaults: { _controller: MatrixAdminBundle:Distributors:createForm }
+    methods: GET
+
+distributor_create:
+    path:     /dist/create
+    defaults: { _controller: MatrixAdminBundle:Distributors:create }
+    methods: POST
+
+distributors_licenses:
+    path:     /dist/lic
+    defaults: { _controller: MatrixAdminBundle:Licenses:getByDistributor }
+
+#list of all Account Owners(Companies)
+distributors_companies:
+    path:     /comp
+    defaults: { _controller: MatrixAdminBundle:Distributor:companies }
+
+company_create_form:
+    path:     /comp/create
+    defaults: { _controller: MatrixAdminBundle:Licenses:getByDisttributor }
+    methods:  GET
+
+company_create:
+    path:     /comp/create
+    defaults: { _controller: MatrixAdminBundle:Licenses:getByDisttributor }
+    methods:  POST
 
 admin_404:
     path:     /{name}

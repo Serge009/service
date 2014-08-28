@@ -1,0 +1,27 @@
+{% extends "MatrixAdminBundle::base.html.twig" %}
+{% block content %}
+
+    <table>
+        <thead>
+        <tr>
+            <th>Serial</th>
+            <th>User Count</th>
+            <th>Status</th>
+            <th>Owner name</th>
+            <th>Distributor name</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for license in licenses %}
+            <tr>
+                <td>{{ license.serial }}</td>
+                <td>{{ license.userCount }}</td>
+                <td>{{ license.status }}</td>
+                <td>{{ license.owner.name }}</td>
+                <td>{{ license.distributor.name }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

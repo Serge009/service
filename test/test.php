@@ -176,7 +176,7 @@ class Service{
             );
             //$test = '{"session":"d07a5600b20b27a6dc4f27e1af535779", "orders":[]}';
 
-            curl_setopt($curl, CURLOPT_URL, 'http://localhost:8080/service/mobile' . self::$url);
+            curl_setopt($curl, CURLOPT_URL, 'http://localhost:8080/service/app_dev.php/mobile/' . self::$url);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($curl, CURLOPT_POST, true);
             curl_setopt($curl, CURLOPT_POSTFIELDS, 'data=' . json_encode($test));

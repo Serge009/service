@@ -28,22 +28,64 @@ class SynchController extends AppController
                 return $this->renderError(Errors::INCORRECT_REQUEST);
             }
 
-
-            $products = $this->synchProducts($data->versions->products,
-                $session->getDevice()->getUser()->getCompany());
-
-            $services = $this->synchServices($data->versions->services,
-                $session->getDevice()->getUser()->getCompany());
-
-            $customers = $this->synchCustomers($data->versions->customers,
-                $session->getDevice()->getUser()->getCompany());
+            $res = array();
 
 
-            $res = array(
-                "products" => $products,
-                "services" => $services,
-                "customers" => $customers
-            );
+            if(isset($data->versions->products)){
+                $products = $this->synchProducts($data->versions->products,
+                    $session->getDevice()->getUser()->getCompany());
+
+                $res['products'] = $products;
+            }
+
+            if(isset($data->versions->services)){
+                $services = $this->synchServices($data->versions->services,
+                    $session->getDevice()->getUser()->getCompany());
+
+                $res['services'] = $services;
+            }
+
+            if(isset($data->versions->customers)){
+                $customers = $this->synchCustomers($data->versions->customers,
+                    $session->getDevice()->getUser()->getCompany());
+
+                $res['customers'] = $customers;
+            }
+
+            if(isset($data->versions->unit)){
+                $units = $this->synchUnit($data->versions->unit,
+                    $session->getDevice()->getUser()->getCompany());
+
+                $res['unit'] = $units;
+            }
+
+            if(isset($data->versions->currency)){
+                $units = $this->synchCurrency($data->versions->currency,
+                    $session->getDevice()->getUser()->getCompany());
+
+                $res['currency'] = $units;
+            }
+
+            if(isset($data->versions->department)){
+                $units = $this->synchDepartment($data->versions->department,
+                    $session->getDevice()->getUser()->getCompany());
+
+                $res['department'] = $units;
+            }
+
+            if(isset($data->versions->division)){
+                $units = $this->synchDivision($data->versions->division,
+                    $session->getDevice()->getUser()->getCompany());
+
+                $res['division'] = $units;
+            }
+
+            if(isset($data->versions->plant)){
+                $units = $this->synchPlant($data->versions->plant,
+                    $session->getDevice()->getUser()->getCompany());
+
+                $res['plant'] = $units;
+            }
 
             return $this->renderData($res);
 
@@ -98,5 +140,74 @@ class SynchController extends AppController
         return $res;
     }
 
+    private function synchUnit($version, Company $company)
+    {
+        $units = $this->getDoctrine()
+            ->getRepository("MatrixServiceBundle:Unit")
+            ->findByVersion($version, $company);
+
+        $res = array();
+        foreach($units as $unit){
+            array_push($res, $unit->toArray());
+        }
+
+        return $res;
+    }
+
+    private function synchCurrency($version, Company $company)
+    {
+        $currencies = $this->getDoctrine()
+            ->getRepository("MatrixServiceBundle:Currency")
+            ->findByVersion($version, $company);
+
+        $res = array();
+        foreach($currencies as $currency){
+            array_push($res, $currency->toArray());
+        }
+
+        return $res;
+    }
+
+    private function synchDepartment($version, Company $company)
+    {
+        $departments = $this->getDoctrine()
+            ->getRepository("MatrixServiceBundle:Department")
+            ->findByVersion($version, $company);
+
+        $res = array();
+        foreach($departments as $department){
+            array_push($res, $department->toArray());
+        }
+
+        return $res;
+    }
+
+    private function synchDivision($version, Company $company)
+    {
+        $divisions = $this->getDoctrine()
+            ->getRepository("MatrixServiceBundle:Division")
+            ->findByVersion($version, $company);
+
+        $res = array();
+        foreach($divisions as $division){
+            array_push($res, $division->toArray());
+        }
+
+        return $res;
+    }
+
+    private function synchPlant($version, Company $company)
+    {
+        $plants = $this->getDoctrine()
+            ->getRepository("MatrixServiceBundle:Plant")
+            ->findByVersion($version, $company);
+
+        $res = array();
+        foreach($plants as $plant){
+            array_push($res, $plant->toArray());
+        }
+
+        return $res;
+    }
 
 } 

@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Unit
  *
  * @ORM\Table(name="unit", indexes={@ORM\Index(name="Ref_28", columns={"company"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Matrix\ServiceBundle\Repository\UnitRepository")
  */
 class Unit
 {
@@ -51,6 +51,18 @@ class Unit
      * })
      */
     private $company;
+
+
+    public function toArray(){
+
+        return array(
+            "id" => $this->getId(),
+            "name" => $this->getName(),
+            "status" => $this->getStatus(),
+            "version" => $this->getStatus()
+        );
+
+    }
 
 
 

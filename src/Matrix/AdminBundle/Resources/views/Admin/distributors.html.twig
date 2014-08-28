@@ -1,0 +1,111 @@
+{% extends "MatrixAdminBundle:Admin:admin.html.twig" %}
+{% block content %}
+    <hr class="hr-double">
+    <div class="row">
+        <div class="col-sm-12">
+            <div style="margin-bottom:0;" class="box bordered-box orange-border">
+                <div class="box-header purple-background">
+                    <div class="title">Data table with column filter in footer</div>
+                    <div class="actions">
+                        <a href="#" class="btn box-remove btn-xs btn-link"><i class="icon-remove"></i>
+                        </a>
+
+                        <a href="#" class="btn box-collapse btn-xs btn-link"><i></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="box-content box-no-padding">
+                    <div class="responsive-table">
+                        <div class="scrollable-area">
+                            <div role="grid" class="dataTables_wrapper form-inline" id="DataTables_Table_1_wrapper">
+
+                                <table style="margin-bottom:0;"
+                                       class="data-table-column-filter table table-bordered table-striped dataTable">
+                                    <thead>
+                                    <tr role="row">
+                                        <th class="sorting_asc" role="columnheader" tabindex="0"
+                                            aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+                                            style="width: 289px;" aria-sort="ascending" aria-label="
+                                  Name
+                                : activate to sort column descending">
+                                            Name
+                                        </th>
+                                        <th class="sorting" role="columnheader" tabindex="0"
+                                            aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+                                            style="width: 325px;" aria-label="
+                                  E-mail
+                                : activate to sort column ascending">
+                                            E-mail
+                                        </th>
+                                        <th class="sorting" role="columnheader" tabindex="0"
+                                            aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+                                            style="width: 167px;" aria-label="
+                                  Status
+                                : activate to sort column ascending">
+                                            Status
+                                        </th>
+                                        <th class="sorting" role="columnheader" tabindex="0"
+                                            aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+                                            style="width: 129px;" aria-label=": activate to sort column ascending"></th>
+                                    </tr>
+                                    </thead>
+
+                                    <tfoot>
+                                    <tr>
+                                        <th rowspan="1" colspan="1"><span class="filter_column filter_text"><input
+                                                        type="text" value="Name"
+                                                        class="search_init text_filter form-control input-sm"
+                                                        placeholder="Search"></span></th>
+                                        <th rowspan="1" colspan="1">
+                                            <span class="filter_column filter_text">
+                                                <input type="text" value="E-mail"
+                                                        class="search_init text_filter form-control input-sm"
+                                                        placeholder="Search">
+                                            </span>
+                                        </th>
+                                        <th colspan="2" rowspan="1">
+                                            <span class="filter_column filter_text">
+                                                <input type="text" value="Status"
+                                                        class="search_init text_filter form-control input-sm"
+                                                        placeholder="Search">
+                                            </span>
+                                        </th>
+                                    </tr>
+                                    </tfoot>
+                                    <tbody role="alert" aria-live="polite" aria-relevant="all">
+                                    {% for dist in distributors %}
+                                    <tr class="odd">
+                                        <td class="  sorting_1">{{ dist.name }} {{ dist.surname }}</td>
+                                        <td class=" ">{{ dist.email }}</td>
+                                        <td class=" ">
+                                            <span class="label label-important">Important</span>
+                                        </td>
+                                        <td class=" ">
+                                            <div class="text-right">
+                                                <a href="#" class="btn btn-success btn-xs">
+                                                    <i class="icon-ok"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-danger btn-xs">
+                                                    <i class="icon-remove"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+{% endblock %}
+{% block scripts %}
+        <script type="text/javascript" src="{{ asset('public/assets/javascripts/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('public/assets/javascripts/plugins/datatables/jquery.dataTables.columnFilter.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('public/assets/javascripts/plugins/datatables/dataTables.overrides.js') }}"></script>
+
+{% endblock %}

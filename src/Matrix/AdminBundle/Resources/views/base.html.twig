@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+ <head>
+     <title>Admin Test</title>
+ </head>
+<body>
+    <ul>
+        <li><a href="{{ path('logout') }}" >Logout</a></li>
+        <li><a href="{{ path('distributor_list') }}" >Distributors</a></li>
+        <li><a href="{{ path('distributor_form') }}" >Create Distributor</a></li>
+        <li><a href="{{ path('licenses_list') }}" >Licenses</a></li>
+        {% block menu %}
+
+        {% endblock %}
+    </ul>
+
+    {% for flashMessage in app.session.flashbag.get('error') %}
+        <div class="flash-notice">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

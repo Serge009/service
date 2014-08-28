@@ -7,7 +7,9 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Licenses
  *
- * @ORM\Table(name="licenses", uniqueConstraints={@ORM\UniqueConstraint(name="serial", columns={"serial"})}, indexes={@ORM\Index(name="Ref_04", columns={"owner"})})
+ * @ORM\Table(name="licenses", uniqueConstraints={@ORM\UniqueConstraint(name="serial", columns={"serial"})},
+ *              indexes={@ORM\Index(name="Ref_04", columns={"owner"}),
+ *                      @ORM\Index(name="Ref_31", columns={"distributor"})})
  * @ORM\Entity(repositoryClass="Matrix\ServiceBundle\Repository\LicensesRepository")
  */
 class Licenses
@@ -43,7 +45,7 @@ class Licenses
     private $status = '1';
 
     /**
-     * @var \Users
+     * @var Users
      *
      * @ORM\ManyToOne(targetEntity="Users")
      * @ORM\JoinColumns({
@@ -51,6 +53,35 @@ class Licenses
      * })
      */
     private $owner;
+
+    /**
+     * @var Users
+     *
+     * @ORM\ManyToOne(targetEntity="Users")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="distributor", referencedColumnName="id")
+     * })
+     */
+    private $distributor;
+
+    /**
+     * @param Users $distributor
+     * @return Licenses
+     */
+    public function setDistributor($distributor)
+    {
+        $this->distributor = $distributor;
+
+        return $this;
+    }
+
+    /**
+     * @return Users
+     */
+    public function getDistributor()
+    {
+        return $this->distributor;
+    }
 
 
 
