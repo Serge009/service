@@ -57,7 +57,7 @@ class Customers
     private $status = '1';
 
     /**
-     * @var \Company
+     * @var Company
      *
      * @ORM\ManyToOne(targetEntity="Company")
      * @ORM\JoinColumns({
@@ -210,10 +210,10 @@ class Customers
     /**
      * Set company
      *
-     * @param \Matrix\ServiceBundle\Entity\Company $company
+     * @param Company $company
      * @return Customers
      */
-    public function setCompany(\Matrix\ServiceBundle\Entity\Company $company = null)
+    public function setCompany(Company $company = null)
     {
         $this->company = $company;
 
@@ -223,7 +223,7 @@ class Customers
     /**
      * Get company
      *
-     * @return \Matrix\ServiceBundle\Entity\Company 
+     * @return Company
      */
     public function getCompany()
     {

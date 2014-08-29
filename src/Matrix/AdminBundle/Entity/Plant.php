@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Plant
  *
  * @ORM\Table(name="plant", indexes={@ORM\Index(name="Ref_18", columns={"company"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Matrix\AdminBundle\Repository\PlantRepository")
  */
 class Plant
 {
@@ -36,7 +36,7 @@ class Plant
     private $version = '1';
 
     /**
-     * @var \Company
+     * @var Company
      *
      * @ORM\ManyToOne(targetEntity="Company")
      * @ORM\JoinColumns({
@@ -106,10 +106,10 @@ class Plant
     /**
      * Set company
      *
-     * @param \Matrix\ServiceBundle\Entity\Company $company
+     * @param Company $company
      * @return Plant
      */
-    public function setCompany(\Matrix\ServiceBundle\Entity\Company $company = null)
+    public function setCompany(Company $company = null)
     {
         $this->company = $company;
 
@@ -119,7 +119,7 @@ class Plant
     /**
      * Get company
      *
-     * @return \Matrix\ServiceBundle\Entity\Company 
+     * @return Company
      */
     public function getCompany()
     {

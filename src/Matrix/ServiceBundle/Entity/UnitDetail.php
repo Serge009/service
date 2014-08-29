@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * UnitDetail
  *
  * @ORM\Table(name="unit_detail", indexes={@ORM\Index(name="Ref_22", columns={"unit"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Matrix\ServiceBundle\Repository\UnitDetailRepository")
  */
 class UnitDetail
 {
@@ -57,7 +57,7 @@ class UnitDetail
     private $version = '1';
 
     /**
-     * @var \Unit
+     * @var Unit
      *
      * @ORM\ManyToOne(targetEntity="Unit")
      * @ORM\JoinColumns({
@@ -66,6 +66,19 @@ class UnitDetail
      */
     private $unit;
 
+
+    public function toArray(){
+        return array(
+            "id" => $this->getId(),
+            "unit" => $this->getUnit()->getId(),
+            "from" => $this->getFrom(),
+            "to" => $this->getTo(),
+            "name" => $this->getName(),
+            "main" => ($this->getMain()) ? "1" : "0",
+            "version" => $this->getVersion(),
+            "status" => 1
+        );
+    }
 
 
     /**

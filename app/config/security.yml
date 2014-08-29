@@ -15,7 +15,18 @@ security:
           - { path: ^/mobile$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
           - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
           - { path: ^/dist/create, roles: [ROLE_ADMIN] }
+          - { path: ^/owner/create, roles: [ROLE_DISTRIBUTOR] }
+          - { path: ^/owner/managers, roles: [ROLE_ACCOUNT_OWNER] }
+          - { path: ^/manager/users, roles: [ROLE_ACCOUNT_OWNER, ROLE_MANAGER] }
+          - { path: ^/muser/create, roles: [ROLE_ACCOUNT_OWNER, ROLE_MANAGER] }
+          - { path: ^/manager/departments, roles: [ROLE_ACCOUNT_OWNER, ROLE_MANAGER] }
+          - { path: ^/department/create, roles: [ROLE_ACCOUNT_OWNER, ROLE_MANAGER] }
+          - { path: ^/manager/plants, roles: [ROLE_ACCOUNT_OWNER, ROLE_MANAGER] }
+          - { path: ^/plant/create, roles: [ROLE_ACCOUNT_OWNER, ROLE_MANAGER] }
+          - { path: ^/manager/warehouses, roles: [ROLE_ACCOUNT_OWNER, ROLE_MANAGER] }
+          - { path: ^/warehouse/create, roles: [ROLE_ACCOUNT_OWNER, ROLE_MANAGER] }
           - { path: ^/dist/lic, roles: [ROLE_DISTRIBUTOR] }
+          - { path: ^/dist/owners, roles: [ROLE_DISTRIBUTOR] }
           - { path: ^/lic, roles: [ROLE_ADMIN] }
           - { path: ^/dist, roles: [ROLE_ADMIN] }
           - { path: ^/, roles: [ROLE_ADMIN, ROLE_ACCOUNT_OWNER, ROLE_MANAGER, ROLE_DISTRIBUTOR] }
@@ -36,5 +47,9 @@ security:
           #                    admin: { password: kitten, roles: 'ROLE_ADMIN' }
     encoders:
         Matrix\AdminBundle\Entity\Users:
+                        algorithm: bcrypt
+                        cost:      12
+
+        Matrix\ServiceBundle\Entity\Users:
                         algorithm: bcrypt
                         cost:      12

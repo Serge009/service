@@ -47,8 +47,8 @@ class OrdersController extends AppController {
         $itemsVersion = $em->getRepository("MatrixServiceBundle:OrderItem")->findMaxVersion();
 
         $res = array(
-            "orders" => array(),
-            "items" => array()
+            "orders" => array()
+            //"items" => array()
         );
 
 
@@ -56,6 +56,10 @@ class OrdersController extends AppController {
         foreach($orders as $order){
 
             $customer = $custRepo->findOneBy(array("id" => $order->customer));
+            $department = $em->getRepository("MatrixServiceBundle:Department")->findOneBy(array("id" => $order->department));
+            $division = $em->getRepository("MatrixServiceBundle:Division")->findOneBy(array("id" => $order->division));
+            $warehouse = $em->getRepository("MatrixServiceBundle:Warehouse")->findOneBy(array("id" => $order->warehouse));
+            $plant = $em->getRepository("MatrixServiceBundle:Plant")->findOneBy(array("id" => $order->plant));
 
             $newOrder = new Orders();
             $newOrder->setDate(new DateTime())
@@ -67,39 +71,47 @@ class OrdersController extends AppController {
                 ->setVersion($ordersVersion)
                 ->setStatus(Statuses::ACTIVE)
                 ->setUser($user)
-                ->setCustomer($customer);
+                ->setCustomer($customer)
+                ->setDepartment($department)
+                ->setDivision($division)
+                ->setWarehouse($warehouse)
+                ->setPlant($plant);
 
             $em->persist($newOrder);
             array_push($res['orders'], $newOrder);
 
+            $items = array();
             foreach($order->orderItems as $item){
+                $unitDetail = $em->getRepository("MatrixServiceBundle:UnitDetail")->findOneBy(array("id" => $item->unit_detail));
                 $orderItem = new OrderItem();
 
                 $orderItem->setItem($item->item)
                     ->setOrder($newOrder)
                     ->setStatus(Statuses::ACTIVE)
                     ->setType($item->type)
-                    ->setVersion($itemsVersion);
+                    ->setVersion($itemsVersion)
+                    ->setUnitDetail($unitDetail);
 
                 $em->persist($orderItem);
-                array_push($res['items'], $orderItem);
+                //array_push($res['items'], $orderItem);
+                array_push($items, $orderItem);
 
 
             }
 
-
-
-
-
+            $newOrder->setOrderItems($items);
 
         }
 
         $em->flush();
 
-        $res['orders'] = $this->toArray($res['orders']);
-        $res['items'] = $this->toArray($res['items']);
 
-        return $this->renderData($res);
+        $res['orders'] = $this->toArray($res['orders']);
+        //var_dump($res['orders']);
+        //$res['items'] = $this->toArray($res['items']);
+
+        return $this->renderData(array());
+        //return $this->renderData($res);
 
 
 

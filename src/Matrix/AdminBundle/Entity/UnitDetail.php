@@ -57,7 +57,7 @@ class UnitDetail
     private $version = '1';
 
     /**
-     * @var \Unit
+     * @var Unit
      *
      * @ORM\ManyToOne(targetEntity="Unit")
      * @ORM\JoinColumns({

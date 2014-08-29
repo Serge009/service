@@ -11,6 +11,7 @@ namespace Matrix\ServiceBundle\Controller;
 
 use Exception;
 use Matrix\ServiceBundle\Entity\Company;
+use Matrix\ServiceBundle\Entity\Users;
 use Matrix\ServiceBundle\Utils\Errors;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,6 +26,7 @@ class SynchController extends AppController
             $data = json_decode($request->request->get('data'));
 
             if (!$data || !$session = $this->isSessionValid($data->session)) {
+
                 return $this->renderError(Errors::INCORRECT_REQUEST);
             }
 
@@ -87,6 +89,48 @@ class SynchController extends AppController
                 $res['plant'] = $units;
             }
 
+            if(isset($data->versions->warehouse)){
+                $units = $this->synchWarehouse($data->versions->warehouse,
+                    $session->getDevice()->getUser()->getCompany());
+
+                $res['warehouse'] = $units;
+            }
+
+            if(isset($data->versions->unit_detail)){
+                $units = $this->synchUnitDetail($data->versions->unit_detail,
+                    $session->getDevice()->getUser()->getCompany());
+
+                $res['unit_detail'] = $units;
+            }
+
+            if(isset($data->versions->product_prices)){
+                $units = $this->synchProductPrices($data->versions->product_prices,
+                    $session->getDevice()->getUser()->getCompany());
+
+                $res['product_prices'] = $units;
+            }
+
+            if(isset($data->versions->service_prices)){
+                $units = $this->synchServicePrices($data->versions->service_prices,
+                    $session->getDevice()->getUser()->getCompany());
+
+                $res['service_prices'] = $units;
+            }
+
+            if(isset($data->versions->order_item)){
+                $units = $this->synchOrderItem($data->versions->order_item,
+                    $session->getDevice()->getUser());
+
+                $res['order_item'] = $units;
+            }
+
+            if(isset($data->versions->orders)){
+                $units = $this->synchOrders($data->versions->orders,
+                    $session->getDevice()->getUser());
+
+                $res['orders'] = $units;
+            }
+
             return $this->renderData($res);
 
         } catch (Exception $e) {
@@ -108,8 +152,6 @@ class SynchController extends AppController
         }
 
         return $res;
-
-
     }
 
     private function synchServices($version, Company $company)
@@ -205,6 +247,91 @@ class SynchController extends AppController
         $res = array();
         foreach($plants as $plant){
             array_push($res, $plant->toArray());
+        }
+
+        return $res;
+    }
+
+
+    private function synchWarehouse($version, Company $company)
+{
+    $warehouses = $this->getDoctrine()
+        ->getRepository("MatrixServiceBundle:Warehouse")
+        ->findByVersion($version, $company);
+
+    $res = array();
+    foreach($warehouses as $warehouse){
+        array_push($res, $warehouse->toArray());
+    }
+
+    return $res;
+}
+
+    private function synchUnitDetail($version, Company $company)
+    {
+        $unitDetails = $this->getDoctrine()
+            ->getRepository("MatrixServiceBundle:UnitDetail")
+            ->findByVersion($version, $company);
+
+        $res = array();
+        foreach($unitDetails as $detail){
+            array_push($res, $detail->toArray());
+        }
+
+        return $res;
+    }
+
+    private function synchServicePrices($version, Company $company)
+    {
+        $prices = $this->getDoctrine()
+            ->getRepository("MatrixServiceBundle:ServicePrices")
+            ->findByVersion($version, $company);
+
+        $res = array();
+        foreach($prices as $price){
+            array_push($res, $price->toArray());
+        }
+
+        return $res;
+    }
+
+    private function synchProductPrices($version, Company $company)
+    {
+        $prices = $this->getDoctrine()
+            ->getRepository("MatrixServiceBundle:ProductPrices")
+            ->findByVersion($version, $company);
+
+        $res = array();
+        foreach($prices as $price){
+            array_push($res, $price->toArray());
+        }
+
+        return $res;
+    }
+
+    private function synchOrderItem($version, Users $user)
+    {
+        $items = $this->getDoctrine()
+            ->getRepository("MatrixServiceBundle:OrderItem")
+            ->findByVersion($version, $user);
+
+        $res = array();
+        foreach($items as $item){
+            array_push($res, $item->toArray());
+        }
+
+        return $res;
+    }
+
+    private function synchOrders($version, Users $user)
+    {
+        $orders = $this->getDoctrine()
+            ->getRepository("MatrixServiceBundle:Orders")
+            ->findByVersion($version, $user);
+
+        $res = array();
+        foreach($orders as $order){
+            array_push($res, $order->toArray());
         }
 
         return $res;

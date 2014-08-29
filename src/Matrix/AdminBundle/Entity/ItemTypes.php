@@ -1,6 +1,6 @@
 <?php
 
-namespace Matrix\ServiceBundle\Entity;
+namespace Matrix\AdminBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 

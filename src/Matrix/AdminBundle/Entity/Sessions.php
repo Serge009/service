@@ -106,10 +106,10 @@ class Sessions
     /**
      * Set device
      *
-     * @param \Matrix\ServiceBundle\Entity\Devices $device
+     * @param Devices $device
      * @return Sessions
      */
-    public function setDevice(\Matrix\ServiceBundle\Entity\Devices $device = null)
+    public function setDevice(Devices $device = null)
     {
         $this->device = $device;
 
@@ -119,7 +119,7 @@ class Sessions
     /**
      * Get device
      *
-     * @return \Matrix\ServiceBundle\Entity\Devices 
+     * @return Devices
      */
     public function getDevice()
     {

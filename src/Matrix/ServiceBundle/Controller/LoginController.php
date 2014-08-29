@@ -58,8 +58,24 @@ class LoginController extends AppController {
 
     private function authorize($email, $pass, $license, $uuid){
         $repository = $this->getDoctrine()->getRepository('MatrixServiceBundle:Users');
-        $this->user = $repository->findAllByEmail($email, $pass);
-        if($this->user) {
+        $this->user = $repository->findOneBy(array("email" => $email));
+
+
+
+        $factory = $this->get('security.encoder_factory');
+
+        $user = new Users();
+        $user->setSalt($this->user->getSalt());
+
+        $encoder = $factory->getEncoder($user);
+        $password = $encoder->encodePassword($pass, $user->getSalt());
+
+
+        $user->setEmail($email)
+            ->setPassword($password);
+
+
+        if($this->user->equals($user)) {
             return $this->checkLicense($license, $uuid);
         }
 
@@ -93,13 +109,13 @@ class LoginController extends AppController {
 
     private function createNewDevice($uuid, $serial){
         $repository = $this->getDoctrine()->getRepository('MatrixServiceBundle:Devices');
-        $info = $repository->createNewDevice($uuid, $serial, $this->user['id']);
+        $info = $repository->createNewDevice($uuid, $serial, $this->user->getId());
 
         if($info){
             return $this->createSession($info['device']);
         }
 
-        $this->get('logger')->error($uuid . " " .$serial ." " . $this->user['id'] );
+        $this->get('logger')->error($uuid . " " .$serial ." " . $this->user->getId() );
         return $this->renderError(Errors::OOPS);
     }
 

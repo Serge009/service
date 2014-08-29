@@ -6,7 +6,7 @@
  * Time: 20:20
  */
 
-namespace Matrix\ServiceBundle\Repository;
+namespace Matrix\AdminBundle\Repository;
 
 
 use Doctrine\ORM\EntityRepository;

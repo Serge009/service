@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * ProductPrices
  *
  * @ORM\Table(name="product_prices", indexes={@ORM\Index(name="Ref_12", columns={"product"}), @ORM\Index(name="Ref_13", columns={"currency"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Matrix\ServiceBundle\Repository\ProductPricesRepository")
  */
 class ProductPrices
 {
@@ -36,7 +36,7 @@ class ProductPrices
     private $version = '1';
 
     /**
-     * @var \Products
+     * @var Products
      *
      * @ORM\ManyToOne(targetEntity="Products")
      * @ORM\JoinColumns({
@@ -46,7 +46,7 @@ class ProductPrices
     private $product;
 
     /**
-     * @var \Currency
+     * @var Currency
      *
      * @ORM\ManyToOne(targetEntity="Currency")
      * @ORM\JoinColumns({
@@ -56,6 +56,16 @@ class ProductPrices
     private $currency;
 
 
+    public function toArray(){
+        return array(
+            "id" => $this->getId(),
+            "product" => $this->getProduct()->getId(),
+            "price" => $this->getPrice(),
+            "currency" => $this->getCurrency()->getId(),
+            "version" => $this->getVersion(),
+            "status" => 1
+        );
+    }
 
     /**
      * Get id

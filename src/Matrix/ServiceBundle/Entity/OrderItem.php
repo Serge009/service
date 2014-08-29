@@ -7,7 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * OrderItem
  *
- * @ORM\Table(name="order_item", indexes={@ORM\Index(name="Ref_10", columns={"order"})})
+ * @ORM\Table(name="order_item", indexes={@ORM\Index(name="Ref_10", columns={"order"}),
+ *                                          @ORM\Index(name="Ref_29", columns={"unit_detail"})})
  * @ORM\Entity(repositoryClass="Matrix\ServiceBundle\Repository\OrderItemRepository")
  */
 class OrderItem
@@ -50,14 +51,31 @@ class OrderItem
     private $status = '1';
 
     /**
-     * @var \Orders
+     * @var Orders
      *
-     * @ORM\ManyToOne(targetEntity="Orders")
+     * @ORM\ManyToOne(targetEntity="Orders", fetch="EAGER")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="order_id", referencedColumnName="id")
      * })
      */
     private $order;
+
+    /**
+     * @var UnitDetail
+     *
+     * @ORM\ManyToOne(targetEntity="UnitDetail")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="unit_detail", referencedColumnName="id")
+     * })
+     */
+    private $unitDetail;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="quantity", type="integer", nullable=false)
+     */
+    private $quantity = 0;
 
 
     /**
@@ -71,9 +89,55 @@ class OrderItem
             "type" => $this->getType(),
             "version" => $this->getVersion(),
             "status" => $this->getStatus(),
-            "order" => $this->getOrder()->getId()
+            "order" => $this->getOrder()->getId(),
+            "unit_detail" => $this->getUnitDetail()->getId(),
+            "quantity" => $this->getQuantity()
         );
     }
+
+    /**
+     * @param int $quantity
+     * @return OrderItem
+     */
+    public function setQuantity($quantity)
+    {
+        $this->quantity = $quantity;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getQuantity()
+    {
+        return $this->quantity;
+
+    }
+
+
+
+    /**
+     * @param UnitDetail $unitDetail
+     *
+     * @return OrderItem
+     */
+    public function setUnitDetail($unitDetail)
+    {
+        $this->unitDetail = $unitDetail;
+
+        return $this;
+    }
+
+    /**
+     * @return UnitDetail
+     */
+    public function getUnitDetail()
+    {
+        return $this->unitDetail;
+    }
+
+
+
 
     /**
      * Get id
@@ -183,7 +247,7 @@ class OrderItem
      * @param \Matrix\ServiceBundle\Entity\Orders $order
      * @return OrderItem
      */
-    public function setOrder(\Matrix\ServiceBundle\Entity\Orders $order = null)
+    public function setOrder(Orders $order = null)
     {
         $this->order = $order;
 

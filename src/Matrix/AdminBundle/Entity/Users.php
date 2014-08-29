@@ -2,7 +2,6 @@
 
 namespace Matrix\AdminBundle\Entity;
 
-//use Matrix\ServiceBundle\Entity\Company;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\Role\Role;
 use Symfony\Component\Security\Core\User\UserInterface;

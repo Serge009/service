@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="licenses", uniqueConstraints={@ORM\UniqueConstraint(name="serial", columns={"serial"})},
  *              indexes={@ORM\Index(name="Ref_04", columns={"owner"}),
  *                      @ORM\Index(name="Ref_31", columns={"distributor"})})
- * @ORM\Entity(repositoryClass="Matrix\ServiceBundle\Repository\LicensesRepository")
+ * @ORM\Entity(repositoryClass="Matrix\AdminBundle\Repository\LicensesRepository")
  */
 class Licenses
 {
@@ -167,10 +167,10 @@ class Licenses
     /**
      * Set owner
      *
-     * @param \Matrix\ServiceBundle\Entity\Users $owner
+     * @param Users $owner
      * @return Licenses
      */
-    public function setOwner(\Matrix\ServiceBundle\Entity\Users $owner = null)
+    public function setOwner(Users $owner = null)
     {
         $this->owner = $owner;
 
@@ -180,7 +180,7 @@ class Licenses
     /**
      * Get owner
      *
-     * @return \Matrix\ServiceBundle\Entity\Users 
+     * @return Users
      */
     public function getOwner()
     {

@@ -4,14 +4,40 @@
      <title>Admin Test</title>
  </head>
 <body>
+    For Admin
     <ul>
         <li><a href="{{ path('logout') }}" >Logout</a></li>
         <li><a href="{{ path('distributor_list') }}" >Distributors</a></li>
         <li><a href="{{ path('distributor_form') }}" >Create Distributor</a></li>
         <li><a href="{{ path('licenses_list') }}" >Licenses</a></li>
-        {% block menu %}
 
+        {% block menu %}
         {% endblock %}
+    </ul>
+
+    For Distributor
+    <ul>
+        <li><a href="{{ path('account_owner_form') }}" >Create AO</a></li>
+        <li><a href="{{ path('account_owner_list') }}" >Account Owners List</a></li>
+        <li><a href="{{ path('distributors_licenses') }}" >Licenses of this Distributor</a></li>
+    </ul>
+
+    For Account Owner
+    <ul>
+        <li><a href="{{ path('managers_list') }}" >Managers</a></li>
+        <li><a href="{{ path('manager_form') }}" >Create New Manager</a></li>
+    </ul>
+
+    For Manager
+    <ul>
+        <li><a href="{{ path('mobile_users_list') }}" >Mobile Users</a></li>
+        <li><a href="{{ path('mobile_user_form') }}" >Create Mobile User</a></li>
+        <li><a href="{{ path('departments_list') }}" >Departments</a></li>
+        <li><a href="{{ path('department_form') }}" >Create New Department</a></li>
+        <li><a href="{{ path('plants_list') }}" >Plants</a></li>
+        <li><a href="{{ path('plant_form') }}" >Create New Plant</a></li>
+        <li><a href="{{ path('warehouses_list') }}" >Warehouses</a></li>
+        <li><a href="{{ path('warehouse_form') }}" >Create New Warehouse</a></li>
     </ul>
 
     {% for flashMessage in app.session.flashbag.get('error') %}

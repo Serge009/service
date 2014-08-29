@@ -1,0 +1,20 @@
+{% extends "MatrixAdminBundle::base.html.twig" %}
+{% block content %}
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Company</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for dep in departments %}
+            <tr>
+                <td>{{ dep.name }}</td>
+                <td>{{ dep.company.name }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

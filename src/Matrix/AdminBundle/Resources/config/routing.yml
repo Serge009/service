@@ -26,25 +26,120 @@ distributor_create:
     defaults: { _controller: MatrixAdminBundle:Distributors:create }
     methods: POST
 
-distributors_licenses:
-    path:     /dist/lic
-    defaults: { _controller: MatrixAdminBundle:Licenses:getByDistributor }
 
-#list of all Account Owners(Companies)
+
+#List of all Account Owners(Companies)
 distributors_companies:
     path:     /comp
     defaults: { _controller: MatrixAdminBundle:Distributor:companies }
 
-company_create_form:
-    path:     /comp/create
-    defaults: { _controller: MatrixAdminBundle:Licenses:getByDisttributor }
-    methods:  GET
 
-company_create:
-    path:     /comp/create
-    defaults: { _controller: MatrixAdminBundle:Licenses:getByDisttributor }
-    methods:  POST
+#DISTRIBUTOR
+#Create new Account Owner(Company)
+account_owner_form:
+    path:     /owner/create
+    defaults: { _controller: MatrixAdminBundle:Distributor:createAccountOwnerForm }
+    methods: GET
 
+account_owner_create:
+    path:     /owner/create
+    defaults: { _controller: MatrixAdminBundle:Distributor:createAccountOwner }
+    methods: POST
+
+#List of Account Owners created by this Distributor
+account_owner_list:
+    path:     /dist/owners
+    defaults: { _controller: MatrixAdminBundle:Distributor:getAccountOwners }
+
+#Licenses of this Distributor
+distributors_licenses:
+    path:     /dist/lic
+    defaults: { _controller: MatrixAdminBundle:Licenses:getByDistributor }
+
+#ACCOUNT OWNER
+#Managers list
+managers_list:
+    path:     /owner/managers
+    defaults: { _controller: MatrixAdminBundle:AccountOwner:getManagers }
+
+#Create new Manager
+manager_form:
+    path:     /manager/create
+    defaults: { _controller: MatrixAdminBundle:AccountOwner:createManagerForm }
+    methods: GET
+
+manager_create:
+    path:     /manager/create
+    defaults: { _controller: MatrixAdminBundle:AccountOwner:createManager }
+    methods: POST
+
+#MANAGER
+#Mobile Users list
+mobile_users_list:
+    path:     /manager/users
+    defaults: { _controller: MatrixAdminBundle:Manager:getMobileUsers }
+
+#Create new Manager
+mobile_user_form:
+    path:     /muser/create
+    defaults: { _controller: MatrixAdminBundle:Manager:createMobileUserForm }
+    methods: GET
+
+mobile_user_create:
+    path:     /muser/create
+    defaults: { _controller: MatrixAdminBundle:Manager:createMobileUser }
+    methods: POST
+
+#Departments list
+departments_list:
+    path:     /manager/departments
+    defaults: { _controller: MatrixAdminBundle:Manager:getDepartments }
+
+#Create new Department
+department_form:
+    path:     /department/create
+    defaults: { _controller: MatrixAdminBundle:Manager:createDepartmentForm }
+    methods: GET
+
+department_create:
+    path:     /department/create
+    defaults: { _controller: MatrixAdminBundle:Manager:createDepartment }
+    methods: POST
+
+#Plants list
+plants_list:
+    path:     /manager/plants
+    defaults: { _controller: MatrixAdminBundle:Manager:getPlants }
+
+#Create new Plant
+plant_form:
+    path:     /plant/create
+    defaults: { _controller: MatrixAdminBundle:Manager:createPlantForm }
+    methods: GET
+
+plant_create:
+    path:     /plant/create
+    defaults: { _controller: MatrixAdminBundle:Manager:createPlant }
+    methods: POST
+
+#Warehouses list
+warehouses_list:
+    path:     /manager/warehouses
+    defaults: { _controller: MatrixAdminBundle:Manager:getWarehouses }
+
+#Create new Warehouse
+warehouse_form:
+    path:     /warehouse/create
+    defaults: { _controller: MatrixAdminBundle:Manager:createWarehouseForm }
+    methods: GET
+
+warehouse_create:
+    path:     /warehouse/create
+    defaults: { _controller: MatrixAdminBundle:Manager:createWarehouse }
+    methods: POST
+
+
+#ERROR 404
 admin_404:
     path:     /{name}
     defaults: { _controller: MatrixAdminBundle:NotFound:index }

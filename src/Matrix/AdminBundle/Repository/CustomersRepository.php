@@ -6,11 +6,11 @@
  * Time: 11:19
  */
 
-namespace Matrix\ServiceBundle\Repository;
+namespace Matrix\AdminBundle\Repository;
 
 
 use Doctrine\ORM\EntityRepository;
-use Matrix\ServiceBundle\Entity\Company;
+use Matrix\AdminBundle\Entity\Company;
 
 class CustomersRepository extends EntityRepository {
 

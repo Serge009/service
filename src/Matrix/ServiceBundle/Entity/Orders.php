@@ -7,11 +7,59 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Orders
  *
- * @ORM\Table(name="orders", indexes={@ORM\Index(name="Ref_08", columns={"user"}), @ORM\Index(name="Ref_09", columns={"customer"})})
+ * @ORM\Table(name="orders", indexes={@ORM\Index(name="Ref_08", columns={"user"}),
+ *                                   @ORM\Index(name="Ref_09", columns={"customer"}),
+ *                                   @ORM\Index(name="Ref_32", columns={"department"}),
+ *                                   @ORM\Index(name="Ref_33", columns={"warehouse"}),
+ *                                   @ORM\Index(name="Ref_34", columns={"plant"}),
+ *                                   @ORM\Index(name="Ref_35", columns={"division"})
+ * })
  * @ORM\Entity(repositoryClass="Matrix\ServiceBundle\Repository\OrdersRepository")
  */
 class Orders
 {
+
+    /**
+     * @var Department
+     *
+     * @ORM\ManyToOne(targetEntity="Department")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="department", referencedColumnName="id")
+     * })
+     */
+    private $department;
+
+
+    /**
+     * @var Warehouse
+     *
+     * @ORM\ManyToOne(targetEntity="Warehouse")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="warehouse", referencedColumnName="id")
+     * })
+     */
+    private $warehouse;
+
+    /**
+     * @var Plant
+     *
+     * @ORM\ManyToOne(targetEntity="Plant")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="plant", referencedColumnName="id")
+     * })
+     */
+    private $plant;
+
+    /**
+     * @var Division
+     *
+     * @ORM\ManyToOne(targetEntity="Division")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="division", referencedColumnName="id")
+     * })
+     */
+    private $division;
+
     /**
      * @var integer
      *
@@ -24,7 +72,7 @@ class Orders
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date", type="date", nullable=false)
+     * @ORM\Column(name="date", type="datetime", nullable=false)
      */
     private $date;
 
@@ -73,9 +121,9 @@ class Orders
     private $status = '1';
 
     /**
-     * @var \Users
+     * @var Users
      *
-     * @ORM\ManyToOne(targetEntity="Users")
+     * @ORM\ManyToOne(targetEntity="Users", fetch="EAGER")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="user", referencedColumnName="id")
      * })
@@ -83,7 +131,7 @@ class Orders
     private $user;
 
     /**
-     * @var \Customers
+     * @var Customers
      *
      * @ORM\ManyToOne(targetEntity="Customers")
      * @ORM\JoinColumns({
@@ -93,20 +141,56 @@ class Orders
     private $customer;
 
 
+    private $orderItems = array();
+
+    /**
+     * @param array $orderItems
+     * @return Orders
+     */
+    public function setOrderItems($orderItems)
+    {
+        $this->orderItems = $orderItems;
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getOrderItems()
+    {
+        return $this->orderItems;
+    }
+
+
+
+
     /**
      * converts Orders to array
      * @return array
      */
     public function toArray(){
+
+        $items = array();
+        foreach($this->getOrderItems() as $item){
+            array_push($items, $item->toArray());
+        }
+
         return array(
             "id" => $this->getId(),
             "date" => $this->getDate()->format("d-m-Y"),
-            "slipNumber" => $this->getSlipNumber(),
+            "slip_number" => $this->getSlipNumber(),
             "version" => $this->getVersion(),
             "status" => $this->getStatus(),
-            "specialCode" => $this->getSpecialCode(),
+            "special_code" => $this->getSpecialCode(),
             "subtotal" => $this->getSubtotal(),
-            "total" => $this->getTotal()
+            "total" => $this->getTotal(),
+            "customer" => $this->getCustomer()->getId(),
+            "division" => $this->getDivision()->getId(),
+            "department" => $this->getDepartment()->getId(),
+            "plant" => $this->getPlant()->getId(),
+            "warehouse" => $this->getWarehouse()->getId()
+            //"orderItems" => $items
         );
     }
 
@@ -120,6 +204,85 @@ class Orders
     {
         return $this->id;
     }
+
+    /**
+     * @param Department $department
+     * @return Orders
+     */
+    public function setDepartment($department)
+    {
+        $this->department = $department;
+
+        return $this;
+    }
+
+    /**
+     * @return Department
+     */
+    public function getDepartment()
+    {
+        return $this->department;
+    }
+
+    /**
+     * @param Division $division
+     * @return Orders
+     */
+    public function setDivision($division)
+    {
+        $this->division = $division;
+
+        return $this;
+    }
+
+    /**
+     * @return Division
+     */
+    public function getDivision()
+    {
+        return $this->division;
+    }
+
+    /**
+     * @param Plant $plant
+     * @return Orders
+     */
+    public function setPlant($plant)
+    {
+        $this->plant = $plant;
+
+        return $this;
+    }
+
+    /**
+     * @return Plant
+     */
+    public function getPlant()
+    {
+        return $this->plant;
+    }
+
+    /**
+     * @param Warehouse $warehouse
+     * @return Orders
+     */
+    public function setWarehouse($warehouse)
+    {
+        $this->warehouse = $warehouse;
+
+        return $this;
+    }
+
+    /**
+     * @return Warehouse
+     */
+    public function getWarehouse()
+    {
+        return $this->warehouse;
+    }
+
+
+
 
     /**
      * Set date
@@ -287,10 +450,10 @@ class Orders
     /**
      * Set user
      *
-     * @param \Matrix\ServiceBundle\Entity\Users $user
+     * @param Users $user
      * @return Orders
      */
-    public function setUser(\Matrix\ServiceBundle\Entity\Users $user = null)
+    public function setUser(Users $user = null)
     {
         $this->user = $user;
 
@@ -300,7 +463,7 @@ class Orders
     /**
      * Get user
      *
-     * @return \Matrix\ServiceBundle\Entity\Users 
+     * @return Users
      */
     public function getUser()
     {
@@ -310,10 +473,10 @@ class Orders
     /**
      * Set customer
      *
-     * @param \Matrix\ServiceBundle\Entity\Customers $customer
+     * @param Customers $customer
      * @return Orders
      */
-    public function setCustomer(\Matrix\ServiceBundle\Entity\Customers $customer = null)
+    public function setCustomer(Customers $customer = null)
     {
         $this->customer = $customer;
 
@@ -323,7 +486,7 @@ class Orders
     /**
      * Get customer
      *
-     * @return \Matrix\ServiceBundle\Entity\Customers 
+     * @return Customers
      */
     public function getCustomer()
     {

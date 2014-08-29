@@ -95,6 +95,20 @@ class Users
      */
     private $creator;
 
+
+    /**
+     * @param Users $user
+     * @return bool
+     */
+    public function equals(Users $user){
+        if($this->getPassword() === $user->getPassword()
+            && $this->getEmail() === $user->getEmail()){
+            return true;
+        }
+
+        return false;
+    }
+
     /**
      * @param Users $creator
      * @return Users

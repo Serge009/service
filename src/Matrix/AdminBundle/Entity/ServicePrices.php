@@ -36,7 +36,7 @@ class ServicePrices
     private $version = '1';
 
     /**
-     * @var \Currency
+     * @var Currency
      *
      * @ORM\ManyToOne(targetEntity="Currency")
      * @ORM\JoinColumns({
@@ -46,7 +46,7 @@ class ServicePrices
     private $currency;
 
     /**
-     * @var \Services
+     * @var Services
      *
      * @ORM\ManyToOne(targetEntity="Services")
      * @ORM\JoinColumns({
@@ -116,10 +116,10 @@ class ServicePrices
     /**
      * Set currency
      *
-     * @param \Matrix\ServiceBundle\Entity\Currency $currency
+     * @param Currency $currency
      * @return ServicePrices
      */
-    public function setCurrency(\Matrix\ServiceBundle\Entity\Currency $currency = null)
+    public function setCurrency(Currency $currency = null)
     {
         $this->currency = $currency;
 
@@ -129,7 +129,7 @@ class ServicePrices
     /**
      * Get currency
      *
-     * @return \Matrix\ServiceBundle\Entity\Currency 
+     * @return Currency
      */
     public function getCurrency()
     {
@@ -139,10 +139,10 @@ class ServicePrices
     /**
      * Set service
      *
-     * @param \Matrix\ServiceBundle\Entity\Services $service
+     * @param Services $service
      * @return ServicePrices
      */
-    public function setService(\Matrix\ServiceBundle\Entity\Services $service = null)
+    public function setService(Services $service = null)
     {
         $this->service = $service;
 
@@ -152,7 +152,7 @@ class ServicePrices
     /**
      * Get service
      *
-     * @return \Matrix\ServiceBundle\Entity\Services 
+     * @return Services
      */
     public function getService()
     {

@@ -73,7 +73,7 @@ class Orders
     private $status = '1';
 
     /**
-     * @var \Users
+     * @var Users
      *
      * @ORM\ManyToOne(targetEntity="Users")
      * @ORM\JoinColumns({
@@ -83,7 +83,7 @@ class Orders
     private $user;
 
     /**
-     * @var \Customers
+     * @var Customers
      *
      * @ORM\ManyToOne(targetEntity="Customers")
      * @ORM\JoinColumns({
@@ -287,10 +287,10 @@ class Orders
     /**
      * Set user
      *
-     * @param \Matrix\ServiceBundle\Entity\Users $user
+     * @param Users $user
      * @return Orders
      */
-    public function setUser(\Matrix\ServiceBundle\Entity\Users $user = null)
+    public function setUser(Users $user = null)
     {
         $this->user = $user;
 
@@ -300,7 +300,7 @@ class Orders
     /**
      * Get user
      *
-     * @return \Matrix\ServiceBundle\Entity\Users 
+     * @return Users
      */
     public function getUser()
     {
@@ -310,10 +310,10 @@ class Orders
     /**
      * Set customer
      *
-     * @param \Matrix\ServiceBundle\Entity\Customers $customer
+     * @param Customers $customer
      * @return Orders
      */
-    public function setCustomer(\Matrix\ServiceBundle\Entity\Customers $customer = null)
+    public function setCustomer(Customers $customer = null)
     {
         $this->customer = $customer;
 
@@ -323,7 +323,7 @@ class Orders
     /**
      * Get customer
      *
-     * @return \Matrix\ServiceBundle\Entity\Customers 
+     * @return Customers
      */
     public function getCustomer()
     {

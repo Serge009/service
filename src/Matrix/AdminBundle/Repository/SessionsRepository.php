@@ -6,11 +6,11 @@
  * Time: 11:22
  */
 
-namespace Matrix\ServiceBundle\Repository;
+namespace Matrix\AdminBundle\Repository;
 
 
 use Doctrine\ORM\EntityRepository;
-use Matrix\ServiceBundle\Entity\Statuses;
+use Matrix\AdminBundle\Entity\Statuses;
 
 class SessionsRepository extends EntityRepository {
 

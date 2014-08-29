@@ -11,6 +11,7 @@ namespace Matrix\ServiceBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query\ResultSetMapping;
+use Matrix\ServiceBundle\Entity\Users;
 
 class OrdersRepository extends EntityRepository {
 
@@ -25,6 +26,23 @@ class OrdersRepository extends EntityRepository {
         $count = $query->getResult();
         //var_dump($count);
         return (!empty($count) && intval($count[0]['count']) > 0) ? intval($count[0]['count']) : 1;
+    }
+
+
+    public function findByVersion($version, Users $user){
+
+        $em = $this->getEntityManager();
+        $qb = $em->createQueryBuilder();
+        $qb->select('o')
+            ->from('Matrix\ServiceBundle\Entity\Orders' , "o")
+            ->where("o.version > :version")
+            ->andWhere("o.user = :user")
+            ->setParameter("version", $version)
+            ->setParameter("user", $user);
+
+
+        return $qb->getQuery()->execute();
+
     }
 
 

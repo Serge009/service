@@ -9,7 +9,7 @@
 class Service{
 
     public static $data = array(
-        "session" => "3e4ab9ab605a8fd8e12c03ff783e7640",//"41e492078d79082c43dbb8c6c1a57b5c",
+        "session" => "2d60235ce70038db803883ca7198c451",//"41e492078d79082c43dbb8c6c1a57b5c",
         "uuid" => "666",
         "email" => "loh@example.com",
         "password" => "test",
@@ -25,8 +25,10 @@ class Service{
             "service_prices" => 0,
             "services" => 0,
             "unit" => 0,
-            "unit_details" => 0,
-            "warehouse" => 0
+            "unit_detail" => 0,
+            "warehouse" => 0,
+            "order_item" => 0,
+            "orders" => 0
         )
     );
 
@@ -59,6 +61,9 @@ class Service{
         self::test($name);
 
         self::$data["session"] = "d07a5600b20b27a6dc4f27e1af535779";
+        self::test($name);
+
+        self::$data["session"] = "202b275d522665d8585817e9a6f18537";
         self::test($name);
 
     }
@@ -148,18 +153,21 @@ class Service{
         $name = "Login";
         self::$url = "login";
 
-        self::$data["email"] = "loh@example.com";
-        self::$data["license"] = "5555555555";
-         self::$data["password"] = "test";
-        self::$data["session"] = "";
+        self::$data["email"] = "mobile@mobile";
+        self::$data["password"] = "mobile";
+        self::$data["license"] = "6666666666";
         self::$data["uuid"]= "ecace720494b8abe7963639a120bc53d";
 
         self::test($name);
 
-        /*
-        self::$data["session"] = "";
-        self::test($name);
 
+
+
+        self::$data["email"] = "loh@example.com";
+        self::$data["license"] = "5555555555";
+
+        self::test($name);
+        /*
         self::$data["uuid"] = "777";
         self::test($name);
 
@@ -171,10 +179,11 @@ class Service{
 
         self::$data["license"] = "25";
         self::test($name);
-        */
+
         self::$data["email"] = "zxczxc";
         self::$data['uuid'] = 28;
         self::test($name);
+        */
 
     }
 

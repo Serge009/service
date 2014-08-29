@@ -51,6 +51,7 @@ class Division
             "id" => $this->getId(),
             "name" => $this->getName(),
             "version" => $this->getVersion(),
+            "status" => 1
         );
     }
 

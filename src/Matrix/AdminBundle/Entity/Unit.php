@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Unit
  *
  * @ORM\Table(name="unit", indexes={@ORM\Index(name="Ref_28", columns={"company"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Matrix\AdminBundle\Repository\UnitRepository")
  */
 class Unit
 {
@@ -149,7 +149,7 @@ class Unit
     /**
      * Get company
      *
-     * @return \Matrix\AdminBundle\Entity\Company
+     * @return Company
      */
     public function getCompany()
     {

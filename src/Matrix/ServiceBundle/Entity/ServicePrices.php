@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * ServicePrices
  *
  * @ORM\Table(name="service_prices", indexes={@ORM\Index(name="Ref_14", columns={"currency"}), @ORM\Index(name="Ref_15", columns={"service"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Matrix\ServiceBundle\Repository\ServicePricesRepository")
  */
 class ServicePrices
 {
@@ -36,7 +36,7 @@ class ServicePrices
     private $version = '1';
 
     /**
-     * @var \Currency
+     * @var Currency
      *
      * @ORM\ManyToOne(targetEntity="Currency")
      * @ORM\JoinColumns({
@@ -46,7 +46,7 @@ class ServicePrices
     private $currency;
 
     /**
-     * @var \Services
+     * @var Services
      *
      * @ORM\ManyToOne(targetEntity="Services")
      * @ORM\JoinColumns({
@@ -54,6 +54,17 @@ class ServicePrices
      * })
      */
     private $service;
+
+    public function toArray(){
+        return array(
+            "id" => $this->getId(),
+            "service" => $this->getService()->getId(),
+            "price" => $this->getPrice(),
+            "currency" => $this->getCurrency()->getId(),
+            "version" => $this->getVersion(),
+            "status" => 1
+        );
+    }
 
 
 

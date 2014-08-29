@@ -1,0 +1,15 @@
+{% extends "MatrixAdminBundle::base.html.twig" %}
+{% block content %}
+    {% for flashMessage in app.session.flashbag.get('notice') %}
+        <div class="flash-notice">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+    <form action="{{ path('mobile_user_create') }}" method="post">
+        <input type="text" name="m-user-name" required="true" placeholder="Name" />
+        <input type="text" name="m-user-surname" required="true" placeholder="Surname" />
+        <input type="email" name="m-user-email" required="true" placeholder="Email" />
+        <input type="password" name="m-user-password" required="true" placeholder="Password" />
+        <input type="submit" value="Create" />
+    </form>
+{% endblock %}

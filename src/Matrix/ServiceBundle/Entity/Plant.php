@@ -50,7 +50,8 @@ class Plant
         return array(
             "id" => $this->getId(),
             "name" => $this->getName(),
-            "version" => $this->getVersion()
+            "version" => $this->getVersion(),
+            "status" => 1
         );
     }
 
