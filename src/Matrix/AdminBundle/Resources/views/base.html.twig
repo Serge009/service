@@ -38,6 +38,16 @@
         <li><a href="{{ path('plant_form') }}" >Create New Plant</a></li>
         <li><a href="{{ path('warehouses_list') }}" >Warehouses</a></li>
         <li><a href="{{ path('warehouse_form') }}" >Create New Warehouse</a></li>
+        <li><a href="{{ path('divisions_list') }}" >Divisions</a></li>
+        <li><a href="{{ path('division_form') }}" >Create New Division</a></li>
+        <li><a href="{{ path('currencies_list') }}" >Currencies</a></li>
+        <li><a href="{{ path('currency_form') }}" >Create New Currency</a></li>
+        <li><a href="{{ path('customers_list') }}" >Customers</a></li>
+        <li><a href="{{ path('customer_form') }}" >Create New Customer</a></li>
+        <li><a href="{{ path('units_list') }}" >Units</a></li>
+        <li><a href="{{ path('unit_form') }}" >Create New Unit</a></li>
+        <li><a href="{{ path('products_list') }}" >Products</a></li>
+        <li><a href="{{ path('product_form') }}" >Create New Product</a></li>
     </ul>
 
     {% for flashMessage in app.session.flashbag.get('error') %}

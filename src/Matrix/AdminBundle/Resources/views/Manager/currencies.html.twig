@@ -1,0 +1,22 @@
+{% extends "MatrixAdminBundle::base.html.twig" %}
+{% block content %}
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Company</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for curr in currencies %}
+            <tr>
+                <td>{{ curr.name }}</td>
+                <td>{{ curr.company.name }}</td>
+                <td>{{ curr.status }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

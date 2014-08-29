@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Currency
  *
  * @ORM\Table(name="currency", indexes={@ORM\Index(name="Ref_06", columns={"company"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Matrix\AdminBundle\Repository\CurrencyRepository")
  */
 class Currency
 {

@@ -25,6 +25,16 @@ security:
           - { path: ^/plant/create, roles: [ROLE_ACCOUNT_OWNER, ROLE_MANAGER] }
           - { path: ^/manager/warehouses, roles: [ROLE_ACCOUNT_OWNER, ROLE_MANAGER] }
           - { path: ^/warehouse/create, roles: [ROLE_ACCOUNT_OWNER, ROLE_MANAGER] }
+          - { path: ^/manager/divisions, roles: [ROLE_ACCOUNT_OWNER, ROLE_MANAGER] }
+          - { path: ^/division/create, roles: [ROLE_ACCOUNT_OWNER, ROLE_MANAGER] }
+          - { path: ^/manager/currencies, roles: [ROLE_ACCOUNT_OWNER, ROLE_MANAGER] }
+          - { path: ^/currency/create, roles: [ROLE_ACCOUNT_OWNER, ROLE_MANAGER] }
+          - { path: ^/manager/customers, roles: [ROLE_ACCOUNT_OWNER, ROLE_MANAGER] }
+          - { path: ^/customers/create, roles: [ROLE_ACCOUNT_OWNER, ROLE_MANAGER] }
+          - { path: ^/manager/units, roles: [ROLE_ACCOUNT_OWNER, ROLE_MANAGER] }
+          - { path: ^/unit/create, roles: [ROLE_ACCOUNT_OWNER, ROLE_MANAGER] }
+          - { path: ^/manager/products, roles: [ROLE_ACCOUNT_OWNER, ROLE_MANAGER] }
+          - { path: ^/product/create, roles: [ROLE_ACCOUNT_OWNER, ROLE_MANAGER] }
           - { path: ^/dist/lic, roles: [ROLE_DISTRIBUTOR] }
           - { path: ^/dist/owners, roles: [ROLE_DISTRIBUTOR] }
           - { path: ^/lic, roles: [ROLE_ADMIN] }

@@ -1,0 +1,30 @@
+{% extends "MatrixAdminBundle::base.html.twig" %}
+{% block content %}
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Quantity</th>
+            <th>Description</th>
+            <th>Vat</th>
+            <th>Unit</th>
+            <th>Company</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for prod in products %}
+            <tr>
+                <td>{{ prod.name }}</td>
+                <td>{{ prod.quantity }}</td>
+                <td>{{ prod.description }}</td>
+                <td>{{ prod.vat }}</td>
+                <td>{{ prod.unit.name }}</td>
+                <td>{{ prod.company.name }}</td>
+                <td>{{ prod.status }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

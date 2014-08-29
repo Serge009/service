@@ -1,0 +1,14 @@
+{% extends "MatrixAdminBundle::base.html.twig" %}
+{% block content %}
+    {% for flashMessage in app.session.flashbag.get('notice') %}
+        <div class="flash-notice">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+    <form action="{{ path('customer_create') }}" method="post">
+        <input type="text" name="customer-name" required="true" placeholder="Name" />
+        <input type="text" name="customer-longitude" required="true" placeholder="Longitude" />
+        <input type="text" name="customer-latitude" required="true" placeholder="Latitude" />
+        <input type="submit" value="Create" />
+    </form>
+{% endblock %}

@@ -10,8 +10,14 @@ namespace Matrix\AdminBundle\Controller;
 
 
 use Exception;
+use Matrix\AdminBundle\Entity\Currency;
+use Matrix\AdminBundle\Entity\Customers;
 use Matrix\AdminBundle\Entity\Department;
+use Matrix\AdminBundle\Entity\Division;
 use Matrix\AdminBundle\Entity\Plant;
+use Matrix\AdminBundle\Entity\Products;
+use Matrix\AdminBundle\Entity\Statuses;
+use Matrix\AdminBundle\Entity\Unit;
 use Matrix\AdminBundle\Entity\Users;
 use Matrix\AdminBundle\Entity\UserStatus;
 use Matrix\AdminBundle\Entity\UserType;
@@ -242,6 +248,287 @@ class ManagerController extends Controller {
         }
 
         return $this->forward("MatrixAdminBundle:Manager:createWarehouseForm");
+    }
+
+    public function getDivisionsAction(){
+        try{
+            $divisions = $this->getDoctrine()
+                ->getRepository("MatrixAdminBundle:Division")
+                ->findBy(array("company" => $this->getUser()->getCompany()));
+
+            return $this->render("MatrixAdminBundle:Manager:divisions.html.twig", array("divisions" => $divisions));
+        } catch(Exception $e){
+            $this->get('logger')->error($e->getMessage() . ' ' . __FILE__ . ' on line = ' . __LINE__);
+            return new Response();
+        }
+    }
+
+    public function createDivisionFormAction(){
+        return $this->render("MatrixAdminBundle:Manager:divisionForm.html.twig");
+    }
+
+    public function createDivisionAction(Request $request){
+        try{
+            $name = $request->request->get('division-name');
+            $company = $this->getUser()->getCompany();
+            $version = $this->getDoctrine()->getRepository("MatrixAdminBundle:Division")->findMaxVersion();
+
+            $division = new Division();
+            $division->setName($name)
+                ->setCompany($company)
+                ->setVersion($version);
+
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($division);
+            $em->flush();
+
+            $this->get('session')->getFlashBag()->add(
+                'notice',
+                'Your changes were saved!'
+            );
+
+        } catch(Exception $e){
+            $this->get('logger')->error($e->getMessage() . ' ' . __FILE__ . ' on line = ' . __LINE__);
+
+            $this->get('session')->getFlashBag()->add(
+                'notice',
+                'Something went wrong!'
+            );
+
+        }
+
+        return $this->forward("MatrixAdminBundle:Manager:createDivisionForm");
+    }
+
+    public function getCurrenciesAction(){
+        try{
+            $currencies = $this->getDoctrine()
+                ->getRepository("MatrixAdminBundle:Currency")
+                ->findBy(array("company" => $this->getUser()->getCompany()));
+
+            return $this->render("MatrixAdminBundle:Manager:currencies.html.twig", array("currencies" => $currencies));
+        } catch(Exception $e){
+            $this->get('logger')->error($e->getMessage() . ' ' . __FILE__ . ' on line = ' . __LINE__);
+            return new Response();
+        }
+    }
+
+    public function createCurrencyFormAction(){
+        return $this->render("MatrixAdminBundle:Manager:currencyForm.html.twig");
+    }
+
+    public function createCurrencyAction(Request $request){
+        try{
+            $name = $request->request->get('currency-name');
+            $company = $this->getUser()->getCompany();
+            $version = $this->getDoctrine()->getRepository("MatrixAdminBundle:Currency")->findMaxVersion();
+
+            $currency = new Currency();
+            $currency->setName($name)
+                ->setCompany($company)
+                ->setVersion($version)
+                ->setStatus(Statuses::ACTIVE);
+
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($currency);
+            $em->flush();
+
+            $this->get('session')->getFlashBag()->add(
+                'notice',
+                'Your changes were saved!'
+            );
+
+        } catch(Exception $e){
+            $this->get('logger')->error($e->getMessage() . ' ' . __FILE__ . ' on line = ' . __LINE__);
+
+            $this->get('session')->getFlashBag()->add(
+                'notice',
+                'Something went wrong!'
+            );
+
+        }
+
+        return $this->forward("MatrixAdminBundle:Manager:createCurrencyForm");
+    }
+
+    public function getCustomersAction(){
+        try{
+            $customers = $this->getDoctrine()
+                ->getRepository("MatrixAdminBundle:Customers")
+                ->findBy(array("company" => $this->getUser()->getCompany()));
+
+            return $this->render("MatrixAdminBundle:Manager:customers.html.twig", array("customers" => $customers));
+        } catch(Exception $e){
+            $this->get('logger')->error($e->getMessage() . ' ' . __FILE__ . ' on line = ' . __LINE__);
+            return new Response();
+        }
+    }
+
+    public function createCustomerFormAction(){
+        return $this->render("MatrixAdminBundle:Manager:customerForm.html.twig");
+    }
+
+    public function createCustomerAction(Request $request){
+        try{
+            $name = $request->request->get('customer-name');
+            $longitude = $request->request->get('customer-longitude');
+            $latitude = $request->request->get('customer-latitude');
+
+            $company = $this->getUser()->getCompany();
+            $version = $this->getDoctrine()->getRepository("MatrixAdminBundle:Customers")->findMaxVersion();
+
+            $customer = new Customers();
+            $customer->setName($name)
+                ->setCompany($company)
+                ->setVersion($version)
+                ->setStatus(Statuses::ACTIVE)
+                ->setLatitude($latitude)
+                ->setLongitude($longitude);
+
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($customer);
+            $em->flush();
+
+            $this->get('session')->getFlashBag()->add(
+                'notice',
+                'Your changes were saved!'
+            );
+
+        } catch(Exception $e){
+            $this->get('logger')->error($e->getMessage() . ' ' . __FILE__ . ' on line = ' . __LINE__);
+
+            $this->get('session')->getFlashBag()->add(
+                'notice',
+                'Something went wrong!'
+            );
+
+        }
+
+        return $this->forward("MatrixAdminBundle:Manager:createCustomerForm");
+    }
+
+    public function getUnitsAction(){
+        try{
+            $units = $this->getDoctrine()
+                ->getRepository("MatrixAdminBundle:Unit")
+                ->findBy(array("company" => $this->getUser()->getCompany()));
+
+            return $this->render("MatrixAdminBundle:Manager:units.html.twig", array("units" => $units));
+        } catch(Exception $e){
+            $this->get('logger')->error($e->getMessage() . ' ' . __FILE__ . ' on line = ' . __LINE__);
+            return new Response();
+        }
+    }
+
+    public function createUnitFormAction(){
+        return $this->render("MatrixAdminBundle:Manager:unitForm.html.twig");
+    }
+
+    public function createUnitAction(Request $request){
+        try{
+            $name = $request->request->get('unit-name');
+
+            $company = $this->getUser()->getCompany();
+            $version = $this->getDoctrine()->getRepository("MatrixAdminBundle:Unit")->findMaxVersion();
+
+            $unit = new Unit();
+            $unit->setName($name)
+                ->setCompany($company)
+                ->setVersion($version)
+                ->setStatus(Statuses::ACTIVE);
+
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($unit);
+            $em->flush();
+
+            $this->get('session')->getFlashBag()->add(
+                'notice',
+                'Your changes were saved!'
+            );
+
+        } catch(Exception $e){
+            $this->get('logger')->error($e->getMessage() . ' ' . __FILE__ . ' on line = ' . __LINE__);
+
+            $this->get('session')->getFlashBag()->add(
+                'notice',
+                'Something went wrong!'
+            );
+
+        }
+
+        return $this->forward("MatrixAdminBundle:Manager:createUnitForm");
+    }
+
+    public function getProductsAction(){
+        try{
+            $products = $this->getDoctrine()
+                ->getRepository("MatrixAdminBundle:Products")
+                ->findBy(array("company" => $this->getUser()->getCompany()));
+
+            return $this->render("MatrixAdminBundle:Manager:products.html.twig", array("products" => $products));
+        } catch(Exception $e){
+            $this->get('logger')->error($e->getMessage() . ' ' . __FILE__ . ' on line = ' . __LINE__);
+            return new Response();
+        }
+    }
+
+    public function createProductFormAction(){
+        $units = $this->getDoctrine()
+            ->getRepository("MatrixAdminBundle:Unit")
+            ->findBy(array("status" => Statuses::ACTIVE,
+                            "company" => $this->getUser()->getCompany()));
+        return $this->render("MatrixAdminBundle:Manager:productForm.html.twig", array("units" => $units));
+    }
+
+    public function createProductAction(Request $request){
+        try{
+            $name = $request->request->get('product-name');
+            $quantity = $request->request->get('product-quantity');
+            $description = $request->request->get('product-description');
+            $vat = $request->request->get('product-vat');
+            $code = $request->request->get('product-code');
+            $unitId = $request->request->get("product-unit");
+
+            $company = $this->getUser()->getCompany();
+            $version = $this->getDoctrine()->getRepository("MatrixAdminBundle:Products")->findMaxVersion();
+            $unit = $this->getDoctrine()->getRepository("MatrixAdminBundle:Unit")->findOneBy(array("id" => $unitId));
+
+            $product = new Products();
+            $product->setName($name)
+                ->setQuantity($quantity)
+                ->setDescription($description)
+                ->setVat($vat)
+                ->setUnit($unit)
+                ->setCompany($company)
+                ->setVersion($version)
+                ->setStatus(Statuses::ACTIVE)
+                ->setCode($code);
+
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($product);
+            $em->flush();
+
+            $this->get('session')->getFlashBag()->add(
+                'notice',
+                'Your changes were saved!'
+            );
+
+        } catch(Exception $e){
+            $this->get('logger')->error($e->getMessage() . ' ' . __FILE__ . ' on line = ' . __LINE__);
+
+            $this->get('session')->getFlashBag()->add(
+                'notice',
+                'Something went wrong!'
+            );
+
+        }
+
+        return $this->forward("MatrixAdminBundle:Manager:createProductForm");
     }
 
 

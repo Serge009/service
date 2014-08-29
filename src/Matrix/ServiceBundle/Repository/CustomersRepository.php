@@ -11,6 +11,7 @@ namespace Matrix\ServiceBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use Matrix\ServiceBundle\Entity\Company;
+use Matrix\ServiceBundle\Entity\Statuses;
 
 class CustomersRepository extends EntityRepository {
 

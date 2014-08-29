@@ -138,6 +138,86 @@ warehouse_create:
     defaults: { _controller: MatrixAdminBundle:Manager:createWarehouse }
     methods: POST
 
+#Divisions list
+divisions_list:
+    path:     /manager/divisions
+    defaults: { _controller: MatrixAdminBundle:Manager:getDivisions }
+
+#Create new Division
+division_form:
+    path:     /division/create
+    defaults: { _controller: MatrixAdminBundle:Manager:createDivisionForm }
+    methods: GET
+
+division_create:
+    path:     /division/create
+    defaults: { _controller: MatrixAdminBundle:Manager:createDivision }
+    methods: POST
+
+#Currencies list
+currencies_list:
+    path:     /manager/currencies
+    defaults: { _controller: MatrixAdminBundle:Manager:getCurrencies }
+
+#Create new Currency
+currency_form:
+    path:     /currency/create
+    defaults: { _controller: MatrixAdminBundle:Manager:createCurrencyForm }
+    methods: GET
+
+currency_create:
+    path:     /currency/create
+    defaults: { _controller: MatrixAdminBundle:Manager:createCurrency }
+    methods: POST
+
+#Customers list
+customers_list:
+    path:     /manager/customers
+    defaults: { _controller: MatrixAdminBundle:Manager:getCustomers }
+
+#Create new Customer
+customer_form:
+    path:     /customer/create
+    defaults: { _controller: MatrixAdminBundle:Manager:createCustomerForm }
+    methods: GET
+
+customer_create:
+    path:     /customer/create
+    defaults: { _controller: MatrixAdminBundle:Manager:createCustomer }
+    methods: POST
+
+#Units list
+units_list:
+    path:     /manager/units
+    defaults: { _controller: MatrixAdminBundle:Manager:getUnits }
+
+#Create new Unit
+unit_form:
+    path:     /unit/create
+    defaults: { _controller: MatrixAdminBundle:Manager:createUnitForm }
+    methods: GET
+
+unit_create:
+    path:     /unit/create
+    defaults: { _controller: MatrixAdminBundle:Manager:createUnit }
+    methods: POST
+
+#Products list
+products_list:
+    path:     /manager/products
+    defaults: { _controller: MatrixAdminBundle:Manager:getProducts }
+
+#Create new Product
+product_form:
+    path:     /product/create
+    defaults: { _controller: MatrixAdminBundle:Manager:createProductForm }
+    methods: GET
+
+product_create:
+    path:     /product/create
+    defaults: { _controller: MatrixAdminBundle:Manager:createProduct }
+    methods: POST
+
 
 #ERROR 404
 admin_404:
