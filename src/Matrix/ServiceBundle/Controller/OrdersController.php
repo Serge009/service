@@ -113,7 +113,7 @@ class OrdersController extends AppController {
         //var_dump($res['orders']);
         //$res['items'] = $this->toArray($res['items']);
 
-        return $this->renderData(array());
+        return $this->renderData(null);
         //return $this->renderData($res);
 
 

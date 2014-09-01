@@ -52,7 +52,7 @@ abstract class AppController extends Controller {
         //$this->error =  Errors::getMsg($error);
     }
 
-    public function setData(array $data){
+    public function setData($data){
         //$this->data = $data;
         $this->resp['data'] = $data;
     }
@@ -68,7 +68,7 @@ abstract class AppController extends Controller {
         //return $this->render("MatrixServiceBundle:Default:404.html.twig", array("error" => $this->error, "data" => json_encode($this->data)));
     }
 
-    public function renderData(array $data){
+    public function renderData($data){
         $this->setData($data);
 
         if(self::$isDevMode){
