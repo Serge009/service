@@ -1,0 +1,35 @@
+{% extends "MatrixAdminBundle::base.html.twig" %}
+{% block content %}
+    {% for flashMessage in app.session.flashbag.get('notice') %}
+        <div class="flash-notice">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Vat</th>
+            <th>Unit</th>
+            <th>Company</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for service in services %}
+            <tr>
+                <td>{{ service.name }}</td>
+                <td>{{ service.description }}</td>
+                <td>{{ service.vat }}</td>
+                <td>{{ service.unit.name }}</td>
+                <td>{{ service.company.name }}</td>
+                <td>{{ service.status }}</td>
+                <td><a href="{{ path("service_update") ~ "/" ~ service.id   }}">Edit</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

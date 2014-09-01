@@ -93,23 +93,28 @@ manager_create:
     defaults: { _controller: MatrixAdminBundle:AccountOwner:createManager }
     methods: POST
 
-#MANAGER
+#########################################################################################
+############                          MOBILE USER                         ###############
+#########################################################################################
 #Mobile Users list
 mobile_users_list:
     path:     /manager/users
-    defaults: { _controller: MatrixAdminBundle:Manager:getMobileUsers }
+    defaults: { _controller: MatrixAdminBundle:MobileUser:getMobileUsers }
 
 #Create new Mobile User
 mobile_user_form:
     path:     /muser/create
-    defaults: { _controller: MatrixAdminBundle:Manager:createMobileUserForm }
+    defaults: { _controller: MatrixAdminBundle:MobileUser:createMobileUserForm }
     methods: GET
 
 mobile_user_create:
     path:     /muser/create
-    defaults: { _controller: MatrixAdminBundle:Manager:createMobileUser }
+    defaults: { _controller: MatrixAdminBundle:MobileUser:createMobileUser }
     methods: POST
 
+#########################################################################################
+############                          DEPARTMENT                          ###############
+#########################################################################################
 #Update Mobile User
 mobile_user_update_form:
     path: /muser/update/{id}
@@ -126,20 +131,23 @@ mobile_user_update:
 #Departments list
 departments_list:
     path:     /manager/departments
-    defaults: { _controller: MatrixAdminBundle:Manager:getDepartments }
+    defaults: { _controller: MatrixAdminBundle:Department:getDepartments }
 
 #Create new Department
 department_form:
     path:     /department/create
-    defaults: { _controller: MatrixAdminBundle:Manager:createDepartmentForm }
+    defaults: { _controller: MatrixAdminBundle:Department:createDepartmentForm }
     methods: GET
 
 
 department_create:
     path:     /department/create
-    defaults: { _controller: MatrixAdminBundle:Manager:createDepartment }
+    defaults: { _controller: MatrixAdminBundle:Department:createDepartment }
     methods: POST
 
+#########################################################################################
+############                               PLANT                          ###############
+#########################################################################################
 #Update Department
 department_update_form:
     path:     /department/update/{id}
@@ -156,17 +164,17 @@ department_update:
 #Plants list
 plants_list:
     path:     /manager/plants
-    defaults: { _controller: MatrixAdminBundle:Manager:getPlants }
+    defaults: { _controller: MatrixAdminBundle:Plant:getPlants }
 
 #Create new Plant
 plant_form:
     path:     /plant/create
-    defaults: { _controller: MatrixAdminBundle:Manager:createPlantForm }
+    defaults: { _controller: MatrixAdminBundle:Plant:createPlantForm }
     methods: GET
 
 plant_create:
     path:     /plant/create
-    defaults: { _controller: MatrixAdminBundle:Manager:createPlant }
+    defaults: { _controller: MatrixAdminBundle:Plant:createPlant }
     methods: POST
 
 #Update Plant
@@ -183,130 +191,156 @@ plant_update:
     methods: POST
 
 
+
+#########################################################################################
+############                           WAREHOUSE                          ###############
+#########################################################################################
 #Warehouses list
 warehouses_list:
     path:     /manager/warehouses
-    defaults: { _controller: MatrixAdminBundle:Manager:getWarehouses }
+    defaults: { _controller: MatrixAdminBundle:Warehouse:getWarehouses }
 
 #Create new Warehouse
 warehouse_form:
     path:     /warehouse/create
-    defaults: { _controller: MatrixAdminBundle:Manager:createWarehouseForm }
+    defaults: { _controller: MatrixAdminBundle:Warehouse:createWarehouseForm }
     methods: GET
 
 warehouse_create:
     path:     /warehouse/create
-    defaults: { _controller: MatrixAdminBundle:Manager:createWarehouse }
+    defaults: { _controller: MatrixAdminBundle:Warehouse:createWarehouse }
     methods: POST
 
+#########################################################################################
+############                           DIVISION                           ###############
+#########################################################################################
 #Divisions list
 divisions_list:
     path:     /manager/divisions
-    defaults: { _controller: MatrixAdminBundle:Manager:getDivisions }
+    defaults: { _controller: MatrixAdminBundle:Division:getDivisions }
 
 #Create new Division
 division_form:
     path:     /division/create
-    defaults: { _controller: MatrixAdminBundle:Manager:createDivisionForm }
+    defaults: { _controller: MatrixAdminBundle:Division:createDivisionForm }
     methods: GET
 
 division_create:
     path:     /division/create
-    defaults: { _controller: MatrixAdminBundle:Manager:createDivision }
+    defaults: { _controller: MatrixAdminBundle:Division:createDivision }
     methods: POST
 
+#########################################################################################
+############                           CURRENCY                           ###############
+#########################################################################################
 #Currencies list
 currencies_list:
     path:     /manager/currencies
-    defaults: { _controller: MatrixAdminBundle:Manager:getCurrencies }
+    defaults: { _controller: MatrixAdminBundle:Currency:getCurrencies }
 
 #Create new Currency
 currency_form:
     path:     /currency/create
-    defaults: { _controller: MatrixAdminBundle:Manager:createCurrencyForm }
+    defaults: { _controller: MatrixAdminBundle:Currency:createCurrencyForm }
     methods: GET
 
 currency_create:
     path:     /currency/create
-    defaults: { _controller: MatrixAdminBundle:Manager:createCurrency }
+    defaults: { _controller: MatrixAdminBundle:Currency:createCurrency }
     methods: POST
 
+#########################################################################################
+############                           CUSTOMER                           ###############
+#########################################################################################
 #Customers list
 customers_list:
     path:     /manager/customers
-    defaults: { _controller: MatrixAdminBundle:Manager:getCustomers }
+    defaults: { _controller: MatrixAdminBundle:Customer:getCustomers }
 
 #Create new Customer
 customer_form:
     path:     /customer/create
-    defaults: { _controller: MatrixAdminBundle:Manager:createCustomerForm }
+    defaults: { _controller: MatrixAdminBundle:Customer:createCustomerForm }
     methods: GET
 
 customer_create:
     path:     /customer/create
-    defaults: { _controller: MatrixAdminBundle:Manager:createCustomer }
+    defaults: { _controller: MatrixAdminBundle:Customer:createCustomer }
     methods: POST
 
+#########################################################################################
+############                            UNIT                              ###############
+#########################################################################################
 #Units list
 units_list:
     path:     /manager/units
-    defaults: { _controller: MatrixAdminBundle:Manager:getUnits }
+    defaults: { _controller: MatrixAdminBundle:Unit:getUnits }
 
 #Create new Unit
 unit_form:
     path:     /unit/create
-    defaults: { _controller: MatrixAdminBundle:Manager:createUnitForm }
+    defaults: { _controller: MatrixAdminBundle:Unit:createUnitForm }
     methods: GET
 
 unit_create:
     path:     /unit/create
-    defaults: { _controller: MatrixAdminBundle:Manager:createUnit }
+    defaults: { _controller: MatrixAdminBundle:Unit:createUnit }
     methods: POST
 
+#########################################################################################
+############                        PRODUCTS                              ###############
+#########################################################################################
 #Products list
 products_list:
     path:     /manager/products
-    defaults: { _controller: MatrixAdminBundle:Manager:getProducts }
+    defaults: { _controller: MatrixAdminBundle:Product:getProducts }
 
 #Create new Product
 product_form:
     path:     /product/create
-    defaults: { _controller: MatrixAdminBundle:Manager:createProductForm }
+    defaults: { _controller: MatrixAdminBundle:Product:createProductForm }
     methods: GET
 
 product_create:
     path:     /product/create
-    defaults: { _controller: MatrixAdminBundle:Manager:createProduct }
+    defaults: { _controller: MatrixAdminBundle:Product:createProduct }
     methods: POST
 
+#########################################################################################
+############                        SERVICES                              ###############
+#########################################################################################
 #Services list
 services_list:
     path:     /manager/services
-    defaults: { _controller: MatrixAdminBundle:Manager:getServices }
+    defaults: { _controller: MatrixAdminBundle:Service:getServices }
 
 #Create new Service
 service_form:
     path:     /service/create
-    defaults: { _controller: MatrixAdminBundle:Manager:createServiceForm }
+    defaults: { _controller: MatrixAdminBundle:Service:createServiceForm }
     methods: GET
 
 service_create:
     path:     /service/create
-    defaults: { _controller: MatrixAdminBundle:Manager:createService }
+    defaults: { _controller: MatrixAdminBundle:Service:createService }
     methods: POST
 
 service_update_form:
     path:     /service/update/{id}
-    defaults: { _controller: MatrixAdminBundle:Manager:updateServiceForm }
+    defaults: { _controller: MatrixAdminBundle:Service:updateServiceForm }
     methods: GET
     requirements:
             id: \d
 
 service_update:
     path:     /service/update
-    defaults: { _controller: MatrixAdminBundle:Manager:updateService }
+    defaults: { _controller: MatrixAdminBundle:Service:updateService }
     methods: POST
 
+
+#########################################################################################
+############                             404                              ###############
+#########################################################################################
 #ERROR 404
 admin_404:
     path:     /{name}

@@ -1,0 +1,12 @@
+{% extends "MatrixAdminBundle::base.html.twig" %}
+{% block content %}
+    {% for flashMessage in app.session.flashbag.get('notice') %}
+        <div class="flash-notice">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+    <form action="{{ path('division_create') }}" method="post">
+        <input type="text" name="division-name" required="true" placeholder="Name" />
+        <input type="submit" value="Create" />
+    </form>
+{% endblock %}

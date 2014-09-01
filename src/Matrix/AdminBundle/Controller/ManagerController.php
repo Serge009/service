@@ -355,6 +355,7 @@ class ManagerController extends Controller
             return $this->redirect($this->generateUrl("plants_list"));
         }
 }
+
     public function updatePlantAction(Request $request)
     {
         try {
@@ -741,7 +742,6 @@ class ManagerController extends Controller
 
         return $this->forward("MatrixAdminBundle:Manager:createProductForm");
     }
-
 
     public function getServicesAction()
     {
