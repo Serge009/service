@@ -10,7 +10,7 @@
         </thead>
         <tbody>
         {% for users in users %}
-            <tr>
+            <tr onclick='window.location.href = "{{ path("mobile_user_update") ~ "/" ~ users.id }}"'>
                 <td>{{ users.name }}</td>
                 <td>{{ users.surname }}</td>
                 <td>{{ users.email }}</td>

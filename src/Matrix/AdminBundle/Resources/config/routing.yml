@@ -110,6 +110,19 @@ mobile_user_create:
     defaults: { _controller: MatrixAdminBundle:Manager:createMobileUser }
     methods: POST
 
+#Update Mobile User
+mobile_user_update_form:
+    path: /muser/update/{id}
+    defaults: { _controller: MatrixAdminBundle:Manager:updateMobileUserForm }
+    methods: GET
+    requirements:
+              id: \d
+
+mobile_user_update:
+    path: /muser/update
+    defaults: { _controller: MatrixAdminBundle:Manager:updateMobileUser }
+    methods: POST
+
 #Departments list
 departments_list:
     path:     /manager/departments
@@ -121,9 +134,23 @@ department_form:
     defaults: { _controller: MatrixAdminBundle:Manager:createDepartmentForm }
     methods: GET
 
+
 department_create:
     path:     /department/create
     defaults: { _controller: MatrixAdminBundle:Manager:createDepartment }
+    methods: POST
+
+#Update Department
+department_update_form:
+    path:     /department/update/{id}
+    defaults: { _controller: MatrixAdminBundle:Manager:updateDepartmentForm}
+    methods: GET
+    requirements:
+              id: \d
+
+department_update:
+    path:     /department/update
+    defaults: { _controller: MatrixAdminBundle:Manager:updateDepartment}
     methods: POST
 
 #Plants list
@@ -141,6 +168,20 @@ plant_create:
     path:     /plant/create
     defaults: { _controller: MatrixAdminBundle:Manager:createPlant }
     methods: POST
+
+#Update Plant
+plant_update_form:
+    path:     /plant/update/{id}
+    defaults: { _controller: MatrixAdminBundle:Manager:updatePlantForm }
+    methods: GET
+    requirements:
+            id: \d
+
+plant_update:
+    path:     /plant/update
+    defaults: { _controller: MatrixAdminBundle:Manager:updatePlant }
+    methods: POST
+
 
 #Warehouses list
 warehouses_list:

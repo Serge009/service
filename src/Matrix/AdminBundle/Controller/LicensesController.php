@@ -133,7 +133,7 @@ class LicensesController extends Controller {
 
     }
 
-    public function updateFormAction($id) {
+    public function updateFormAction($id = 0) {
         try {
             $license = $this->getDoctrine()
                 ->getRepository("MatrixAdminBundle:Licenses")->findOneBy(array("id"=>$id));

@@ -9,7 +9,7 @@
         </thead>
         <tbody>
         {% for dep in departments %}
-            <tr>
+            <tr onclick='window.location.href = "{{ path("department_update") ~ "/" ~ dep.id }}"'>
                 <td>{{ dep.name }}</td>
                 <td>{{ dep.company.name }}</td>
             </tr>

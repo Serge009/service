@@ -17,17 +17,27 @@ security:
           - { path: ^/dist/create, roles: [ROLE_ADMIN] }
           - { path: ^/owner/create, roles: [ROLE_DISTRIBUTOR] }
           - { path: ^/owner/managers, roles: [ROLE_ACCOUNT_OWNER] }
-          - { path: ^/manager/users, roles: [ROLE_ACCOUNT_OWNER, ROLE_MANAGER] }
+
           - { path: ^/muser/create, roles: [ROLE_ACCOUNT_OWNER, ROLE_MANAGER] }
-          - { path: ^/manager/departments, roles: [ROLE_ACCOUNT_OWNER, ROLE_MANAGER] }
+          - { path: ^/muser/update, roles: [ROLE_ACCOUNT_OWNER, ROLE_MANAGER] }
+
+
           - { path: ^/department/create, roles: [ROLE_ACCOUNT_OWNER, ROLE_MANAGER] }
+          - { path: ^/department/update, roles: [ROLE_ACCOUNT_OWNER, ROLE_MANAGER] }
+
           - { path: ^/manager/plants, roles: [ROLE_ACCOUNT_OWNER, ROLE_MANAGER] }
-          - { path: ^/plant/create, roles: [ROLE_ACCOUNT_OWNER, ROLE_MANAGER] }
+          - { path: ^/manager/departments, roles: [ROLE_ACCOUNT_OWNER, ROLE_MANAGER] }
+          - { path: ^/manager/users, roles: [ROLE_ACCOUNT_OWNER, ROLE_MANAGER] }
           - { path: ^/manager/warehouses, roles: [ROLE_ACCOUNT_OWNER, ROLE_MANAGER] }
-          - { path: ^/warehouse/create, roles: [ROLE_ACCOUNT_OWNER, ROLE_MANAGER] }
           - { path: ^/manager/divisions, roles: [ROLE_ACCOUNT_OWNER, ROLE_MANAGER] }
-          - { path: ^/division/create, roles: [ROLE_ACCOUNT_OWNER, ROLE_MANAGER] }
           - { path: ^/manager/currencies, roles: [ROLE_ACCOUNT_OWNER, ROLE_MANAGER] }
+
+          - { path: ^/plant/create, roles: [ROLE_ACCOUNT_OWNER, ROLE_MANAGER] }
+          - { path: ^/plant/update*, roles: [ROLE_ACCOUNT_OWNER, ROLE_MANAGER] }
+
+
+          - { path: ^/warehouse/create, roles: [ROLE_ACCOUNT_OWNER, ROLE_MANAGER] }
+          - { path: ^/division/create, roles: [ROLE_ACCOUNT_OWNER, ROLE_MANAGER] }
           - { path: ^/currency/create, roles: [ROLE_ACCOUNT_OWNER, ROLE_MANAGER] }
           - { path: ^/manager/customers, roles: [ROLE_ACCOUNT_OWNER, ROLE_MANAGER] }
           - { path: ^/customers/create, roles: [ROLE_ACCOUNT_OWNER, ROLE_MANAGER] }

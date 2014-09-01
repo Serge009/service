@@ -9,7 +9,7 @@
         </thead>
         <tbody>
         {% for plant in plants %}
-            <tr>
+            <tr onclick='window.location.href = "{{ path("plant_update") ~ "/" ~ plant.id }}"'>
                 <td>{{ plant.name }}</td>
                 <td>{{ plant.company.name }}</td>
             </tr>
