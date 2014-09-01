@@ -77,6 +77,12 @@ class OrderItem
      */
     private $quantity = 0;
 
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="price", type="float", precision=15, scale=3, nullable=false)
+     */
+    private $price = 0;
 
     /**
      * converts OrderItem to array
@@ -91,9 +97,32 @@ class OrderItem
             "status" => $this->getStatus(),
             "order" => $this->getOrder()->getId(),
             "unit_detail" => $this->getUnitDetail()->getId(),
-            "quantity" => $this->getQuantity()
+            "quantity" => $this->getQuantity(),
+            "price" => $this->getPrice()
         );
     }
+
+    /**
+     * @param float $price
+     * @return OrderItem
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+
+
 
     /**
      * @param int $quantity

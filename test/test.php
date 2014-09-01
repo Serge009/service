@@ -223,19 +223,25 @@ class createOrder{
                     array(
                         "type" => 1,
                         "item" => 1,
-                        "unit_detail" => 1
+                        "unit_detail" => 1,
+                        "price" => 10,
+                        "quantity" => 1
                     ),
 
                     array(
                         "type" => 2,
                         "item" => 1,
-                        "unit_detail" => 2
+                        "unit_detail" => 2,
+                        "price" => 15,
+                        "quantity" => 10
                     ),
 
                     array(
                         "type" => 1,
                         "item" => 2,
-                        "unit_detail" => 1
+                        "unit_detail" => 1,
+                        "price" => 17,
+                        "quantity" => 11
                     )
 
                 )
