@@ -254,6 +254,18 @@ service_create:
     defaults: { _controller: MatrixAdminBundle:Manager:createService }
     methods: POST
 
+service_update_form:
+    path:     /service/update/{id}
+    defaults: { _controller: MatrixAdminBundle:Manager:updateServiceForm }
+    methods: GET
+    requirements:
+            id: \d
+
+service_update:
+    path:     /service/update
+    defaults: { _controller: MatrixAdminBundle:Manager:updateService }
+    methods: POST
+
 #ERROR 404
 admin_404:
     path:     /{name}

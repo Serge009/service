@@ -93,7 +93,9 @@ class OrdersController extends AppController {
                     ->setStatus(Statuses::ACTIVE)
                     ->setType($item->type)
                     ->setVersion($itemsVersion)
-                    ->setUnitDetail($unitDetail);
+                    ->setUnitDetail($unitDetail)
+                    ->setPrice($item->price)
+                    ->setQuantity($item->quantity);
 
                 $em->persist($orderItem);
                 //array_push($res['items'], $orderItem);
@@ -113,7 +115,7 @@ class OrdersController extends AppController {
         //var_dump($res['orders']);
         //$res['items'] = $this->toArray($res['items']);
 
-        return $this->renderData(array());
+        return $this->renderData(null);
         //return $this->renderData($res);
 
 
