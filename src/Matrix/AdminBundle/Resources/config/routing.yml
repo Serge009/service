@@ -79,7 +79,7 @@ mobile_users_list:
     path:     /manager/users
     defaults: { _controller: MatrixAdminBundle:Manager:getMobileUsers }
 
-#Create new Manager
+#Create new Mobile User
 mobile_user_form:
     path:     /muser/create
     defaults: { _controller: MatrixAdminBundle:Manager:createMobileUserForm }
@@ -218,6 +218,21 @@ product_create:
     defaults: { _controller: MatrixAdminBundle:Manager:createProduct }
     methods: POST
 
+#Services list
+services_list:
+    path:     /manager/services
+    defaults: { _controller: MatrixAdminBundle:Manager:getServices }
+
+#Create new Service
+service_form:
+    path:     /service/create
+    defaults: { _controller: MatrixAdminBundle:Manager:createServiceForm }
+    methods: GET
+
+service_create:
+    path:     /service/create
+    defaults: { _controller: MatrixAdminBundle:Manager:createService }
+    methods: POST
 
 #ERROR 404
 admin_404:

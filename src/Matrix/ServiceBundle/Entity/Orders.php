@@ -12,7 +12,8 @@ use Doctrine\ORM\Mapping as ORM;
  *                                   @ORM\Index(name="Ref_32", columns={"department"}),
  *                                   @ORM\Index(name="Ref_33", columns={"warehouse"}),
  *                                   @ORM\Index(name="Ref_34", columns={"plant"}),
- *                                   @ORM\Index(name="Ref_35", columns={"division"})
+ *                                   @ORM\Index(name="Ref_35", columns={"division"}),
+*                                    @ORM\Index(name="Ref_36", columns={"currency"})
  * })
  * @ORM\Entity(repositoryClass="Matrix\ServiceBundle\Repository\OrdersRepository")
  */
@@ -140,8 +141,71 @@ class Orders
      */
     private $customer;
 
+    /**
+     * @var Currency
+     *
+     * @ORM\ManyToOne(targetEntity="Currency")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="currency", referencedColumnName="id")
+     * })
+     */
+    private $currency;
+
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="advanced_payment", type="float", precision=15, scale=3, nullable=true)
+     */
+    private $advancedPayment;
+
 
     private $orderItems = array();
+
+    /**
+     * @param Currency $currency
+     *
+     * @return Orders
+     */
+    public function setCurrency($currency)
+    {
+        $this->currency = $currency;
+
+        return $this;
+    }
+
+    /**
+     * @return Currency
+     */
+    public function getCurrency()
+    {
+        return $this->currency;
+    }
+
+
+
+
+
+    /**
+     * @param float $advancedPayment
+     * @return Orders
+     */
+    public function setAdvancedPayment($advancedPayment)
+    {
+        $this->advancedPayment = $advancedPayment;
+
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getAdvancedPayment()
+    {
+        return $this->advancedPayment;
+    }
+
+
 
     /**
      * @param array $orderItems
@@ -189,7 +253,8 @@ class Orders
             "division" => $this->getDivision()->getId(),
             "department" => $this->getDepartment()->getId(),
             "plant" => $this->getPlant()->getId(),
-            "warehouse" => $this->getWarehouse()->getId()
+            "warehouse" => $this->getWarehouse()->getId(),
+            "advance_payment" => $this->getAdvancedPayment()
             //"orderItems" => $items
         );
     }

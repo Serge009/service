@@ -16,6 +16,7 @@ use Matrix\AdminBundle\Entity\Department;
 use Matrix\AdminBundle\Entity\Division;
 use Matrix\AdminBundle\Entity\Plant;
 use Matrix\AdminBundle\Entity\Products;
+use Matrix\AdminBundle\Entity\Services;
 use Matrix\AdminBundle\Entity\Statuses;
 use Matrix\AdminBundle\Entity\Unit;
 use Matrix\AdminBundle\Entity\Users;
@@ -96,6 +97,8 @@ class ManagerController extends Controller {
 
         return $this->forward("MatrixAdminBundle:Manager:createMobileUserForm");
     }
+
+    
 
     public function getDepartmentsAction(){
         try{
@@ -532,4 +535,70 @@ class ManagerController extends Controller {
     }
 
 
+    public function getServicesAction(){
+        try{
+            $services = $this->getDoctrine()
+                ->getRepository("MatrixAdminBundle:Services")
+                ->findBy(array("company" => $this->getUser()->getCompany()));
+
+            return $this->render("MatrixAdminBundle:Manager:services.html.twig", array("services" => $services));
+        } catch(Exception $e){
+            $this->get('logger')->error($e->getMessage() . ' ' . __FILE__ . ' on line = ' . __LINE__);
+            return new Response();
+        }
+    }
+
+    public function createServiceFormAction(){
+        $units = $this->getDoctrine()
+            ->getRepository("MatrixAdminBundle:Unit")
+            ->findBy(array("status" => Statuses::ACTIVE,
+                "company" => $this->getUser()->getCompany()));
+        return $this->render("MatrixAdminBundle:Manager:serviceForm.html.twig", array("units" => $units));
+    }
+
+    public function createServiceAction(Request $request){
+        try{
+            $name = $request->request->get('service-name');
+//            $quantity = $request->request->get('service-quantity');
+            $description = $request->request->get('service-description');
+            $vat = $request->request->get('service-vat');
+            $code = $request->request->get('service-code');
+            $unitId = $request->request->get("service-unit");
+
+            $company = $this->getUser()->getCompany();
+            $version = $this->getDoctrine()->getRepository("MatrixAdminBundle:Services")->findMaxVersion();
+            $unit = $this->getDoctrine()->getRepository("MatrixAdminBundle:Unit")->findOneBy(array("id" => $unitId));
+
+            $service = new Services();
+            $service->setName($name)
+                ->setDescription($description)
+                ->setVat($vat)
+                ->setUnit($unit)
+                ->setCompany($company)
+                ->setVersion($version)
+                ->setStatus(Statuses::ACTIVE)
+                ->setCode($code);
+
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($service);
+            $em->flush();
+
+            $this->get('session')->getFlashBag()->add(
+                'notice',
+                'Your changes were saved!'
+            );
+
+        } catch(Exception $e){
+            $this->get('logger')->error($e->getMessage() . ' ' . __FILE__ . ' on line = ' . __LINE__);
+
+            $this->get('session')->getFlashBag()->add(
+                'notice',
+                'Something went wrong!'
+            );
+
+        }
+
+        return $this->forward("MatrixAdminBundle:Manager:createServiceForm");
+    }
 } 

@@ -208,8 +208,8 @@ class createOrder{
         "orders" => array(
             array(
                 "customer" => 1,
-                "slipNumber" => "554464",
-                "specialCode" => "5645",
+                "slip_number" => "554464",
+                "special_code" => "5645",
                 "date" => "23.08.2014",
                 "subtotal" => 500,
                 "total" => 700,
@@ -217,7 +217,9 @@ class createOrder{
                 "division" => 1,
                 "warehouse" => 1,
                 "plant" => 1,
-                "orderItems" => array(
+                "advance_payment" => 5,
+                "currency" => 1,
+                "order_items" => array(
                     array(
                         "type" => 1,
                         "item" => 1,

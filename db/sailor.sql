@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Авг 28 2014 г., 13:14
+-- Время создания: Сен 01 2014 г., 08:26
 -- Версия сервера: 5.5.20
 -- Версия PHP: 5.3.10
 
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `company` (
   `name` varchar(50) NOT NULL,
   `status` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Дамп данных таблицы `company`
@@ -39,7 +39,8 @@ CREATE TABLE IF NOT EXISTS `company` (
 
 INSERT INTO `company` (`id`, `name`, `status`) VALUES
 (1, 'Company 1', 1),
-(2, 'Company 2', 1);
+(2, 'Company 2', 1),
+(3, 'Some Company', 1);
 
 -- --------------------------------------------------------
 
@@ -55,7 +56,7 @@ CREATE TABLE IF NOT EXISTS `currency` (
   `status` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   KEY `Ref_06` (`company`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 --
 -- Дамп данных таблицы `currency`
@@ -63,7 +64,9 @@ CREATE TABLE IF NOT EXISTS `currency` (
 
 INSERT INTO `currency` (`id`, `name`, `company`, `version`, `status`) VALUES
 (1, 'TL', 1, 1, 1),
-(2, 'USD', 1, 1, 1);
+(2, 'USD', 1, 1, 1),
+(5, 'TL', 3, 2, 1),
+(6, 'USD', 3, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -81,7 +84,7 @@ CREATE TABLE IF NOT EXISTS `customers` (
   `status` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   KEY `Ref_05` (`company`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
 --
 -- Дамп данных таблицы `customers`
@@ -92,8 +95,10 @@ INSERT INTO `customers` (`id`, `name`, `company`, `longitude`, `latitude`, `vers
 (2, 'Customer 2', 1, 43534.000, 456546.000, 1, 1),
 (3, 'Customer 3', 2, 7567.000, 567567.000, 1, 1),
 (4, 'Customer 4', 2, 657657.000, 35345.000, 1, 1),
-(5, 'Customer 5', 1, 563456.000, 54654.000, 1, 2),
-(6, 'Customer 6', 1, 234.000, 23423.000, 1, 2);
+(5, 'Customer 5', 1, 563456.000, 54654.000, 6, 1),
+(6, 'Customer 6', 1, 234.000, 23423.000, 1, 2),
+(7, 'Customer1', 3, 34234.000, 32423.000, 2, 1),
+(8, 'Customer7', 1, 5345345.000, 345345.000, 4, 2);
 
 -- --------------------------------------------------------
 
@@ -108,7 +113,7 @@ CREATE TABLE IF NOT EXISTS `department` (
   `version` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   KEY `Ref_16` (`company`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
 -- Дамп данных таблицы `department`
@@ -116,7 +121,9 @@ CREATE TABLE IF NOT EXISTS `department` (
 
 INSERT INTO `department` (`id`, `name`, `company`, `version`) VALUES
 (1, 'Department 1', 1, 1),
-(2, 'Department 2', 1, 1);
+(2, 'Department 2', 1, 1),
+(3, 'dep2', 3, 2),
+(4, 'dep3', 3, 3);
 
 -- --------------------------------------------------------
 
@@ -133,7 +140,7 @@ CREATE TABLE IF NOT EXISTS `devices` (
   PRIMARY KEY (`id`),
   KEY `Ref_26` (`license`),
   KEY `Ref_27` (`user`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 --
 -- Дамп данных таблицы `devices`
@@ -143,7 +150,9 @@ INSERT INTO `devices` (`id`, `uuid`, `license`, `user`, `status`) VALUES
 (1, '666', 1, 2, 1),
 (2, '777', 1, 2, 1),
 (3, '888', 1, 2, 1),
-(5, 'ecace720494b8abe7963639a120bc53d', 1, 2, 1);
+(5, 'ecace720494b8abe7963639a120bc53d', 1, 2, 1),
+(6, 'ecace720494b8abe7963639a120bc53d', 2, 13, 1),
+(7, '5284047f4ffb4e04824a2fd1d1f0cd62', 1, 13, 1);
 
 -- --------------------------------------------------------
 
@@ -158,14 +167,15 @@ CREATE TABLE IF NOT EXISTS `division` (
   `version` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   KEY `Ref_19` (`company`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
 -- Дамп данных таблицы `division`
 --
 
 INSERT INTO `division` (`id`, `name`, `company`, `version`) VALUES
-(1, 'Division 1', 1, 1);
+(1, 'Division 1', 1, 1),
+(2, 'division1', 3, 2);
 
 -- --------------------------------------------------------
 
@@ -204,14 +214,15 @@ CREATE TABLE IF NOT EXISTS `licenses` (
   UNIQUE KEY `serial` (`serial`),
   KEY `Ref_04` (`owner`),
   KEY `Ref_31` (`distributor`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
 -- Дамп данных таблицы `licenses`
 --
 
 INSERT INTO `licenses` (`id`, `serial`, `owner`, `user_count`, `status`, `distributor`) VALUES
-(1, '5555555555', 1, 4, 1, 5);
+(1, '5555555555', 1, 5, 1, 5),
+(2, '6666666666', 10, 1, 1, 5);
 
 -- --------------------------------------------------------
 
@@ -222,7 +233,7 @@ INSERT INTO `licenses` (`id`, `serial`, `owner`, `user_count`, `status`, `distri
 CREATE TABLE IF NOT EXISTS `orders` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user` int(11) NOT NULL COMMENT 'created by',
-  `date` date NOT NULL,
+  `date` datetime NOT NULL,
   `customer` int(11) NOT NULL,
   `slip_number` text,
   `special_code` text,
@@ -230,53 +241,31 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `total` float(10,2) NOT NULL,
   `version` int(11) NOT NULL DEFAULT '1',
   `status` int(11) NOT NULL DEFAULT '1',
+  `department` int(11) NOT NULL,
+  `warehouse` int(11) NOT NULL,
+  `plant` int(11) NOT NULL,
+  `division` int(11) NOT NULL,
+  `advanced_payment` double(15,3) NOT NULL DEFAULT '0.000',
+  `currency` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `Ref_08` (`user`),
-  KEY `Ref_09` (`customer`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=54 ;
+  KEY `Ref_09` (`customer`),
+  KEY `Ref_32` (`department`),
+  KEY `Ref_33` (`warehouse`),
+  KEY `Ref_35` (`division`),
+  KEY `Ref_34` (`plant`),
+  KEY `Ref_36` (`currency`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=29 ;
 
 --
 -- Дамп данных таблицы `orders`
 --
 
-INSERT INTO `orders` (`id`, `user`, `date`, `customer`, `slip_number`, `special_code`, `subtotal`, `total`, `version`, `status`) VALUES
-(17, 2, '2014-08-18', 1, '554464', '5645', 500.000, 700.00, 1, 1),
-(18, 2, '2014-08-18', 1, '554464', '5645', 500.000, 700.00, 2, 1),
-(19, 2, '2014-08-18', 1, '554464', '5645', 500.000, 700.00, 3, 1),
-(20, 2, '2014-08-19', 1, '554464', '5645', 500.000, 700.00, 4, 1),
-(21, 2, '2014-08-20', 1, '554464', '5645', 500.000, 700.00, 5, 1),
-(22, 2, '2014-08-20', 1, '554464', '5645', 500.000, 700.00, 6, 1),
-(23, 2, '2014-08-20', 1, '554464', '5645', 500.000, 700.00, 7, 1),
-(24, 2, '2014-08-20', 1, '554464', '5645', 500.000, 700.00, 8, 1),
-(25, 2, '2014-08-20', 1, '554464', '5645', 500.000, 700.00, 9, 1),
-(26, 2, '2014-08-20', 1, '554464', '5645', 500.000, 700.00, 10, 1),
-(27, 2, '2014-08-22', 1, '554464', '5645', 500.000, 700.00, 11, 1),
-(28, 2, '2014-08-22', 1, '554464', '5645', 500.000, 700.00, 12, 1),
-(29, 2, '2014-08-22', 1, '554464', '5645', 500.000, 700.00, 13, 1),
-(30, 2, '2014-08-22', 1, '554464', '5645', 500.000, 700.00, 14, 1),
-(31, 2, '2014-08-22', 1, '554464', '5645', 500.000, 700.00, 15, 1),
-(32, 2, '2014-08-22', 1, '554464', '5645', 500.000, 700.00, 16, 1),
-(33, 2, '2014-08-22', 1, '554464', '5645', 500.000, 700.00, 17, 1),
-(34, 2, '2014-08-22', 1, '554464', '5645', 500.000, 700.00, 18, 1),
-(35, 2, '2014-08-22', 1, '554464', '5645', 500.000, 700.00, 19, 1),
-(36, 2, '2014-08-22', 1, '554464', '5645', 500.000, 700.00, 20, 1),
-(37, 2, '2014-08-23', 1, '554464', '5645', 500.000, 700.00, 21, 1),
-(38, 2, '2014-08-23', 1, '554464', '5645', 500.000, 700.00, 22, 1),
-(39, 2, '2014-08-23', 1, '554464', '5645', 500.000, 700.00, 23, 1),
-(40, 2, '2014-08-23', 1, '554464', '5645', 500.000, 700.00, 24, 1),
-(41, 2, '2014-08-23', 1, '554464', '5645', 500.000, 700.00, 25, 1),
-(42, 2, '2016-11-28', 1, 'Some Slip Number', '4646546498163521', 12.200, 14.20, 26, 1),
-(43, 2, '2016-11-28', 1, 'Some Slip Number', '4646546498163521', 12.200, 14.20, 27, 1),
-(44, 2, '2016-11-28', 1, 'Some Slip Number', '4646546498163521', 12.200, 14.20, 28, 1),
-(45, 2, '2016-11-28', 1, 'Some Slip Number', '4646546498163521', 12.200, 14.20, 29, 1),
-(46, 2, '2016-11-28', 1, 'Some Slip Number', '4646546498163521', 12.200, 14.20, 30, 1),
-(47, 2, '2016-11-28', 1, 'Some Slip Number', '4646546498163521', 12.200, 14.20, 30, 1),
-(48, 2, '2016-11-28', 1, 'Some Slip Number', '4646546498163521', 12.200, 14.20, 31, 1),
-(49, 2, '2016-11-28', 1, 'Some Slip Number', '4646546498163521', 12.200, 14.20, 31, 1),
-(50, 2, '2016-11-28', 1, 'Some Slip Number', '4646546498163521', 12.200, 14.20, 32, 1),
-(51, 2, '2016-11-28', 1, 'Some Slip Number', '4646546498163521', 12.200, 14.20, 32, 1),
-(52, 2, '2016-11-28', 1, 'Some Slip Number', '4646546498163521', 12.200, 14.20, 33, 1),
-(53, 2, '2016-11-28', 1, 'Some Slip Number', '4646546498163521', 12.200, 14.20, 33, 1);
+INSERT INTO `orders` (`id`, `user`, `date`, `customer`, `slip_number`, `special_code`, `subtotal`, `total`, `version`, `status`, `department`, `warehouse`, `plant`, `division`, `advanced_payment`, `currency`) VALUES
+(25, 2, '2014-08-23 10:03:06', 1, '554464', '5645', 500.000, 700.00, 1, 1, 1, 1, 1, 1, 5.000, 1),
+(26, 2, '2014-08-23 10:04:23', 1, '554464', '5645', 500.000, 700.00, 2, 1, 1, 1, 1, 1, 5.000, 1),
+(27, 2, '2014-08-23 10:10:22', 1, '554464', '5645', 500.000, 700.00, 3, 1, 1, 1, 1, 1, 5.000, 1),
+(28, 2, '2014-08-23 11:20:18', 1, '554464', '5645', 500.000, 700.00, 4, 1, 1, 1, 1, 1, 5.000, 1);
 
 -- --------------------------------------------------------
 
@@ -291,114 +280,30 @@ CREATE TABLE IF NOT EXISTS `order_item` (
   `order_id` int(11) NOT NULL,
   `version` int(11) NOT NULL DEFAULT '1',
   `status` int(11) NOT NULL DEFAULT '1',
+  `unit_detail` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
-  KEY `Ref_10` (`order_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=137 ;
+  KEY `Ref_10` (`order_id`),
+  KEY `Ref_29` (`unit_detail`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=224 ;
 
 --
 -- Дамп данных таблицы `order_item`
 --
 
-INSERT INTO `order_item` (`id`, `item`, `type`, `order_id`, `version`, `status`) VALUES
-(38, 1, 1, 17, 1, 1),
-(39, 1, 2, 17, 1, 1),
-(40, 2, 1, 17, 1, 1),
-(41, 1, 1, 18, 2, 1),
-(42, 1, 2, 18, 2, 1),
-(43, 2, 1, 18, 2, 1),
-(44, 1, 1, 19, 3, 1),
-(45, 1, 2, 19, 3, 1),
-(46, 2, 1, 19, 3, 1),
-(47, 1, 1, 20, 4, 1),
-(48, 1, 2, 20, 4, 1),
-(49, 2, 1, 20, 4, 1),
-(50, 1, 1, 21, 5, 1),
-(51, 1, 2, 21, 5, 1),
-(52, 2, 1, 21, 5, 1),
-(53, 1, 1, 22, 6, 1),
-(54, 1, 2, 22, 6, 1),
-(55, 2, 1, 22, 6, 1),
-(56, 1, 1, 23, 7, 1),
-(57, 1, 2, 23, 7, 1),
-(58, 2, 1, 23, 7, 1),
-(59, 1, 1, 24, 8, 1),
-(60, 1, 2, 24, 8, 1),
-(61, 2, 1, 24, 8, 1),
-(62, 1, 1, 25, 9, 1),
-(63, 1, 2, 25, 9, 1),
-(64, 2, 1, 25, 9, 1),
-(65, 1, 1, 26, 10, 1),
-(66, 1, 2, 26, 10, 1),
-(67, 2, 1, 26, 10, 1),
-(68, 1, 1, 27, 11, 1),
-(69, 1, 2, 27, 11, 1),
-(70, 2, 1, 27, 11, 1),
-(71, 1, 1, 28, 12, 1),
-(72, 1, 2, 28, 12, 1),
-(73, 2, 1, 28, 12, 1),
-(74, 1, 1, 29, 13, 1),
-(75, 1, 2, 29, 13, 1),
-(76, 2, 1, 29, 13, 1),
-(77, 1, 1, 30, 14, 1),
-(78, 1, 2, 30, 14, 1),
-(79, 2, 1, 30, 14, 1),
-(80, 1, 1, 31, 15, 1),
-(81, 1, 2, 31, 15, 1),
-(82, 2, 1, 31, 15, 1),
-(83, 1, 1, 32, 16, 1),
-(84, 1, 2, 32, 16, 1),
-(85, 2, 1, 32, 16, 1),
-(86, 1, 1, 33, 17, 1),
-(87, 1, 2, 33, 17, 1),
-(88, 2, 1, 33, 17, 1),
-(89, 1, 1, 34, 18, 1),
-(90, 1, 2, 34, 18, 1),
-(91, 2, 1, 34, 18, 1),
-(92, 1, 1, 35, 19, 1),
-(93, 1, 2, 35, 19, 1),
-(94, 2, 1, 35, 19, 1),
-(95, 1, 1, 36, 20, 1),
-(96, 1, 2, 36, 20, 1),
-(97, 2, 1, 36, 20, 1),
-(98, 1, 1, 37, 21, 1),
-(99, 1, 2, 37, 21, 1),
-(100, 2, 1, 37, 21, 1),
-(101, 1, 1, 38, 22, 1),
-(102, 1, 2, 38, 22, 1),
-(103, 2, 1, 38, 22, 1),
-(104, 1, 1, 39, 23, 1),
-(105, 1, 2, 39, 23, 1),
-(106, 2, 1, 39, 23, 1),
-(107, 1, 1, 40, 24, 1),
-(108, 1, 2, 40, 24, 1),
-(109, 2, 1, 40, 24, 1),
-(110, 1, 1, 41, 25, 1),
-(111, 1, 2, 41, 25, 1),
-(112, 2, 1, 41, 25, 1),
-(113, 12, 1, 42, 26, 1),
-(114, 12, 1, 42, 26, 1),
-(115, 12, 1, 43, 27, 1),
-(116, 12, 1, 43, 27, 1),
-(117, 12, 1, 44, 28, 1),
-(118, 12, 1, 44, 28, 1),
-(119, 12, 1, 45, 29, 1),
-(120, 12, 1, 45, 29, 1),
-(121, 12, 1, 46, 30, 1),
-(122, 12, 1, 46, 30, 1),
-(123, 12, 1, 47, 30, 1),
-(124, 12, 1, 47, 30, 1),
-(125, 12, 1, 48, 31, 1),
-(126, 12, 1, 48, 31, 1),
-(127, 12, 1, 49, 31, 1),
-(128, 12, 1, 49, 31, 1),
-(129, 12, 1, 50, 32, 1),
-(130, 12, 1, 50, 32, 1),
-(131, 12, 1, 51, 32, 1),
-(132, 12, 1, 51, 32, 1),
-(133, 12, 1, 52, 33, 1),
-(134, 12, 1, 52, 33, 1),
-(135, 12, 1, 53, 33, 1),
-(136, 12, 1, 53, 33, 1);
+INSERT INTO `order_item` (`id`, `item`, `type`, `order_id`, `version`, `status`, `unit_detail`, `quantity`) VALUES
+(212, 1, 1, 25, 1, 1, 1, 0),
+(213, 1, 2, 25, 1, 1, 2, 0),
+(214, 2, 1, 25, 1, 1, 1, 0),
+(215, 1, 1, 26, 2, 1, 1, 0),
+(216, 1, 2, 26, 2, 1, 2, 0),
+(217, 2, 1, 26, 2, 1, 1, 0),
+(218, 1, 1, 27, 3, 1, 1, 0),
+(219, 1, 2, 27, 3, 1, 2, 0),
+(220, 2, 1, 27, 3, 1, 1, 0),
+(221, 1, 1, 28, 4, 1, 1, 0),
+(222, 1, 2, 28, 4, 1, 2, 0),
+(223, 2, 1, 28, 4, 1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -413,7 +318,7 @@ CREATE TABLE IF NOT EXISTS `plant` (
   `version` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   KEY `Ref_18` (`company`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Дамп данных таблицы `plant`
@@ -421,7 +326,8 @@ CREATE TABLE IF NOT EXISTS `plant` (
 
 INSERT INTO `plant` (`id`, `name`, `company`, `version`) VALUES
 (1, 'Plant 1', 1, 1),
-(2, 'Plant 2', 1, 1);
+(2, 'Plant 2', 1, 1),
+(3, 'plant1', 3, 2);
 
 -- --------------------------------------------------------
 
@@ -443,7 +349,7 @@ CREATE TABLE IF NOT EXISTS `products` (
   PRIMARY KEY (`id`),
   KEY `Ref_21` (`unit`),
   KEY `Ref_24` (`company`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Дамп данных таблицы `products`
@@ -451,7 +357,8 @@ CREATE TABLE IF NOT EXISTS `products` (
 
 INSERT INTO `products` (`id`, `name`, `quantity`, `description`, `vat`, `unit`, `company`, `version`, `status`, `code`) VALUES
 (1, 'Product 1', 3, 'Some product description', 0, 1, 1, 1, 1, '5555555'),
-(2, 'Product 2', 4, 'Some other description', 0, 1, 1, 1, 1, '1111111');
+(2, 'Product 2', 4, 'Some other description', 0, 1, 1, 1, 1, '1111111'),
+(3, 'Product 3', 10, 'Some description', 0, 1, 1, 2, 1, 'sdfsdfsdf');
 
 -- --------------------------------------------------------
 
@@ -499,7 +406,7 @@ CREATE TABLE IF NOT EXISTS `services` (
   PRIMARY KEY (`id`),
   KEY `Ref_20` (`unit`),
   KEY `Ref_23` (`company`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Дамп данных таблицы `services`
@@ -507,7 +414,8 @@ CREATE TABLE IF NOT EXISTS `services` (
 
 INSERT INTO `services` (`id`, `name`, `description`, `vat`, `unit`, `company`, `version`, `status`, `code`) VALUES
 (1, 'Service 1', 'Some service description', 0, 2, 1, 1, 1, '54654'),
-(2, 'Service 2', 'Some other service description', 0, 2, 1, 1, 1, '5465');
+(2, 'Service 2', 'Some other service description', 0, 2, 1, 1, 1, '5465'),
+(3, 'Test Service', 'Serv desc', 5, 3, 1, 2, 1, 'code');
 
 -- --------------------------------------------------------
 
@@ -550,7 +458,7 @@ CREATE TABLE IF NOT EXISTS `sessions` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `session_id` (`session_id`),
   KEY `Ref_25` (`device`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
 --
 -- Дамп данных таблицы `sessions`
@@ -562,7 +470,9 @@ INSERT INTO `sessions` (`id`, `session_id`, `device`, `status`) VALUES
 (3, 'fb9babee67ce7013bee5b5575f0d5955', 3, 1),
 (4, '1ec80c874b97080f1309b81ffbd7ad7f', 1, 2),
 (5, '3e4ab9ab605a8fd8e12c03ff783e7640', 1, 1),
-(7, '2d60235ce70038db803883ca7198c451', 5, 1);
+(7, '2d60235ce70038db803883ca7198c451', 5, 1),
+(8, '202b275d522665d8585817e9a6f18537', 6, 1),
+(9, 'b57967438247fb41f34b5f3765ffb01f', 7, 1);
 
 -- --------------------------------------------------------
 
@@ -598,7 +508,7 @@ CREATE TABLE IF NOT EXISTS `unit` (
   `status` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   KEY `Ref_28` (`company`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Дамп данных таблицы `unit`
@@ -606,7 +516,8 @@ CREATE TABLE IF NOT EXISTS `unit` (
 
 INSERT INTO `unit` (`id`, `name`, `company`, `version`, `status`) VALUES
 (1, 'Length', 1, 1, 1),
-(2, 'Weight', 1, 1, 1);
+(2, 'Weight', 1, 1, 1),
+(3, 'Unit3', 1, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -657,7 +568,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `login` (`email`),
   KEY `Ref_07` (`company`),
   KEY `Ref_30` (`creator`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
 
 --
 -- Дамп данных таблицы `users`
@@ -670,7 +581,10 @@ INSERT INTO `users` (`id`, `type`, `name`, `surname`, `email`, `password`, `salt
 (4, 2, 'distributor', 'test', 'test', '$2y$12$53fdd48b11b871.173179ueE5cS1CPWBT7kW2pAL7xuHo5gWYfeLe', '53fdd48b11b871.17317965', 1, 1, 1),
 (5, 2, 'Test', 'test', 'test@test', '$2y$12$53feecc1054ac6.630052uMckVekPK3x/1yx9d2sYU4GF5wXsgHH2', '53feecc1054ac6.63005213', 1, 1, 1),
 (7, 2, 'sdf', 'sdfsd', 'sdfds@dsf', '$2y$12$53feed49b30245.979590uPHZVtSbXO18yM/RjnLx3..IXddwhnte', '53feed49b30245.97959002', 1, 1, 1),
-(9, 2, 'ghfhf', 'fghfg', 'fghfg@dfg', '$2y$12$53feee252db867.586713ujo4MmA.CFjROCfp186qIR9KBs8UeTxi', '53feee252db867.58671317', 1, 1, 1);
+(9, 2, 'ghfhf', 'fghfg', 'fghfg@dfg', '$2y$12$53feee252db867.586713ujo4MmA.CFjROCfp186qIR9KBs8UeTxi', '53feee252db867.58671317', 1, 1, 1),
+(10, 3, 'AO', 'Surname', 'ao@ao', '$2y$12$54002824cad3a0.236388uGutQLCemWH5EX6H3262WRgOXjhoPvO6', '54002824cad3a0.23638890', 1, 1, 4),
+(12, 4, 'manager', 'manager', 'manager@manager', '$2y$12$540042b3ddff70.832546u1K0T1SgvFrOdPtmDcstfLA.gKopsdz2', '540042b3ddff70.83254690', 1, 3, 10),
+(13, 5, 'mobile', 'mobile', 'mobile@mobile', '$2y$12$5400489629e2f5.023689uKUZWsZAbJZpKOjbzKhlmoVyGw9JkfD.', '5400489629e2f5.02368929', 1, 1, 10);
 
 -- --------------------------------------------------------
 
@@ -728,7 +642,7 @@ CREATE TABLE IF NOT EXISTS `warehouse` (
   `version` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   KEY `Ref_17` (`company`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Дамп данных таблицы `warehouse`
@@ -736,7 +650,8 @@ CREATE TABLE IF NOT EXISTS `warehouse` (
 
 INSERT INTO `warehouse` (`id`, `name`, `company`, `version`) VALUES
 (1, 'Warehouse 1', 1, 1),
-(2, 'Warehouse 2', 1, 1);
+(2, 'Warehouse 2', 1, 1),
+(3, 'warehouse1', 3, 2);
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
@@ -777,21 +692,27 @@ ALTER TABLE `division`
 -- Ограничения внешнего ключа таблицы `licenses`
 --
 ALTER TABLE `licenses`
-  ADD CONSTRAINT `Ref_31` FOREIGN KEY (`distributor`) REFERENCES `users` (`id`),
-  ADD CONSTRAINT `Ref_04` FOREIGN KEY (`owner`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `Ref_04` FOREIGN KEY (`owner`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `Ref_31` FOREIGN KEY (`distributor`) REFERENCES `users` (`id`);
 
 --
 -- Ограничения внешнего ключа таблицы `orders`
 --
 ALTER TABLE `orders`
+  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`plant`) REFERENCES `plant` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `Ref_08` FOREIGN KEY (`user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `Ref_09` FOREIGN KEY (`customer`) REFERENCES `customers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `Ref_09` FOREIGN KEY (`customer`) REFERENCES `customers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `Ref_32` FOREIGN KEY (`department`) REFERENCES `department` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `Ref_33` FOREIGN KEY (`warehouse`) REFERENCES `warehouse` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `Ref_35` FOREIGN KEY (`division`) REFERENCES `division` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `Ref_36` FOREIGN KEY (`currency`) REFERENCES `currency` (`id`);
 
 --
 -- Ограничения внешнего ключа таблицы `order_item`
 --
 ALTER TABLE `order_item`
-  ADD CONSTRAINT `order_item_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `order_item_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`),
+  ADD CONSTRAINT `Ref_29` FOREIGN KEY (`unit_detail`) REFERENCES `unit_detail` (`id`);
 
 --
 -- Ограничения внешнего ключа таблицы `plant`

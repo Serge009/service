@@ -60,11 +60,13 @@ class OrdersController extends AppController {
             $division = $em->getRepository("MatrixServiceBundle:Division")->findOneBy(array("id" => $order->division));
             $warehouse = $em->getRepository("MatrixServiceBundle:Warehouse")->findOneBy(array("id" => $order->warehouse));
             $plant = $em->getRepository("MatrixServiceBundle:Plant")->findOneBy(array("id" => $order->plant));
+            $currency = $em->getRepository("MatrixServiceBundle:Currency")->findOneBy(array("id" => $order->currency));
 
             $newOrder = new Orders();
             $newOrder->setDate(new DateTime())
-                ->setSlipNumber($order->slipNumber)
-                ->setSpecialCode($order->specialCode)
+                ->setSlipNumber($order->slip_number)
+                ->setSpecialCode($order->special_code)
+                ->setAdvancedPayment($order->advance_payment)
                 ->setDate(DateTime::createFromFormat('d.m.Y', $order->date))
                 ->setSubtotal($order->subtotal)
                 ->setTotal($order->total)
@@ -75,13 +77,14 @@ class OrdersController extends AppController {
                 ->setDepartment($department)
                 ->setDivision($division)
                 ->setWarehouse($warehouse)
-                ->setPlant($plant);
+                ->setPlant($plant)
+                ->setCurrency($currency);
 
             $em->persist($newOrder);
             array_push($res['orders'], $newOrder);
 
             $items = array();
-            foreach($order->orderItems as $item){
+            foreach($order->order_items as $item){
                 $unitDetail = $em->getRepository("MatrixServiceBundle:UnitDetail")->findOneBy(array("id" => $item->unit_detail));
                 $orderItem = new OrderItem();
 
