@@ -66,4 +66,11 @@ class Statuses
     {
         return $this->name;
     }
+
+    public static function getStatuses() {
+        return array(
+            self::ACTIVE,
+            self::DELETED
+        );
+    }
 }

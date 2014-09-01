@@ -16,6 +16,26 @@ licenses_list:
     path:     /lic
     defaults: { _controller: MatrixAdminBundle:Licenses:index }
 
+licenses_form:
+    path:     /lic/create
+    defaults: { _controller: MatrixAdminBundle:Licenses:createForm}
+    methods: GET
+
+licenses_create:
+    path:     /lic/create
+    defaults: {_controller: MatrixAdminBundle:Licenses:create}
+    methods: POST
+
+licenses_form_update:
+    path: /lic/update/{id}
+    defaults: {_controller: MatrixAdminBundle:Licenses:updateForm, id: 0}
+    methods: GET
+
+licenses_update:
+    path: /lic/update/{id}
+    defaults: {_controller: MatrixAdminBundle:Licenses:update, id: 0}
+    methods: POST
+
 distributor_form:
     path:     /dist/create
     defaults: { _controller: MatrixAdminBundle:Distributors:createForm }

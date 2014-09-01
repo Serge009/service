@@ -2,6 +2,7 @@
 <html>
  <head>
      <title>Admin Test</title>
+     <script src="{{ asset("public/assets/javascripts/jquery/jquery.min.js") }}"></script>
  </head>
 <body>
     For Admin
@@ -10,6 +11,8 @@
         <li><a href="{{ path('distributor_list') }}" >Distributors</a></li>
         <li><a href="{{ path('distributor_form') }}" >Create Distributor</a></li>
         <li><a href="{{ path('licenses_list') }}" >Licenses</a></li>
+        <li><a href="{{ path('licenses_form') }}" >Create License</a></li>
+        {% block menu %}
 
         {% block menu %}
         {% endblock %}

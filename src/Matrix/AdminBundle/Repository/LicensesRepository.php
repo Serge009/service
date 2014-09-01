@@ -56,4 +56,9 @@ class LicensesRepository extends EntityRepository
         return (!empty($count) && intval($count[0]['count']) > 0) ? true : false;
 
     }
+    public function findActiveLicenses() {
+        $query = $this->getEntityManager()
+            ->createQuery('SELECT l FROM Matrix\AdminBundle\Entity\Licenses l JOIN l.distributor d WHERE d.status = 1');
+        return $query->getResult();
+    }
 }

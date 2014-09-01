@@ -1,0 +1,25 @@
+{% extends "MatrixAdminBundle::base.html.twig" %}
+
+{% block content %}
+    {% for flashMessage in app.session.flashbag.get("notice") %}
+        <div class="flash-notice">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+    <form action="{{ path('licenses_update') ~ "/" ~ license.id}}" method="post">
+        <input type="text" name="serial" required="true" value="{{ license.serial }}" readonly/>
+        <input type="number" name="count_user" required="true" value="{{ license.userCount }}"/>
+        <select name="status">
+            {% for status in statuses %}
+                <option {% if status == license.status|default(" ") %} selected {% endif %} value="{{ status }}">{{ status }}</option>
+            {% endfor %}
+        </select>
+        <select name="dist_id">
+            <option></option>
+            {% for activeDist in activeDists %}
+                <option {% if activeDist.id == license.distributor.id|default(" ") %} selected {% endif %} value="{{ activeDist.id|default(" ") }}">{{ activeDist.name|default(" ") }}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Update"/>
+    </form>
+{% endblock %}

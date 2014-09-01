@@ -13,12 +13,12 @@
         </thead>
         <tbody>
         {% for license in licenses %}
-            <tr>
+            <tr onclick='window.location.href = "{{ path("licenses_form_update") ~ "/" ~ license.id }}"'>
                 <td>{{ license.serial }}</td>
                 <td>{{ license.userCount }}</td>
                 <td>{{ license.status }}</td>
                 <td>{{ license.owner.name }}</td>
-                <td>{{ license.distributor.name }}</td>
+                <td>{{ license.distributor.name|default(' ') }}</td>
             </tr>
         {% endfor %}
         </tbody>

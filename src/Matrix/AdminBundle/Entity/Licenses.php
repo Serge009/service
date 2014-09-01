@@ -68,7 +68,7 @@ class Licenses
      * @param Users $distributor
      * @return Licenses
      */
-    public function setDistributor($distributor)
+    public function setDistributor($distributor = null)
     {
         $this->distributor = $distributor;
 
@@ -180,7 +180,7 @@ class Licenses
     /**
      * Get owner
      *
-     * @return Users
+     * @return \Matrix\ServiceBundle\Entity\Users 
      */
     public function getOwner()
     {
