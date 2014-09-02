@@ -53,7 +53,7 @@ class OrderItem
     /**
      * @var Orders
      *
-     * @ORM\ManyToOne(targetEntity="Orders")
+     * @ORM\ManyToOne(targetEntity="Orders", fetch="EAGER")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="order_id", referencedColumnName="id")
      * })
@@ -77,6 +77,12 @@ class OrderItem
      */
     private $quantity = 0;
 
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="price", type="float", precision=15, scale=3, nullable=false)
+     */
+    private $price = 0;
 
     /**
      * converts OrderItem to array
@@ -89,8 +95,30 @@ class OrderItem
             "type" => $this->getType(),
             "version" => $this->getVersion(),
             "status" => $this->getStatus(),
-            "order" => $this->getOrder()->getId()
+            "order" => $this->getOrder()->getId(),
+            "unit_detail" => $this->getUnitDetail()->getId(),
+            "quantity" => $this->getQuantity(),
+            "price" => $this->getPrice()
         );
+    }
+
+    /**
+     * @param float $price
+     * @return OrderItem
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getPrice()
+    {
+        return $this->price;
     }
 
 
@@ -115,6 +143,8 @@ class OrderItem
 
     }
 
+
+
     /**
      * @param UnitDetail $unitDetail
      *
@@ -135,10 +165,13 @@ class OrderItem
         return $this->unitDetail;
     }
 
+
+
+
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -161,7 +194,7 @@ class OrderItem
     /**
      * Get item
      *
-     * @return integer 
+     * @return integer
      */
     public function getItem()
     {
@@ -184,7 +217,7 @@ class OrderItem
     /**
      * Get type
      *
-     * @return integer 
+     * @return integer
      */
     public function getType()
     {
@@ -207,7 +240,7 @@ class OrderItem
     /**
      * Get version
      *
-     * @return integer 
+     * @return integer
      */
     public function getVersion()
     {
@@ -230,7 +263,7 @@ class OrderItem
     /**
      * Get status
      *
-     * @return integer 
+     * @return integer
      */
     public function getStatus()
     {
@@ -240,10 +273,10 @@ class OrderItem
     /**
      * Set order
      *
-     * @param \Matrix\ServiceBundle\Entity\Orders $order
+     * @param Orders $order
      * @return OrderItem
      */
-    public function setOrder(\Matrix\ServiceBundle\Entity\Orders $order = null)
+    public function setOrder(Orders $order)
     {
         $this->order = $order;
 
@@ -253,7 +286,7 @@ class OrderItem
     /**
      * Get order
      *
-     * @return \Matrix\ServiceBundle\Entity\Orders 
+     * @return Orders
      */
     public function getOrder()
     {

@@ -56,11 +56,21 @@ class ProductPrices
     private $currency;
 
 
+    public function toArray(){
+        return array(
+            "id" => $this->getId(),
+            "product" => $this->getProduct()->getId(),
+            "price" => $this->getPrice(),
+            "currency" => $this->getCurrency()->getId(),
+            "version" => $this->getVersion(),
+            "status" => 1
+        );
+    }
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -83,7 +93,7 @@ class ProductPrices
     /**
      * Get price
      *
-     * @return float 
+     * @return float
      */
     public function getPrice()
     {
@@ -106,7 +116,7 @@ class ProductPrices
     /**
      * Get version
      *
-     * @return integer 
+     * @return integer
      */
     public function getVersion()
     {

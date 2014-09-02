@@ -116,10 +116,10 @@ class Devices
     /**
      * Set license
      *
-     * @param \Matrix\ServiceBundle\Entity\Licenses $license
+     * @param Licenses $license
      * @return Devices
      */
-    public function setLicense(\Matrix\ServiceBundle\Entity\Licenses $license = null)
+    public function setLicense(Licenses $license = null)
     {
         $this->license = $license;
 
@@ -129,7 +129,7 @@ class Devices
     /**
      * Get license
      *
-     * @return \Matrix\ServiceBundle\Entity\Licenses 
+     * @return Licenses
      */
     public function getLicense()
     {
@@ -139,10 +139,10 @@ class Devices
     /**
      * Set user
      *
-     * @param \Matrix\ServiceBundle\Entity\Users $user
+     * @param Users $user
      * @return Devices
      */
-    public function setUser(\Matrix\ServiceBundle\Entity\Users $user = null)
+    public function setUser(Users $user = null)
     {
         $this->user = $user;
 
@@ -152,7 +152,7 @@ class Devices
     /**
      * Get user
      *
-     * @return \Matrix\ServiceBundle\Entity\Users 
+     * @return Users
      */
     public function getUser()
     {

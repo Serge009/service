@@ -209,10 +209,10 @@ class UnitDetail
     /**
      * Set unit
      *
-     * @param \Matrix\ServiceBundle\Entity\Unit $unit
+     * @param Unit $unit
      * @return UnitDetail
      */
-    public function setUnit(\Matrix\ServiceBundle\Entity\Unit $unit = null)
+    public function setUnit(Unit $unit = null)
     {
         $this->unit = $unit;
 
@@ -222,7 +222,7 @@ class UnitDetail
     /**
      * Get unit
      *
-     * @return \Matrix\ServiceBundle\Entity\Unit 
+     * @return Unit
      */
     public function getUnit()
     {

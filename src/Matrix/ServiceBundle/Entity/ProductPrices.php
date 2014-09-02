@@ -126,10 +126,10 @@ class ProductPrices
     /**
      * Set product
      *
-     * @param \Matrix\ServiceBundle\Entity\Products $product
+     * @param Products $product
      * @return ProductPrices
      */
-    public function setProduct(\Matrix\ServiceBundle\Entity\Products $product = null)
+    public function setProduct(Products $product = null)
     {
         $this->product = $product;
 
@@ -139,7 +139,7 @@ class ProductPrices
     /**
      * Get product
      *
-     * @return \Matrix\ServiceBundle\Entity\Products 
+     * @return Products
      */
     public function getProduct()
     {
@@ -149,10 +149,10 @@ class ProductPrices
     /**
      * Set currency
      *
-     * @param \Matrix\ServiceBundle\Entity\Currency $currency
+     * @param Currency $currency
      * @return ProductPrices
      */
-    public function setCurrency(\Matrix\ServiceBundle\Entity\Currency $currency = null)
+    public function setCurrency(Currency $currency = null)
     {
         $this->currency = $currency;
 
@@ -162,7 +162,7 @@ class ProductPrices
     /**
      * Get currency
      *
-     * @return \Matrix\ServiceBundle\Entity\Currency 
+     * @return Currency
      */
     public function getCurrency()
     {

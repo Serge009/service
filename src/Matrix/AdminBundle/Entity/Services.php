@@ -104,7 +104,7 @@ class Services
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -127,7 +127,7 @@ class Services
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -150,7 +150,7 @@ class Services
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -196,7 +196,7 @@ class Services
     /**
      * Get vat
      *
-     * @return integer 
+     * @return integer
      */
     public function getVat()
     {
@@ -219,7 +219,7 @@ class Services
     /**
      * Get version
      *
-     * @return integer 
+     * @return integer
      */
     public function getVersion()
     {
@@ -242,7 +242,7 @@ class Services
     /**
      * Get status
      *
-     * @return integer 
+     * @return integer
      */
     public function getStatus()
     {

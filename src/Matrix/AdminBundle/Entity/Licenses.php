@@ -83,8 +83,6 @@ class Licenses
         return $this->distributor;
     }
 
-
-
     /**
      * Get id
      *
@@ -180,7 +178,7 @@ class Licenses
     /**
      * Get owner
      *
-     * @return \Matrix\ServiceBundle\Entity\Users 
+     * @return Users
      */
     public function getOwner()
     {

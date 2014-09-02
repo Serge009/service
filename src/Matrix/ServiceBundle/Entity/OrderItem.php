@@ -273,10 +273,10 @@ class OrderItem
     /**
      * Set order
      *
-     * @param \Matrix\ServiceBundle\Entity\Orders $order
+     * @param Orders $order
      * @return OrderItem
      */
-    public function setOrder(Orders $order = null)
+    public function setOrder(Orders $order)
     {
         $this->order = $order;
 
@@ -286,7 +286,7 @@ class OrderItem
     /**
      * Get order
      *
-     * @return \Matrix\ServiceBundle\Entity\Orders 
+     * @return Orders
      */
     public function getOrder()
     {

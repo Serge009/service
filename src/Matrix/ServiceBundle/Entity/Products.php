@@ -283,10 +283,10 @@ class Products
     /**
      * Set unit
      *
-     * @param \Matrix\ServiceBundle\Entity\Unit $unit
+     * @param Unit $unit
      * @return Products
      */
-    public function setUnit(\Matrix\ServiceBundle\Entity\Unit $unit = null)
+    public function setUnit(Unit $unit = null)
     {
         $this->unit = $unit;
 
@@ -296,7 +296,7 @@ class Products
     /**
      * Get unit
      *
-     * @return \Matrix\ServiceBundle\Entity\Unit 
+     * @return Unit
      */
     public function getUnit()
     {
@@ -306,10 +306,10 @@ class Products
     /**
      * Set company
      *
-     * @param \Matrix\ServiceBundle\Entity\Company $company
+     * @param Company $company
      * @return Products
      */
-    public function setCompany(\Matrix\ServiceBundle\Entity\Company $company = null)
+    public function setCompany(Company $company = null)
     {
         $this->company = $company;
 
@@ -319,7 +319,7 @@ class Products
     /**
      * Get company
      *
-     * @return \Matrix\ServiceBundle\Entity\Company 
+     * @return Company
      */
     public function getCompany()
     {

@@ -66,7 +66,7 @@ class UserType
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -89,7 +89,7 @@ class UserType
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {

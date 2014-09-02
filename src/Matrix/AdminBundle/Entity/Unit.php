@@ -53,11 +53,23 @@ class Unit
     private $company;
 
 
+    public function toArray(){
+
+        return array(
+            "id" => $this->getId(),
+            "name" => $this->getName(),
+            "status" => $this->getStatus(),
+            "version" => $this->getStatus()
+        );
+
+    }
+
+
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -80,7 +92,7 @@ class Unit
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -103,7 +115,7 @@ class Unit
     /**
      * Get version
      *
-     * @return integer 
+     * @return integer
      */
     public function getVersion()
     {
@@ -126,7 +138,7 @@ class Unit
     /**
      * Get status
      *
-     * @return integer 
+     * @return integer
      */
     public function getStatus()
     {

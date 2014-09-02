@@ -67,11 +67,24 @@ class UnitDetail
     private $unit;
 
 
+    public function toArray(){
+        return array(
+            "id" => $this->getId(),
+            "unit" => $this->getUnit()->getId(),
+            "from" => $this->getFrom(),
+            "to" => $this->getTo(),
+            "name" => $this->getName(),
+            "main" => ($this->getMain()) ? "1" : "0",
+            "version" => $this->getVersion(),
+            "status" => 1
+        );
+    }
+
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -94,7 +107,7 @@ class UnitDetail
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -117,7 +130,7 @@ class UnitDetail
     /**
      * Get from
      *
-     * @return integer 
+     * @return integer
      */
     public function getFrom()
     {
@@ -140,7 +153,7 @@ class UnitDetail
     /**
      * Get to
      *
-     * @return integer 
+     * @return integer
      */
     public function getTo()
     {
@@ -163,7 +176,7 @@ class UnitDetail
     /**
      * Get main
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getMain()
     {
@@ -186,7 +199,7 @@ class UnitDetail
     /**
      * Get version
      *
-     * @return integer 
+     * @return integer
      */
     public function getVersion()
     {

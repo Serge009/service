@@ -55,12 +55,23 @@ class ServicePrices
      */
     private $service;
 
+    public function toArray(){
+        return array(
+            "id" => $this->getId(),
+            "service" => $this->getService()->getId(),
+            "price" => $this->getPrice(),
+            "currency" => $this->getCurrency()->getId(),
+            "version" => $this->getVersion(),
+            "status" => 1
+        );
+    }
+
 
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -83,7 +94,7 @@ class ServicePrices
     /**
      * Get price
      *
-     * @return float 
+     * @return float
      */
     public function getPrice()
     {
@@ -106,7 +117,7 @@ class ServicePrices
     /**
      * Get version
      *
-     * @return integer 
+     * @return integer
      */
     public function getVersion()
     {

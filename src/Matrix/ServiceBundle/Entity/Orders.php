@@ -518,7 +518,7 @@ class Orders
      * @param Users $user
      * @return Orders
      */
-    public function setUser(Users $user = null)
+    public function setUser(Users $user)
     {
         $this->user = $user;
 
@@ -541,7 +541,7 @@ class Orders
      * @param Customers $customer
      * @return Orders
      */
-    public function setCustomer(Customers $customer = null)
+    public function setCustomer(Customers $customer)
     {
         $this->customer = $customer;
 

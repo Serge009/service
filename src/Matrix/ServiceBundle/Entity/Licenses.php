@@ -83,10 +83,6 @@ class Licenses
         return $this->distributor;
     }
 
-
-
-
-
     /**
      * Get id
      *
@@ -169,10 +165,10 @@ class Licenses
     /**
      * Set owner
      *
-     * @param \Matrix\ServiceBundle\Entity\Users $owner
+     * @param Users $owner
      * @return Licenses
      */
-    public function setOwner(\Matrix\ServiceBundle\Entity\Users $owner = null)
+    public function setOwner(Users $owner = null)
     {
         $this->owner = $owner;
 
@@ -182,7 +178,7 @@ class Licenses
     /**
      * Get owner
      *
-     * @return \Matrix\ServiceBundle\Entity\Users 
+     * @return Users
      */
     public function getOwner()
     {

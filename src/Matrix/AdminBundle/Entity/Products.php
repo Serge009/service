@@ -112,7 +112,7 @@ class Products
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -135,7 +135,7 @@ class Products
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -158,7 +158,7 @@ class Products
     /**
      * Get quantity
      *
-     * @return integer 
+     * @return integer
      */
     public function getQuantity()
     {
@@ -181,7 +181,7 @@ class Products
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -227,7 +227,7 @@ class Products
     /**
      * Get vat
      *
-     * @return integer 
+     * @return integer
      */
     public function getVat()
     {
@@ -250,7 +250,7 @@ class Products
     /**
      * Get version
      *
-     * @return integer 
+     * @return integer
      */
     public function getVersion()
     {
@@ -273,7 +273,7 @@ class Products
     /**
      * Get status
      *
-     * @return integer 
+     * @return integer
      */
     public function getStatus()
     {

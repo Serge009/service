@@ -7,11 +7,60 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Orders
  *
- * @ORM\Table(name="orders", indexes={@ORM\Index(name="Ref_08", columns={"user"}), @ORM\Index(name="Ref_09", columns={"customer"})})
+ * @ORM\Table(name="orders", indexes={@ORM\Index(name="Ref_08", columns={"user"}),
+ *                                   @ORM\Index(name="Ref_09", columns={"customer"}),
+ *                                   @ORM\Index(name="Ref_32", columns={"department"}),
+ *                                   @ORM\Index(name="Ref_33", columns={"warehouse"}),
+ *                                   @ORM\Index(name="Ref_34", columns={"plant"}),
+ *                                   @ORM\Index(name="Ref_35", columns={"division"}),
+ *                                    @ORM\Index(name="Ref_36", columns={"currency"})
+ * })
  * @ORM\Entity(repositoryClass="Matrix\AdminBundle\Repository\OrdersRepository")
  */
 class Orders
 {
+
+    /**
+     * @var Department
+     *
+     * @ORM\ManyToOne(targetEntity="Department")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="department", referencedColumnName="id")
+     * })
+     */
+    private $department;
+
+
+    /**
+     * @var Warehouse
+     *
+     * @ORM\ManyToOne(targetEntity="Warehouse")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="warehouse", referencedColumnName="id")
+     * })
+     */
+    private $warehouse;
+
+    /**
+     * @var Plant
+     *
+     * @ORM\ManyToOne(targetEntity="Plant")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="plant", referencedColumnName="id")
+     * })
+     */
+    private $plant;
+
+    /**
+     * @var Division
+     *
+     * @ORM\ManyToOne(targetEntity="Division")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="division", referencedColumnName="id")
+     * })
+     */
+    private $division;
+
     /**
      * @var integer
      *
@@ -24,7 +73,7 @@ class Orders
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date", type="date", nullable=false)
+     * @ORM\Column(name="date", type="datetime", nullable=false)
      */
     private $date;
 
@@ -75,7 +124,7 @@ class Orders
     /**
      * @var Users
      *
-     * @ORM\ManyToOne(targetEntity="Users")
+     * @ORM\ManyToOne(targetEntity="Users", fetch="EAGER")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="user", referencedColumnName="id")
      * })
@@ -92,21 +141,121 @@ class Orders
      */
     private $customer;
 
+    /**
+     * @var Currency
+     *
+     * @ORM\ManyToOne(targetEntity="Currency")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="currency", referencedColumnName="id")
+     * })
+     */
+    private $currency;
+
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="advanced_payment", type="float", precision=15, scale=3, nullable=true)
+     */
+    private $advancedPayment;
+
+
+    private $orderItems = array();
+
+    /**
+     * @param Currency $currency
+     *
+     * @return Orders
+     */
+    public function setCurrency($currency)
+    {
+        $this->currency = $currency;
+
+        return $this;
+    }
+
+    /**
+     * @return Currency
+     */
+    public function getCurrency()
+    {
+        return $this->currency;
+    }
+
+
+
+
+
+    /**
+     * @param float $advancedPayment
+     * @return Orders
+     */
+    public function setAdvancedPayment($advancedPayment)
+    {
+        $this->advancedPayment = $advancedPayment;
+
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getAdvancedPayment()
+    {
+        return $this->advancedPayment;
+    }
+
+
+
+    /**
+     * @param array $orderItems
+     * @return Orders
+     */
+    public function setOrderItems($orderItems)
+    {
+        $this->orderItems = $orderItems;
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getOrderItems()
+    {
+        return $this->orderItems;
+    }
+
+
+
 
     /**
      * converts Orders to array
      * @return array
      */
     public function toArray(){
+
+        $items = array();
+        foreach($this->getOrderItems() as $item){
+            array_push($items, $item->toArray());
+        }
+
         return array(
             "id" => $this->getId(),
             "date" => $this->getDate()->format("d-m-Y"),
-            "slipNumber" => $this->getSlipNumber(),
+            "slip_number" => $this->getSlipNumber(),
             "version" => $this->getVersion(),
             "status" => $this->getStatus(),
-            "specialCode" => $this->getSpecialCode(),
+            "special_code" => $this->getSpecialCode(),
             "subtotal" => $this->getSubtotal(),
-            "total" => $this->getTotal()
+            "total" => $this->getTotal(),
+            "customer" => $this->getCustomer()->getId(),
+            "division" => $this->getDivision()->getId(),
+            "department" => $this->getDepartment()->getId(),
+            "plant" => $this->getPlant()->getId(),
+            "warehouse" => $this->getWarehouse()->getId(),
+            "advance_payment" => $this->getAdvancedPayment()
+            //"orderItems" => $items
         );
     }
 
@@ -114,12 +263,91 @@ class Orders
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
         return $this->id;
     }
+
+    /**
+     * @param Department $department
+     * @return Orders
+     */
+    public function setDepartment($department)
+    {
+        $this->department = $department;
+
+        return $this;
+    }
+
+    /**
+     * @return Department
+     */
+    public function getDepartment()
+    {
+        return $this->department;
+    }
+
+    /**
+     * @param Division $division
+     * @return Orders
+     */
+    public function setDivision($division)
+    {
+        $this->division = $division;
+
+        return $this;
+    }
+
+    /**
+     * @return Division
+     */
+    public function getDivision()
+    {
+        return $this->division;
+    }
+
+    /**
+     * @param Plant $plant
+     * @return Orders
+     */
+    public function setPlant($plant)
+    {
+        $this->plant = $plant;
+
+        return $this;
+    }
+
+    /**
+     * @return Plant
+     */
+    public function getPlant()
+    {
+        return $this->plant;
+    }
+
+    /**
+     * @param Warehouse $warehouse
+     * @return Orders
+     */
+    public function setWarehouse($warehouse)
+    {
+        $this->warehouse = $warehouse;
+
+        return $this;
+    }
+
+    /**
+     * @return Warehouse
+     */
+    public function getWarehouse()
+    {
+        return $this->warehouse;
+    }
+
+
+
 
     /**
      * Set date
@@ -137,7 +365,7 @@ class Orders
     /**
      * Get date
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDate()
     {
@@ -160,7 +388,7 @@ class Orders
     /**
      * Get slipNumber
      *
-     * @return string 
+     * @return string
      */
     public function getSlipNumber()
     {
@@ -183,7 +411,7 @@ class Orders
     /**
      * Get specialCode
      *
-     * @return string 
+     * @return string
      */
     public function getSpecialCode()
     {
@@ -208,7 +436,7 @@ class Orders
     /**
      * Get subtotal
      *
-     * @return float 
+     * @return float
      */
     public function getSubtotal()
     {
@@ -231,7 +459,7 @@ class Orders
     /**
      * Get total
      *
-     * @return float 
+     * @return float
      */
     public function getTotal()
     {
@@ -254,7 +482,7 @@ class Orders
     /**
      * Get version
      *
-     * @return integer 
+     * @return integer
      */
     public function getVersion()
     {
@@ -277,7 +505,7 @@ class Orders
     /**
      * Get status
      *
-     * @return integer 
+     * @return integer
      */
     public function getStatus()
     {
@@ -290,7 +518,7 @@ class Orders
      * @param Users $user
      * @return Orders
      */
-    public function setUser(Users $user = null)
+    public function setUser(Users $user)
     {
         $this->user = $user;
 
@@ -313,7 +541,7 @@ class Orders
      * @param Customers $customer
      * @return Orders
      */
-    public function setCustomer(Customers $customer = null)
+    public function setCustomer(Customers $customer)
     {
         $this->customer = $customer;
 

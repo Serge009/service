@@ -78,7 +78,7 @@ class Users implements UserInterface
     /**
      * @var Company
      *
-     * @ORM\ManyToOne(targetEntity="Company", fetch="EAGER")
+     * @ORM\ManyToOne(targetEntity="Company")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="company", referencedColumnName="id")
      * })
@@ -94,6 +94,20 @@ class Users implements UserInterface
      * })
      */
     private $creator;
+
+
+    /**
+     * @param Users $user
+     * @return bool
+     */
+    public function equals(Users $user){
+        if($this->getPassword() === $user->getPassword()
+            && $this->getEmail() === $user->getEmail()){
+            return true;
+        }
+
+        return false;
+    }
 
     /**
      * @param Users $creator
@@ -128,7 +142,7 @@ class Users implements UserInterface
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -151,7 +165,7 @@ class Users implements UserInterface
     /**
      * Get type
      *
-     * @return integer 
+     * @return integer
      */
     public function getType()
     {
@@ -174,7 +188,7 @@ class Users implements UserInterface
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -197,7 +211,7 @@ class Users implements UserInterface
     /**
      * Get surname
      *
-     * @return string 
+     * @return string
      */
     public function getSurname()
     {
@@ -220,7 +234,7 @@ class Users implements UserInterface
     /**
      * Get email
      *
-     * @return string 
+     * @return string
      */
     public function getEmail()
     {
@@ -243,7 +257,7 @@ class Users implements UserInterface
     /**
      * Get password
      *
-     * @return string 
+     * @return string
      */
     public function getPassword()
     {
@@ -266,7 +280,7 @@ class Users implements UserInterface
     /**
      * Get salt
      *
-     * @return string 
+     * @return string
      */
     public function getSalt()
     {
@@ -289,7 +303,7 @@ class Users implements UserInterface
     /**
      * Get status
      *
-     * @return integer 
+     * @return integer
      */
     public function getStatus()
     {
