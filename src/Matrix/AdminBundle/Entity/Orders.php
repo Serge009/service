@@ -23,7 +23,7 @@ class Orders
     /**
      * @var Department
      *
-     * @ORM\ManyToOne(targetEntity="Department")
+     * @ORM\ManyToOne(targetEntity="Department", fetch="EAGER")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="department", referencedColumnName="id")
      * })
@@ -34,7 +34,7 @@ class Orders
     /**
      * @var Warehouse
      *
-     * @ORM\ManyToOne(targetEntity="Warehouse")
+     * @ORM\ManyToOne(targetEntity="Warehouse", fetch="EAGER")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="warehouse", referencedColumnName="id")
      * })
@@ -44,7 +44,7 @@ class Orders
     /**
      * @var Plant
      *
-     * @ORM\ManyToOne(targetEntity="Plant")
+     * @ORM\ManyToOne(targetEntity="Plant", fetch="EAGER")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="plant", referencedColumnName="id")
      * })
@@ -54,7 +54,7 @@ class Orders
     /**
      * @var Division
      *
-     * @ORM\ManyToOne(targetEntity="Division")
+     * @ORM\ManyToOne(targetEntity="Division", fetch="EAGER")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="division", referencedColumnName="id")
      * })
@@ -124,7 +124,7 @@ class Orders
     /**
      * @var Users
      *
-     * @ORM\ManyToOne(targetEntity="Users", fetch="EAGER")
+     * @ORM\ManyToOne(targetEntity="Users", fetch="EAGER", fetch="EAGER")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="user", referencedColumnName="id")
      * })
@@ -134,7 +134,7 @@ class Orders
     /**
      * @var Customers
      *
-     * @ORM\ManyToOne(targetEntity="Customers")
+     * @ORM\ManyToOne(targetEntity="Customers", fetch="EAGER")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="customer", referencedColumnName="id")
      * })
@@ -144,7 +144,7 @@ class Orders
     /**
      * @var Currency
      *
-     * @ORM\ManyToOne(targetEntity="Currency")
+     * @ORM\ManyToOne(targetEntity="Currency", fetch="EAGER")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="currency", referencedColumnName="id")
      * })

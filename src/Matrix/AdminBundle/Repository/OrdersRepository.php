@@ -11,6 +11,7 @@ namespace Matrix\AdminBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query\ResultSetMapping;
+use Matrix\AdminBundle\Entity\Company;
 
 class OrdersRepository extends EntityRepository {
 
@@ -25,6 +26,20 @@ class OrdersRepository extends EntityRepository {
         $count = $query->getResult();
         //var_dump($count);
         return (!empty($count) && intval($count[0]['count']) > 0) ? intval($count[0]['count']) : 1;
+    }
+
+    public function findAllByCompany(Company $company){
+        $em = $this->getEntityManager();
+        $qb = $em->createQueryBuilder();
+        $qb->select('o')
+            ->from('Matrix\AdminBundle\Entity\Orders' , "o")
+            ->innerJoin("o.user", "u")
+            ->where("u.company = :company")
+            ->setParameter("company", $company);
+
+
+
+        return $qb->getQuery()->execute();
     }
 
 

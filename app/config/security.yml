@@ -47,6 +47,10 @@ security:
           - { path: ^/product/create, roles: [ROLE_ACCOUNT_OWNER, ROLE_MANAGER] }
           - { path: ^/manager/services, roles: [ROLE_ACCOUNT_OWNER, ROLE_MANAGER] }
           - { path: ^/service/create, roles: [ROLE_ACCOUNT_OWNER, ROLE_MANAGER] }
+
+          - { path: ^/manager/orders, roles: [ROLE_ACCOUNT_OWNER, ROLE_MANAGER] }
+
+
           - { path: ^/lic/update$, roles: [ROLE_ADMIN] }
           - { path: ^/service/update*, roles: [ROLE_ACCOUNT_OWNER, ROLE_MANAGER] }
           - { path: ^/dist/lic, roles: [ROLE_DISTRIBUTOR] }

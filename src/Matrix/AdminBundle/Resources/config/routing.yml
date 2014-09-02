@@ -337,6 +337,13 @@ service_update:
     defaults: { _controller: MatrixAdminBundle:Service:updateService }
     methods: POST
 
+#########################################################################################
+############                          ORDERS                              ###############
+#########################################################################################
+#Orders list
+orders_list:
+    path:     /manager/orders
+    defaults: { _controller: MatrixAdminBundle:Order:getOrders }
 
 #########################################################################################
 ############                             404                              ###############

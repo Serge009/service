@@ -1,0 +1,43 @@
+{% extends "MatrixAdminBundle::base.html.twig" %}
+{% block content %}
+    <table>
+        <thead>
+        <tr>
+            <th>User Name</th>
+            <th>User Surname</th>
+            <th>Date</th>
+
+            <th>Customer</th>
+            <th>Slip Number</th>
+            <th>Special Code</th>
+            <th>Subtotal</th>
+            <th>Total</th>
+            <th>Department</th>
+            <th>Plant</th>
+            <th>Division</th>
+            <th>Advance Payment</th>
+            <th>Currency</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for order in orders %}
+            <tr>
+                <td>{{ order.user.name }}</td>
+                <td>{{ order.user.surname }}</td>
+                <td>{{ order.date|date("d-m-Y") }}</td>
+                <td>{{ order.customer.name }}</td>
+                <td>{{ order.slipNumber }}</td>
+                <td>{{ order.specialCode }}</td>
+                <td>{{ order.subtotal }}</td>
+                <td>{{ order.total }}</td>
+                <td>{{ order.department.name }}</td>
+                <td>{{ order.plant.name }}</td>
+                <td>{{ order.division.name }}</td>
+                <td>{{ order.advancedPayment }}</td>
+                <td>{{ order.currency.name }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

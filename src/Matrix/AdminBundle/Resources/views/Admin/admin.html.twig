@@ -196,305 +196,248 @@
           </div>
           <ul class='nav nav-stacked'>
             <li class=''>
-              <a href='index.html'>
+              <a href='{{ path('logout') }}'>
                 <i class='icon-dashboard'></i>
-                <span>Dashboard</span>
+                <span>Logout</span>
               </a>
             </li>
-            <li class='active'>
-                      <a class="dropdown-collapse" href="#"><i class='icon-edit'></i>
-              <span>Forms</span>
-              <i class='icon-angle-down angle-down'></i>
+            <li class=''>
+                <a href='{{ path('orders_list') }}'>
+                    <i class='icon-dashboard'></i>
+                    <span>Orders</span>
+                </a>
+            </li>
+            <li class=''>
+              <a class="dropdown-collapse" href="#">
+                <i class='icon-edit'></i>
+                    <span>Mobile Users</span>
+                <i class='icon-angle-down angle-down'></i>
               </a>
       
-              <ul class='in nav nav-stacked'>
-                <li class=''>
-                  <a href='form_styles.html'>
-                    <i class='icon-caret-right'></i>
-                    <span>Form styles and features</span>
-                  </a>
-                </li>
-                <li class='active'>
-                  <a href='form_components.html'>
-                    <i class='icon-caret-right'></i>
-                    <span>Form components</span>
-                  </a>
-                </li>
-                <li class=''>
-                  <a href='validations.html'>
-                    <i class='icon-caret-right'></i>
-                    <span>Validations</span>
-                  </a>
-                </li>
-                <li class=''>
-                  <a href='wizard.html'>
-                    <i class='icon-caret-right'></i>
-                    <span>Wizard</span>
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a class='dropdown-collapse ' href='#'>
-                <i class='icon-tint'></i>
-                <span>UI Elements & Widgets</span>
-                <i class='icon-angle-down angle-down'></i>
-              </a>
               <ul class='nav nav-stacked'>
                 <li class=''>
-                  <a href='ui_elements.html'>
+                  <a href='{{ path('mobile_users_list') }}'>
                     <i class='icon-caret-right'></i>
-                    <span>UI Elements</span>
+                    <span>Show All</span>
                   </a>
                 </li>
                 <li class=''>
-                  <a href='widgets.html'>
+                  <a href='{{ path('mobile_user_form') }}'>
                     <i class='icon-caret-right'></i>
-                    <span>Widgets</span>
+                    <span>Create New Mobile User</span>
                   </a>
                 </li>
+
               </ul>
             </li>
             <li class=''>
-              <a href='buttons_and_icons.html'>
-                <i class='icon-star'></i>
-                <span>Buttons & Icons</span>
-              </a>
-            </li>
-            <li>
-              <a class='dropdown-collapse ' href='#'>
-                <i class='icon-cogs'></i>
-                <span>Components</span>
-                <i class='icon-angle-down angle-down'></i>
-              </a>
-              <ul class='nav nav-stacked'>
-                <li class=''>
-                  <a href='charts.html'>
-                    <i class='icon-bar-chart'></i>
-                    <span>Charts</span>
+                  <a class="dropdown-collapse" href="#">
+                      <i class='icon-edit'></i>
+                      <span>Departments</span>
+                      <i class='icon-angle-down angle-down'></i>
                   </a>
-                </li>
-                <li class=''>
-                  <a href='address_book.html'>
-                    <i class='icon-envelope'></i>
-                    <span>Address book</span>
-                  </a>
-                </li>
-                <li class=''>
-                  <a href='chats.html'>
-                    <i class='icon-comments'></i>
-                    <span>Chats</span>
-                  </a>
-                </li>
-                <li class=''>
-                  <a href='filetrees.html'>
-                    <i class='icon-list-ul'></i>
-                    <span>File trees</span>
-                  </a>
-                </li>
-                <li class=''>
-                  <a href='fileupload.html'>
-                    <i class='icon-file'></i>
-                    <span>Fileupload</span>
-                  </a>
-                </li>
-                <li class=''>
-                  <a href='todo.html'>
-                    <i class='icon-list-alt'></i>
-                    <span>Todo list</span>
-                  </a>
-                </li>
-                <li class=''>
-                  <a href='wysiwyg.html'>
-                    <i class='icon-paste'></i>
-                    <span>WYSIWYG</span>
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li class=''>
-              <a href='tables.html'>
-                <i class='icon-table'></i>
-                <span>Tables</span>
-              </a>
-            </li>
-            <li class=''>
-              <a href='grid.html'>
-                <i class='icon-th'></i>
-                <span>Grid</span>
-              </a>
-            </li>
-            <li class=''>
-              <a href='type.html'>
-                <i class='icon-font'></i>
-                <span>Typography</span>
-              </a>
-            </li>
-            <li class=''>
-              <a href='calendar.html'>
-                <i class='icon-calendar'></i>
-                <span>Calendar</span>
-              </a>
-            </li>
-            <li>
-              <a class='dropdown-collapse ' href='#'>
-                <i class='icon-book'></i>
-                <span>Example pages</span>
-                <i class='icon-angle-down angle-down'></i>
-              </a>
-              <ul class='nav nav-stacked'>
-                <li class=''>
-                  <a href='invoice.html'>
-                    <i class='icon-money'></i>
-                    <span>Invoice</span>
-                  </a>
-                </li>
-                <li class=''>
-                  <a href='gallery.html'>
-                    <i class='icon-picture'></i>
-                    <span>Gallery</span>
-                  </a>
-                </li>
-                <li class=''>
-                  <a href='timeline.html'>
-                    <i class='icon-time'></i>
-                    <span>Timeline</span>
-                  </a>
-                </li>
-                <li class=''>
-                  <a href='pricing_tables.html'>
-                    <i class='icon-table'></i>
-                    <span>Pricing tables</span>
-                  </a>
-                </li>
-                <li class=''>
-                  <a href='user_profile.html'>
-                    <i class='icon-user'></i>
-                    <span>User profile</span>
-                  </a>
-                </li>
-                <li class=''>
-                  <a href='err404.html' target='_blank'>
-                    <i class='icon-question-sign'></i>
-                    <span>404 Error</span>
-                  </a>
-                </li>
-                <li class=''>
-                  <a href='err500.html' target='_blank'>
-                    <i class='icon-cogs'></i>
-                    <span>500 Error</span>
-                  </a>
-                </li>
-                <li class=''>
-                  <a href='sign_in.html' target='_blank'>
-                    <i class='icon-signin'></i>
-                    <span>Sign in</span>
-                  </a>
-                </li>
-                <li class=''>
-                  <a href='faq.html'>
-                    <i class='icon-bullhorn'></i>
-                    <span>FAQ</span>
-                  </a>
-                </li>
-                <li class=''>
-                  <a href='orders.html'>
-                    <i class='icon-inbox'></i>
-                    <span>Orders</span>
-                  </a>
-                </li>
-                <li class=''>
-                  <a href='search_results.html'>
-                    <i class='icon-search'></i>
-                    <span>Search results</span>
-                  </a>
-                </li>
-                <li class=''>
-                  <a href='blank.html'>
-                    <i class='icon-circle-blank'></i>
-                    <span>Blank page</span>
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a class='dropdown-collapse ' href='#'>
-                <i class='icon-cog'></i>
-                <span>Layouts</span>
-                <i class='icon-angle-down angle-down'></i>
-              </a>
-              <ul class='nav nav-stacked'>
-                <li class=''>
-                  <a href='closed_navigation.html'>
-                    <i class='icon-caret-right'></i>
-                    <span>Closed navigation</span>
-                  </a>
-                </li>
-                <li class=''>
-                  <a href='fixed_header.html'>
-                    <i class='icon-caret-right'></i>
-                    <span>Fixed header</span>
-                  </a>
-                </li>
-                <li class=''>
-                  <a href='fixed_navigation.html'>
-                    <i class='icon-caret-right'></i>
-                    <span>Fixed navigation</span>
-                  </a>
-                </li>
-                <li class=''>
-                  <a href='fixed_navigation_and_header.html'>
-                    <i class='icon-caret-right'></i>
-                    <span>Fixed navigation & header</span>
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li class=''>
-              <a href='email_templates.html'>
-                <i class='icon-mail-reply'></i>
-                <span>Email templates</span>
-              </a>
-            </li>
-            <li>
-              <a class='dropdown-collapse' href='#'>
-                <i class='icon-folder-open-alt'></i>
-                <span>Four level dropdown</span>
-                <i class='icon-angle-down angle-down'></i>
-              </a>
-              <ul class='nav nav-stacked'>
-                <li>
-                  <a class='dropdown-collapse' href='#'>
-                    <i class='icon-caret-right'></i>
-                    <span>Second level</span>
-                    <i class='icon-angle-down angle-down'></i>
-                  </a>
+
                   <ul class='nav nav-stacked'>
-                    <li>
-                      <a class='dropdown-collapse' href='#'>
-                        <i class='icon-caret-right'></i>
-                        <span>Third level</span>
-                        <i class='icon-angle-down angle-down'></i>
-                      </a>
-                      <ul class='nav nav-stacked'>
-                        <li>
-                          <a href='#'>
-                            <i class='icon-caret-right'></i>
-                            <span>Fourth level</span>
+                      <li class=''>
+                          <a href='{{ path('departments_list') }}'>
+                              <i class='icon-caret-right'></i>
+                              <span>Show All</span>
                           </a>
-                        </li>
-                        <li>
-                          <a href='#'>
-                            <i class='icon-caret-right'></i>
-                            <span>Another fourth level</span>
+                      </li>
+                      <li class=''>
+                          <a href='{{ path('department_form') }}'>
+                              <i class='icon-caret-right'></i>
+                              <span>Create New Department</span>
                           </a>
-                        </li>
-                      </ul>
-                    </li>
+                      </li>
+
                   </ul>
-                </li>
-              </ul>
-            </li>
+              </li>
+            <li class=''>
+                  <a class="dropdown-collapse" href="#">
+                      <i class='icon-edit'></i>
+                      <span>Plants</span>
+                      <i class='icon-angle-down angle-down'></i>
+                  </a>
+
+                  <ul class='nav nav-stacked'>
+                      <li class=''>
+                          <a href='{{ path('plants_list') }}'>
+                              <i class='icon-caret-right'></i>
+                              <span>Show All</span>
+                          </a>
+                      </li>
+                      <li class=''>
+                          <a href='{{ path('plant_form') }}'>
+                              <i class='icon-caret-right'></i>
+                              <span>Create New Plant</span>
+                          </a>
+                      </li>
+
+                  </ul>
+              </li>
+            <li class=''>
+                  <a class="dropdown-collapse" href="#">
+                      <i class='icon-edit'></i>
+                      <span>Warehouses</span>
+                      <i class='icon-angle-down angle-down'></i>
+                  </a>
+
+                  <ul class='nav nav-stacked'>
+                      <li class=''>
+                          <a href='{{ path('warehouses_list') }}'>
+                              <i class='icon-caret-right'></i>
+                              <span>Show All</span>
+                          </a>
+                      </li>
+                      <li class=''>
+                          <a href='{{ path('warehouse_form') }}'>
+                              <i class='icon-caret-right'></i>
+                              <span>Create New Warehouse</span>
+                          </a>
+                      </li>
+
+                  </ul>
+              </li>
+            <li class=''>
+                  <a class="dropdown-collapse" href="#">
+                      <i class='icon-edit'></i>
+                      <span>Divisions</span>
+                      <i class='icon-angle-down angle-down'></i>
+                  </a>
+
+                  <ul class='nav nav-stacked'>
+                      <li class=''>
+                          <a href='{{ path('divisions_list') }}'>
+                              <i class='icon-caret-right'></i>
+                              <span>Show All</span>
+                          </a>
+                      </li>
+                      <li class=''>
+                          <a href='{{ path('division_form') }}'>
+                              <i class='icon-caret-right'></i>
+                              <span>Create New Division</span>
+                          </a>
+                      </li>
+
+                  </ul>
+              </li>
+            <li class=''>
+                  <a class="dropdown-collapse" href="#">
+                      <i class='icon-edit'></i>
+                      <span>Currencies</span>
+                      <i class='icon-angle-down angle-down'></i>
+                  </a>
+
+                  <ul class='nav nav-stacked'>
+                      <li class=''>
+                          <a href='{{ path('currencies_list') }}'>
+                              <i class='icon-caret-right'></i>
+                              <span>Show All</span>
+                          </a>
+                      </li>
+                      <li class=''>
+                          <a href='{{ path('currency_form') }}'>
+                              <i class='icon-caret-right'></i>
+                              <span>Create New Currency</span>
+                          </a>
+                      </li>
+
+                  </ul>
+              </li>
+            <li class=''>
+                  <a class="dropdown-collapse" href="#">
+                      <i class='icon-edit'></i>
+                      <span>Customers</span>
+                      <i class='icon-angle-down angle-down'></i>
+                  </a>
+
+                  <ul class='nav nav-stacked'>
+                      <li class=''>
+                          <a href='{{ path('customers_list') }}'>
+                              <i class='icon-caret-right'></i>
+                              <span>Show All</span>
+                          </a>
+                      </li>
+                      <li class=''>
+                          <a href='{{ path('customer_form') }}'>
+                              <i class='icon-caret-right'></i>
+                              <span>Create New Customer</span>
+                          </a>
+                      </li>
+
+                  </ul>
+              </li>
+            <li class=''>
+                  <a class="dropdown-collapse" href="#">
+                      <i class='icon-edit'></i>
+                      <span>Units</span>
+                      <i class='icon-angle-down angle-down'></i>
+                  </a>
+
+                  <ul class='nav nav-stacked'>
+                      <li class=''>
+                          <a href='{{ path('units_list') }}'>
+                              <i class='icon-caret-right'></i>
+                              <span>Show All</span>
+                          </a>
+                      </li>
+                      <li class=''>
+                          <a href='{{ path('unit_form') }}'>
+                              <i class='icon-caret-right'></i>
+                              <span>Create New Unit</span>
+                          </a>
+                      </li>
+
+                  </ul>
+              </li>
+            <li class=''>
+                  <a class="dropdown-collapse" href="#">
+                      <i class='icon-edit'></i>
+                      <span>Products</span>
+                      <i class='icon-angle-down angle-down'></i>
+                  </a>
+
+                  <ul class='nav nav-stacked'>
+                      <li class=''>
+                          <a href='{{ path('products_list') }}'>
+                              <i class='icon-caret-right'></i>
+                              <span>Show All</span>
+                          </a>
+                      </li>
+                      <li class=''>
+                          <a href='{{ path('product_form') }}'>
+                              <i class='icon-caret-right'></i>
+                              <span>Create New Products</span>
+                          </a>
+                      </li>
+
+                  </ul>
+              </li>
+            <li class=''>
+                  <a class="dropdown-collapse" href="#">
+                      <i class='icon-edit'></i>
+                      <span>Services</span>
+                      <i class='icon-angle-down angle-down'></i>
+                  </a>
+
+                  <ul class='nav nav-stacked'>
+                      <li class=''>
+                          <a href='{{ path('services_list') }}'>
+                              <i class='icon-caret-right'></i>
+                              <span>Show All</span>
+                          </a>
+                      </li>
+                      <li class=''>
+                          <a href='{{ path('service_form') }}'>
+                              <i class='icon-caret-right'></i>
+                              <span>Create New Service</span>
+                          </a>
+                      </li>
+
+                  </ul>
+              </li>
+
           </ul>
         </div>
       </nav>
@@ -557,6 +500,11 @@
     <script src="{{ asset('public/assets/javascripts/plugins/common/wysihtml5.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('public/assets/javascripts/plugins/common/bootstrap-wysihtml5.js') }}" type="text/javascript"></script>
     <script src="{{ asset('public/assets/javascripts/plugins/pwstrength/pwstrength.js') }}" type="text/javascript"></script>
+    <!-- / START - page related files and scripts [optional] -->
+    <script src="{{ asset('public/assets/javascripts/plugins/datatables/jquery.dataTables.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('public/assets/javascripts/plugins/datatables/jquery.dataTables.columnFilter.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('public/assets/javascripts/plugins/datatables/dataTables.overrides.js') }}" type="text/javascript"></script>
+    <!-- / END - page related files and scripts [optional] -->
     {% block scripts %}
     {% endblock %}
     <script>

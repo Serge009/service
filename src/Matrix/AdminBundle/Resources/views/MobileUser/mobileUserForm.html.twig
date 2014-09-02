@@ -1,4 +1,4 @@
-{% extends "MatrixAdminBundle::base.html.twig" %}
+{% extends "MatrixAdminBundle:Admin:admin.html.twig" %}
 {% block content %}
     {% for flashMessage in app.session.flashbag.get('notice') %}
         <div class="flash-notice">

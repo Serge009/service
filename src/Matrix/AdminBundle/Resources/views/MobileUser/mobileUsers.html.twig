@@ -1,22 +1,66 @@
-{% extends "MatrixAdminBundle::base.html.twig" %}
+{% extends "MatrixAdminBundle:Admin:admin.html.twig" %}
 {% block content %}
-    <table>
-        <thead>
-        <tr>
-            <th>Name</th>
-            <th>Surname</th>
-            <th>Email</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for users in users %}
-            <tr>
-                <td>{{ users.name }}</td>
-                <td>{{ users.surname }}</td>
-                <td>{{ users.email }}</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div class='row'>
+        <div class='col-sm-12'>
+            <div class='page-header'>
+                <h1 class='pull-left'>
+                    <i class='icon-table'></i>
+                    <span>Mobile Users</span>
+                </h1>
+                
+            </div>
+        </div>
+    </div>
+    <div class='col-sm-12'>
+        <div class='box bordered-box orange-border' style='margin-bottom:0;'>
+            <div class='box-header purple-background'>
+                <div class='title'>Data table with column filter in footer</div>
+                <div class='actions'>
+                    <a class="btn box-remove btn-xs btn-link" href="#"><i class='icon-remove'></i>
+                    </a>
 
+                    <a class="btn box-collapse btn-xs btn-link" href="#"><i></i>
+                    </a>
+                </div>
+            </div>
+            <div class='box-content box-no-padding'>
+                <div class='responsive-table'>
+                    <div class='scrollable-area'>
+                        <table class='data-table-column-filter table table-bordered table-striped' style='margin-bottom:0;'>
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Name
+                                    </th>
+                                    <th>
+                                        Surname
+                                    </th>
+                                    <th>
+                                        E-mail
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for users in users %}
+                                    <tr>
+                                        <td>{{ users.name }}</td>
+                                        <td>{{ users.surname }}</td>
+                                        <td>{{ users.email }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Surname</th>
+                                    <th>E-mail</th>
+
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
