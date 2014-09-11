@@ -36,6 +36,13 @@ class Division
     private $version = '1';
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="status", type="integer", nullable=false)
+     */
+    private $status = '1';
+
+    /**
      * @var Company
      *
      * @ORM\ManyToOne(targetEntity="Company")
@@ -58,7 +65,7 @@ class Division
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -81,7 +88,7 @@ class Division
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -104,7 +111,7 @@ class Division
     /**
      * Get version
      *
-     * @return integer 
+     * @return integer
      */
     public function getVersion()
     {

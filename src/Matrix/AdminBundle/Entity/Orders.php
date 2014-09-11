@@ -254,7 +254,8 @@ class Orders
             "department" => $this->getDepartment()->getId(),
             "plant" => $this->getPlant()->getId(),
             "warehouse" => $this->getWarehouse()->getId(),
-            "advance_payment" => $this->getAdvancedPayment()
+            "advance_payment" => $this->getAdvancedPayment(),
+            "currency" => $this->getCurrency()->getId()
             //"orderItems" => $items
         );
     }

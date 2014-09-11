@@ -29,25 +29,11 @@ class Products
     private $name;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="quantity", type="integer", nullable=false)
-     */
-    private $quantity = '0';
-
-    /**
      * @var string
      *
      * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="code", type="string", length=50, nullable=false)
-     */
-    private $code;
 
     /**
      * @var integer
@@ -69,6 +55,13 @@ class Products
      * @ORM\Column(name="status", type="integer", nullable=false)
      */
     private $status = '1';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="code", type="string", length=50, nullable=false)
+     */
+    private $code;
 
     /**
      * @var Unit
@@ -104,7 +97,6 @@ class Products
             "unit" => $this->getUnit()->getId(),
             "vat" => $this->getVat(),
             "description" => $this->getDescription(),
-            "quantity" => $this->getQuantity(),
             "code" => $this->getCode()
         );
     }
@@ -112,7 +104,7 @@ class Products
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -135,34 +127,11 @@ class Products
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
         return $this->name;
-    }
-
-    /**
-     * Set quantity
-     *
-     * @param integer $quantity
-     * @return Products
-     */
-    public function setQuantity($quantity)
-    {
-        $this->quantity = $quantity;
-
-        return $this;
-    }
-
-    /**
-     * Get quantity
-     *
-     * @return integer 
-     */
-    public function getQuantity()
-    {
-        return $this->quantity;
     }
 
     /**
@@ -181,7 +150,7 @@ class Products
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -227,7 +196,7 @@ class Products
     /**
      * Get vat
      *
-     * @return integer 
+     * @return integer
      */
     public function getVat()
     {
@@ -250,7 +219,7 @@ class Products
     /**
      * Get version
      *
-     * @return integer 
+     * @return integer
      */
     public function getVersion()
     {
@@ -273,7 +242,7 @@ class Products
     /**
      * Get status
      *
-     * @return integer 
+     * @return integer
      */
     public function getStatus()
     {

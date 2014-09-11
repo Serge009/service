@@ -2,7 +2,6 @@
 
 namespace Matrix\ServiceBundle\Entity;
 
-//use Matrix\ServiceBundle\Entity\Company;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -132,7 +131,7 @@ class Users
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -155,7 +154,7 @@ class Users
     /**
      * Get type
      *
-     * @return integer 
+     * @return integer
      */
     public function getType()
     {
@@ -178,7 +177,7 @@ class Users
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -201,7 +200,7 @@ class Users
     /**
      * Get surname
      *
-     * @return string 
+     * @return string
      */
     public function getSurname()
     {
@@ -224,7 +223,7 @@ class Users
     /**
      * Get email
      *
-     * @return string 
+     * @return string
      */
     public function getEmail()
     {
@@ -247,7 +246,7 @@ class Users
     /**
      * Get password
      *
-     * @return string 
+     * @return string
      */
     public function getPassword()
     {
@@ -270,7 +269,7 @@ class Users
     /**
      * Get salt
      *
-     * @return string 
+     * @return string
      */
     public function getSalt()
     {
@@ -293,7 +292,7 @@ class Users
     /**
      * Get status
      *
-     * @return integer 
+     * @return integer
      */
     public function getStatus()
     {

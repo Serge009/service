@@ -36,6 +36,13 @@ class Department
     private $version = '1';
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="status", type="integer", nullable=false)
+     */
+    private $status = '1';
+
+    /**
      * @var Company
      *
      * @ORM\ManyToOne(targetEntity="Company")
@@ -59,7 +66,7 @@ class Department
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -82,7 +89,7 @@ class Department
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -105,7 +112,7 @@ class Department
     /**
      * Get version
      *
-     * @return integer 
+     * @return integer
      */
     public function getVersion()
     {
@@ -133,5 +140,28 @@ class Department
     public function getCompany()
     {
         return $this->company;
+    }
+
+    /**
+     * Set status
+     *
+     * @param integer $status
+     * @return Department
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return integer
+     */
+    public function getStatus()
+    {
+        return $this->status;
     }
 }

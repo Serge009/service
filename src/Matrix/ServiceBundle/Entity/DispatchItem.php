@@ -5,13 +5,12 @@ namespace Matrix\ServiceBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * OrderItem
+ * DispatchItem
  *
- * @ORM\Table(name="order_item", indexes={@ORM\Index(name="Ref_10", columns={"order"}),
- *                                          @ORM\Index(name="Ref_29", columns={"unit_detail"})})
- * @ORM\Entity(repositoryClass="Matrix\ServiceBundle\Repository\OrderItemRepository")
+ * @ORM\Table(name="dispatch_item", indexes={@ORM\Index(name="Ref_44", columns={"dispatch"}), @ORM\Index(name="Ref_45", columns={"unit_detail"})})
+ * @ORM\Entity
  */
-class OrderItem
+class DispatchItem
 {
     /**
      * @var integer
@@ -65,14 +64,14 @@ class OrderItem
     private $price = '0.000';
 
     /**
-     * @var Orders
+     * @var Dispatches
      *
-     * @ORM\ManyToOne(targetEntity="Orders")
+     * @ORM\ManyToOne(targetEntity="Dispatches")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="order_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="dispatch", referencedColumnName="id")
      * })
      */
-    private $order;
+    private $dispatch;
 
     /**
      * @var UnitDetail
@@ -85,7 +84,7 @@ class OrderItem
     private $unitDetail;
 
     /**
-     * converts OrderItem to array
+     * converts DispatchItem to array
      * @return array
      */
     public function toArray(){
@@ -95,7 +94,7 @@ class OrderItem
             "type" => $this->getType(),
             "version" => $this->getVersion(),
             "status" => $this->getStatus(),
-            "order" => $this->getOrder()->getId(),
+            "dispatch" => $this->getDispatch()->getId(),
             "unit_detail" => $this->getUnitDetail()->getId(),
             "quantity" => $this->getQuantity(),
             "price" => $this->getPrice()
@@ -104,7 +103,7 @@ class OrderItem
 
     /**
      * @param float $price
-     * @return OrderItem
+     * @return DispatchItem
      */
     public function setPrice($price)
     {
@@ -126,7 +125,7 @@ class OrderItem
 
     /**
      * @param int $quantity
-     * @return OrderItem
+     * @return DispatchItem
      */
     public function setQuantity($quantity)
     {
@@ -148,7 +147,7 @@ class OrderItem
     /**
      * @param UnitDetail $unitDetail
      *
-     * @return OrderItem
+     * @return DispatchItem
      */
     public function setUnitDetail($unitDetail)
     {
@@ -182,7 +181,7 @@ class OrderItem
      * Set item
      *
      * @param integer $item
-     * @return OrderItem
+     * @return DispatchItem
      */
     public function setItem($item)
     {
@@ -205,7 +204,7 @@ class OrderItem
      * Set type
      *
      * @param integer $type
-     * @return OrderItem
+     * @return DispatchItem
      */
     public function setType($type)
     {
@@ -228,7 +227,7 @@ class OrderItem
      * Set version
      *
      * @param integer $version
-     * @return OrderItem
+     * @return DispatchItem
      */
     public function setVersion($version)
     {
@@ -251,7 +250,7 @@ class OrderItem
      * Set status
      *
      * @param integer $status
-     * @return OrderItem
+     * @return DispatchItem
      */
     public function setStatus($status)
     {
@@ -273,12 +272,12 @@ class OrderItem
     /**
      * Set order
      *
-     * @param Orders $order
-     * @return OrderItem
+     * @param Dispatches $dispatch
+     * @return DispatchItem
      */
-    public function setOrder(Orders $order)
+    public function setDispatch(Dispatches $dispatch)
     {
-        $this->order = $order;
+        $this->dispatch = $dispatch;
 
         return $this;
     }
@@ -286,10 +285,10 @@ class OrderItem
     /**
      * Get order
      *
-     * @return Orders
+     * @return Dispatches
      */
-    public function getOrder()
+    public function getDispatch()
     {
-        return $this->order;
+        return $this->dispatch;
     }
 }

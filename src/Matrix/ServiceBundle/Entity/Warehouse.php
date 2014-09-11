@@ -36,6 +36,13 @@ class Warehouse
     private $version = '1';
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="status", type="integer", nullable=false)
+     */
+    private $status = '1';
+
+    /**
      * @var Company
      *
      * @ORM\ManyToOne(targetEntity="Company")
@@ -59,7 +66,7 @@ class Warehouse
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -82,7 +89,7 @@ class Warehouse
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -105,7 +112,7 @@ class Warehouse
     /**
      * Get version
      *
-     * @return integer 
+     * @return integer
      */
     public function getVersion()
     {

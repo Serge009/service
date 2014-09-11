@@ -5,13 +5,12 @@ namespace Matrix\ServiceBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * OrderItem
+ * InvoiceItem
  *
- * @ORM\Table(name="order_item", indexes={@ORM\Index(name="Ref_10", columns={"order"}),
- *                                          @ORM\Index(name="Ref_29", columns={"unit_detail"})})
- * @ORM\Entity(repositoryClass="Matrix\ServiceBundle\Repository\OrderItemRepository")
+ * @ORM\Table(name="invoice_item", indexes={@ORM\Index(name="Ref_47", columns={"invoice"}), @ORM\Index(name="Ref_48", columns={"unit_detail"})})
+ * @ORM\Entity
  */
-class OrderItem
+class InvoiceItem
 {
     /**
      * @var integer
@@ -65,14 +64,14 @@ class OrderItem
     private $price = '0.000';
 
     /**
-     * @var Orders
+     * @var Invoices
      *
-     * @ORM\ManyToOne(targetEntity="Orders")
+     * @ORM\ManyToOne(targetEntity="Invoices")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="order_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="invoice", referencedColumnName="id")
      * })
      */
-    private $order;
+    private $invoice;
 
     /**
      * @var UnitDetail
@@ -85,7 +84,7 @@ class OrderItem
     private $unitDetail;
 
     /**
-     * converts OrderItem to array
+     * converts DispatchItem to array
      * @return array
      */
     public function toArray(){
@@ -95,7 +94,7 @@ class OrderItem
             "type" => $this->getType(),
             "version" => $this->getVersion(),
             "status" => $this->getStatus(),
-            "order" => $this->getOrder()->getId(),
+            "invoice" => $this->getInvoice()->getId(),
             "unit_detail" => $this->getUnitDetail()->getId(),
             "quantity" => $this->getQuantity(),
             "price" => $this->getPrice()
@@ -104,7 +103,7 @@ class OrderItem
 
     /**
      * @param float $price
-     * @return OrderItem
+     * @return InvoiceItem
      */
     public function setPrice($price)
     {
@@ -126,7 +125,7 @@ class OrderItem
 
     /**
      * @param int $quantity
-     * @return OrderItem
+     * @return InvoiceItem
      */
     public function setQuantity($quantity)
     {
@@ -148,7 +147,7 @@ class OrderItem
     /**
      * @param UnitDetail $unitDetail
      *
-     * @return OrderItem
+     * @return InvoiceItem
      */
     public function setUnitDetail($unitDetail)
     {
@@ -182,7 +181,7 @@ class OrderItem
      * Set item
      *
      * @param integer $item
-     * @return OrderItem
+     * @return InvoiceItem
      */
     public function setItem($item)
     {
@@ -205,7 +204,7 @@ class OrderItem
      * Set type
      *
      * @param integer $type
-     * @return OrderItem
+     * @return InvoiceItem
      */
     public function setType($type)
     {
@@ -228,7 +227,7 @@ class OrderItem
      * Set version
      *
      * @param integer $version
-     * @return OrderItem
+     * @return InvoiceItem
      */
     public function setVersion($version)
     {
@@ -251,7 +250,7 @@ class OrderItem
      * Set status
      *
      * @param integer $status
-     * @return OrderItem
+     * @return InvoiceItem
      */
     public function setStatus($status)
     {
@@ -273,12 +272,12 @@ class OrderItem
     /**
      * Set order
      *
-     * @param Orders $order
-     * @return OrderItem
+     * @param Invoices $invoice
+     * @return InvoiceItem
      */
-    public function setOrder(Orders $order)
+    public function setDispatch(Invoices $invoice)
     {
-        $this->order = $order;
+        $this->invoice = $invoice;
 
         return $this;
     }
@@ -286,10 +285,11 @@ class OrderItem
     /**
      * Get order
      *
-     * @return Orders
+     * @return Invoices
      */
-    public function getOrder()
+    public function getInvoice()
     {
-        return $this->order;
+        return $this->invoice;
     }
+
 }
