@@ -35,8 +35,9 @@ class LogoutController extends AppController
         $res = $repository->closeAllSessions($license, $uuid);
 
         if($res){
-            return $this->renderData(array());
+            return $this->renderData(array("session" => null));
         }
+
 
         return $this->renderError(Errors::INCORRECT_REQUEST);
     }

@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * InvoiceItem
  *
  * @ORM\Table(name="invoice_item", indexes={@ORM\Index(name="Ref_47", columns={"invoice"}), @ORM\Index(name="Ref_48", columns={"unit_detail"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Matrix\ServiceBundle\Repository\InvoiceItemRepository")
  */
 class InvoiceItem
 {
@@ -275,7 +275,7 @@ class InvoiceItem
      * @param Invoices $invoice
      * @return InvoiceItem
      */
-    public function setDispatch(Invoices $invoice)
+    public function setInvoice(Invoices $invoice)
     {
         $this->invoice = $invoice;
 

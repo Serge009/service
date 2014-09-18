@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Invoices
  *
  * @ORM\Table(name="invoices", indexes={@ORM\Index(name="Ref_49", columns={"division"}), @ORM\Index(name="Ref_50", columns={"plant"}), @ORM\Index(name="Ref_51", columns={"warehouse"}), @ORM\Index(name="Ref_52", columns={"department"}), @ORM\Index(name="Ref_53", columns={"user"}), @ORM\Index(name="Ref_54", columns={"currency"}), @ORM\Index(name="Ref_55", columns={"customer"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Matrix\ServiceBundle\Repository\InvoicesRepository")
  */
 class Invoices
 {

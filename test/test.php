@@ -177,7 +177,7 @@ class Service{
             );
             //$test = '{"session":"d07a5600b20b27a6dc4f27e1af535779", "orders":[]}';
 
-            curl_setopt($curl, CURLOPT_URL, 'http://localhost:8080/service/' . self::$url);
+            curl_setopt($curl, CURLOPT_URL, 'http://localhost:8008/service/' . self::$url);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($curl, CURLOPT_POST, true);
             curl_setopt($curl, CURLOPT_POSTFIELDS, 'data=' . json_encode(self::$data));
@@ -190,7 +190,7 @@ class Service{
             echo "<!DOCTYPE html><html><head></head><body>";
             echo "<h3>Test " . $name . ":</h3>";
             echo "<h4>Time: ". ($end -  $start) ."</h4>";
-            echo "<h5>Url: http://localhost:8080/service/" . self::$url ."</h5>";
+            echo "<h5>Url: http://localhost:8008/service/" . self::$url ."</h5>";
             echo "<h4>Input:</h4>";
             echo json_encode(self::$data) . "<br />";
             var_dump(self::$data);
@@ -203,7 +203,7 @@ class Service{
 }
 
 class createOrder{
-    private static $data = array(
+    private static $orders = array(
         "session" => "390ed8cd76ccbac2dd02f40210208900",//"3e4ab9ab605a8fd8e12c03ff783e7640",//"41e492078d79082c43dbb8c6c1a57b5c",
         "orders" => array(
             array(
@@ -249,11 +249,118 @@ class createOrder{
         )
     );
 
+    private static $dispatches = array(
+        "session" => "390ed8cd76ccbac2dd02f40210208900",//"3e4ab9ab605a8fd8e12c03ff783e7640",//"41e492078d79082c43dbb8c6c1a57b5c",
+        "dispatches" => array(
+            array(
+                "customer" => 1,
+                "slip_number" => "554464",
+                "special_code" => "5645",
+                "date" => "23.08.2014",
+                "subtotal" => 500,
+                "total" => 700,
+                "department" => 1,
+                "division" => 1,
+                "warehouse" => 1,
+                "plant" => 1,
+                "advance_payment" => 5,
+                "currency" => 1,
+                "dispatch_items" => array(
+                    array(
+                        "type" => 1,
+                        "item" => 1,
+                        "unit_detail" => 1,
+                        "price" => 10,
+                        "quantity" => 1
+                    ),
+
+                    array(
+                        "type" => 2,
+                        "item" => 1,
+                        "unit_detail" => 2,
+                        "price" => 15,
+                        "quantity" => 10
+                    ),
+
+                    array(
+                        "type" => 1,
+                        "item" => 2,
+                        "unit_detail" => 1,
+                        "price" => 17,
+                        "quantity" => 11
+                    )
+
+                )
+            )
+        )
+    );
+
+    private static $invoices = array(
+        "session" => "390ed8cd76ccbac2dd02f40210208900",//"3e4ab9ab605a8fd8e12c03ff783e7640",//"41e492078d79082c43dbb8c6c1a57b5c",
+        "invoices" => array(
+            array(
+                "customer" => 1,
+                "slip_number" => "554464",
+                "special_code" => "5645",
+                "date" => "23.08.2014",
+                "subtotal" => 500,
+                "total" => 700,
+                "department" => 1,
+                "division" => 1,
+                "warehouse" => 1,
+                "plant" => 1,
+                "advance_payment" => 5,
+                "currency" => 1,
+                "invoice_items" => array(
+                    array(
+                        "type" => 1,
+                        "item" => 1,
+                        "unit_detail" => 1,
+                        "price" => 10,
+                        "quantity" => 1
+                    ),
+
+                    array(
+                        "type" => 2,
+                        "item" => 1,
+                        "unit_detail" => 2,
+                        "price" => 15,
+                        "quantity" => 10
+                    ),
+
+                    array(
+                        "type" => 1,
+                        "item" => 2,
+                        "unit_detail" => 1,
+                        "price" => 17,
+                        "quantity" => 11
+                    )
+
+                )
+            )
+        )
+    );
+
     public static  function test(){
         $name = "Create Order";
         Service::$url = "mobile/orders/create";
-        Service::$data = self::$data;
+        Service::$data = self::$orders;
+        //Service::test($name);
 
+        ////////////////////////////
+        /////////////////////////////
+
+        $name = "Create Dispatch";
+        Service::$url = "mobile/dispatches/create";
+        Service::$data = self::$dispatches;
+        //Service::test($name);
+
+        //////////////////////////////
+        /////////////////////////////
+
+        $name = "Create Invoice";
+        Service::$url = "mobile/invoices/create";
+        Service::$data = self::$invoices;
         Service::test($name);
 
     }

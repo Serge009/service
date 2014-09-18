@@ -49,6 +49,8 @@ security:
           - { path: ^/service/create, roles: [ROLE_ACCOUNT_OWNER, ROLE_MANAGER] }
 
           - { path: ^/manager/orders, roles: [ROLE_ACCOUNT_OWNER, ROLE_MANAGER] }
+          - { path: ^/manager/dispatches, roles: [ROLE_ACCOUNT_OWNER, ROLE_MANAGER] }
+          - { path: ^/manager/invoices, roles: [ROLE_ACCOUNT_OWNER, ROLE_MANAGER] }
 
 
           - { path: ^/lic/update$, roles: [ROLE_ADMIN] }

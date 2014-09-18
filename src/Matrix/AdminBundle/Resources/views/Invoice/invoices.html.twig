@@ -1,0 +1,92 @@
+{% extends "MatrixAdminBundle:Admin:admin.html.twig" %}
+{% block content %}
+    <div class='row'>
+        <div class='col-sm-12'>
+            <div class='page-header'>
+                <h1 class='pull-left'>
+                    <i class='icon-table'></i>
+                    <span>Invoices</span>
+                </h1>
+
+            </div>
+        </div>
+    </div>
+    <div class='col-sm-12'>
+        <div class='box bordered-box orange-border' style='margin-bottom:0;'>
+            <div class='box-header purple-background'>
+                <div class='title'>Data table with column filter in footer</div>
+                <div class='actions'>
+                    <a class="btn box-remove btn-xs btn-link" href="#"><i class='icon-remove'></i>
+                    </a>
+
+                    <a class="btn box-collapse btn-xs btn-link" href="#"><i></i>
+                    </a>
+                </div>
+            </div>
+            <div class='box-content box-no-padding'>
+                <div class='responsive-table'>
+                    <div class='scrollable-area'>
+                        <table class='data-table-column-filter table table-bordered table-striped' style='margin-bottom:0;'>
+                            <thead>
+                                <tr>
+                                    <th>User Name</th>
+                                    <th>User Surname</th>
+                                    <th>Date</th>
+
+                                    <th>Customer</th>
+                                    <th>Slip Number</th>
+                                    <th>Special Code</th>
+                                    <th>Subtotal</th>
+                                    <th>Total</th>
+                                    <th>Department</th>
+                                    <th>Plant</th>
+                                    <th>Division</th>
+                                    <th>Advance Payment</th>
+                                    <th>Currency</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for order in invoices %}
+                                    <tr>
+                                        <td>{{ order.user.name }}</td>
+                                        <td>{{ order.user.surname }}</td>
+                                        <td>{{ order.date|date("d-m-Y") }}</td>
+                                        <td>{{ order.customer.name }}</td>
+                                        <td>{{ order.slipNumber }}</td>
+                                        <td>{{ order.specialCode }}</td>
+                                        <td>{{ order.subtotal }}</td>
+                                        <td>{{ order.total }}</td>
+                                        <td>{{ order.department.name }}</td>
+                                        <td>{{ order.plant.name }}</td>
+                                        <td>{{ order.division.name }}</td>
+                                        <td>{{ order.advancedPayment }}</td>
+                                        <td>{{ order.currency.name }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>User Name</th>
+                                    <th>User Surname</th>
+                                    <th>Date</th>
+
+                                    <th>Customer</th>
+                                    <th>Slip Number</th>
+                                    <th>Special Code</th>
+                                    <th>Subtotal</th>
+                                    <th>Total</th>
+                                    <th>Department</th>
+                                    <th>Plant</th>
+                                    <th>Division</th>
+                                    <th>Advance Payment</th>
+                                    <th>Currency</th>
+
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

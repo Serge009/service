@@ -1,16 +1,16 @@
 <?php
 
-namespace Matrix\ServiceBundle\Entity;
+namespace Matrix\AdminBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Dispatches
+ * Invoices
  *
- * @ORM\Table(name="dispatches", indexes={@ORM\Index(name="Ref_37", columns={"department"}), @ORM\Index(name="Ref_38", columns={"warehouse"}), @ORM\Index(name="Ref_39", columns={"plant"}), @ORM\Index(name="Ref_40", columns={"division"}), @ORM\Index(name="Ref_41", columns={"currency"}), @ORM\Index(name="Ref_42", columns={"customer"}), @ORM\Index(name="Ref_43", columns={"user"}), @ORM\Index(name="Ref_46", columns={"order"})})
- * @ORM\Entity(repositoryClass="Matrix\ServiceBundle\Repository\DispatchesRepository")
+ * @ORM\Table(name="invoices", indexes={@ORM\Index(name="Ref_49", columns={"division"}), @ORM\Index(name="Ref_50", columns={"plant"}), @ORM\Index(name="Ref_51", columns={"warehouse"}), @ORM\Index(name="Ref_52", columns={"department"}), @ORM\Index(name="Ref_53", columns={"user"}), @ORM\Index(name="Ref_54", columns={"currency"}), @ORM\Index(name="Ref_55", columns={"customer"})})
+ * @ORM\Entity(repositoryClass="Matrix\AdminBundle\Repository\InvoicesRepository")
  */
-class Dispatches
+class Invoices
 {
     /**
      * @var integer
@@ -78,24 +78,14 @@ class Dispatches
     private $advancedPayment = '0.000';
 
     /**
-     * @var Department
+     * @var Division
      *
-     * @ORM\ManyToOne(targetEntity="Department")
+     * @ORM\ManyToOne(targetEntity="Division")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="department", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="division", referencedColumnName="id")
      * })
      */
-    private $department;
-
-    /**
-     * @var Warehouse
-     *
-     * @ORM\ManyToOne(targetEntity="Warehouse")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="warehouse", referencedColumnName="id")
-     * })
-     */
-    private $warehouse;
+    private $division;
 
     /**
      * @var Plant
@@ -108,14 +98,34 @@ class Dispatches
     private $plant;
 
     /**
-     * @var Division
+     * @var Warehouse
      *
-     * @ORM\ManyToOne(targetEntity="Division")
+     * @ORM\ManyToOne(targetEntity="Warehouse")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="division", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="warehouse", referencedColumnName="id")
      * })
      */
-    private $division;
+    private $warehouse;
+
+    /**
+     * @var Department
+     *
+     * @ORM\ManyToOne(targetEntity="Department")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="department", referencedColumnName="id")
+     * })
+     */
+    private $department;
+
+    /**
+     * @var Users
+     *
+     * @ORM\ManyToOne(targetEntity="Users")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="user", referencedColumnName="id")
+     * })
+     */
+    private $user;
 
     /**
      * @var Currency
@@ -137,54 +147,12 @@ class Dispatches
      */
     private $customer;
 
-    /**
-     * @var Users
-     *
-     * @ORM\ManyToOne(targetEntity="Users")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="user", referencedColumnName="id")
-     * })
-     */
-    private $user;
-
-    /**
-     * @var Orders
-     *
-     * @ORM\ManyToOne(targetEntity="Orders")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="order_id", referencedColumnName="id")
-     * })
-     */
-    private $order;
-
-    private $dispatchItems = array();
-
-    /**
-     * @param Orders $order
-     * @return Dispatches
-     */
-    public function setOrder($order)
-    {
-        $this->order = $order;
-
-        return $this;
-    }
-
-    /**
-     * @return Orders
-     */
-    public function getOrder()
-    {
-        return $this->order;
-    }
-
-
-
+    private $invoiceItems = array();
 
     /**
      * @param Currency $currency
      *
-     * @return Dispatches
+     * @return Invoices
      */
     public function setCurrency($currency)
     {
@@ -207,7 +175,7 @@ class Dispatches
 
     /**
      * @param float $advancedPayment
-     * @return Dispatches
+     * @return Invoices
      */
     public function setAdvancedPayment($advancedPayment)
     {
@@ -228,11 +196,11 @@ class Dispatches
 
     /**
      * @param array $orderItems
-     * @return Dispatches
+     * @return Invoices
      */
-    public function setDispatchItems($orderItems)
+    public function setInvoiceItems($orderItems)
     {
-        $this->dispatchItems = $orderItems;
+        $this->invoiceItems = $orderItems;
 
         return $this;
     }
@@ -240,22 +208,22 @@ class Dispatches
     /**
      * @return array
      */
-    public function getDispatchItems()
+    public function getInvoiceItems()
     {
-        return $this->dispatchItems;
+        return $this->invoiceItems;
     }
 
 
 
 
     /**
-     * converts Dispatches to array
+     * converts Invoices to array
      * @return array
      */
     public function toArray(){
 
         $items = array();
-        foreach($this->getDispatchItems() as $item){
+        foreach($this->getInvoiceItems() as $item){
             array_push($items, $item->toArray());
         }
 
@@ -292,7 +260,7 @@ class Dispatches
 
     /**
      * @param Department $department
-     * @return Dispatches
+     * @return Invoices
      */
     public function setDepartment($department)
     {
@@ -311,7 +279,7 @@ class Dispatches
 
     /**
      * @param Division $division
-     * @return Dispatches
+     * @return Invoices
      */
     public function setDivision($division)
     {
@@ -330,7 +298,7 @@ class Dispatches
 
     /**
      * @param Plant $plant
-     * @return Dispatches
+     * @return Invoices
      */
     public function setPlant($plant)
     {
@@ -349,7 +317,7 @@ class Dispatches
 
     /**
      * @param Warehouse $warehouse
-     * @return Dispatches
+     * @return Invoices
      */
     public function setWarehouse($warehouse)
     {
@@ -373,7 +341,7 @@ class Dispatches
      * Set date
      *
      * @param \DateTime $date
-     * @return Dispatches
+     * @return Invoices
      */
     public function setDate($date)
     {
@@ -396,7 +364,7 @@ class Dispatches
      * Set slipNumber
      *
      * @param string $slipNumber
-     * @return Dispatches
+     * @return Invoices
      */
     public function setSlipNumber($slipNumber)
     {
@@ -419,7 +387,7 @@ class Dispatches
      * Set specialCode
      *
      * @param string $specialCode
-     * @return Dispatches
+     * @return Invoices
      */
     public function setSpecialCode($specialCode)
     {
@@ -444,7 +412,7 @@ class Dispatches
      * Set subtotal
      *
      * @param float $subtotal
-     * @return Dispatches
+     * @return Invoices
      */
     public function setSubtotal($subtotal)
     {
@@ -467,7 +435,7 @@ class Dispatches
      * Set total
      *
      * @param float $total
-     * @return Dispatches
+     * @return Invoices
      */
     public function setTotal($total)
     {
@@ -490,7 +458,7 @@ class Dispatches
      * Set version
      *
      * @param integer $version
-     * @return Dispatches
+     * @return Invoices
      */
     public function setVersion($version)
     {
@@ -513,7 +481,7 @@ class Dispatches
      * Set status
      *
      * @param integer $status
-     * @return Dispatches
+     * @return Invoices
      */
     public function setStatus($status)
     {
@@ -536,7 +504,7 @@ class Dispatches
      * Set user
      *
      * @param Users $user
-     * @return Dispatches
+     * @return Invoices
      */
     public function setUser(Users $user)
     {
@@ -559,7 +527,7 @@ class Dispatches
      * Set customer
      *
      * @param Customers $customer
-     * @return Dispatches
+     * @return Invoices
      */
     public function setCustomer(Customers $customer)
     {
@@ -577,5 +545,7 @@ class Dispatches
     {
         return $this->customer;
     }
+
+
 
 }

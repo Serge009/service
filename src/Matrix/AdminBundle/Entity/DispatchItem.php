@@ -1,6 +1,6 @@
 <?php
 
-namespace Matrix\ServiceBundle\Entity;
+namespace Matrix\AdminBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * DispatchItem
  *
  * @ORM\Table(name="dispatch_item", indexes={@ORM\Index(name="Ref_44", columns={"dispatch"}), @ORM\Index(name="Ref_45", columns={"unit_detail"})})
- * @ORM\Entity(repositoryClass="Matrix\ServiceBundle\Repository\DispatchItemRepository")
+ * @ORM\Entity
  */
 class DispatchItem
 {

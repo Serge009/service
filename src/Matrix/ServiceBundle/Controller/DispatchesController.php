@@ -11,13 +11,15 @@ namespace Matrix\ServiceBundle\Controller;
 
 use DateTime;
 use Exception;
+use Matrix\ServiceBundle\Entity\Dispatches;
+use Matrix\ServiceBundle\Entity\DispatchItem;
 use Matrix\ServiceBundle\Entity\OrderItem;
 use Matrix\ServiceBundle\Entity\Orders;
 use Matrix\ServiceBundle\Entity\Statuses;
 use Matrix\ServiceBundle\Utils\Errors;
 use Symfony\Component\HttpFoundation\Request;
 
-class OrdersController extends AppController {
+class DispatchesController extends AppController {
 
     public function indexAction(Request $request){
         try{
@@ -27,7 +29,7 @@ class OrdersController extends AppController {
                 return $this->renderError(Errors::INCORRECT_REQUEST);
             }
 
-            return $this->createOrder($data->orders, $session->getDevice()->getUser()->getId());
+            return $this->createDispatch($data->dispatches, $session->getDevice()->getUser()->getId());
 //            return $this->renderData(array());
 
         } catch(Exception $e){
@@ -37,39 +39,39 @@ class OrdersController extends AppController {
         }
     }
 
-    private function createOrder(array $orders, $user){
+    private function createDispatch(array $dispatches, $user){
 
 
         $em = $this->getDoctrine()->getManager();
         $custRepo = $em->getRepository("MatrixServiceBundle:Customers");
         $user = $em->getrepository("MatrixServiceBundle:Users")->findOneBy(array("id" => $user));
-        $ordersVersion = $em->getRepository("MatrixServiceBundle:Orders")->findMaxVersion();
-        $itemsVersion = $em->getRepository("MatrixServiceBundle:OrderItem")->findMaxVersion();
+        $dispatchVersion = $em->getRepository("MatrixServiceBundle:Dispatches")->findMaxVersion();
+        $itemsVersion = $em->getRepository("MatrixServiceBundle:DispatchItem")->findMaxVersion();
 
         $res = array(
-            "orders" => array()
+            "dispatches" => array()
             //"items" => array()
         );
 
 
 
-        foreach($orders as $order){
+        foreach($dispatches as $dispatch){
 
-            $customer = $custRepo->findOneBy(array("id" => $order->customer));
-            $department = $em->getRepository("MatrixServiceBundle:Department")->findOneBy(array("id" => $order->department));
-            $division = $em->getRepository("MatrixServiceBundle:Division")->findOneBy(array("id" => $order->division));
-            $warehouse = $em->getRepository("MatrixServiceBundle:Warehouse")->findOneBy(array("id" => $order->warehouse));
-            $plant = $em->getRepository("MatrixServiceBundle:Plant")->findOneBy(array("id" => $order->plant));
-            $currency = $em->getRepository("MatrixServiceBundle:Currency")->findOneBy(array("id" => $order->currency));
+            $customer = $custRepo->findOneBy(array("id" => $dispatch->customer));
+            $department = $em->getRepository("MatrixServiceBundle:Department")->findOneBy(array("id" => $dispatch->department));
+            $division = $em->getRepository("MatrixServiceBundle:Division")->findOneBy(array("id" => $dispatch->division));
+            $warehouse = $em->getRepository("MatrixServiceBundle:Warehouse")->findOneBy(array("id" => $dispatch->warehouse));
+            $plant = $em->getRepository("MatrixServiceBundle:Plant")->findOneBy(array("id" => $dispatch->plant));
+            $currency = $em->getRepository("MatrixServiceBundle:Currency")->findOneBy(array("id" => $dispatch->currency));
 
-            $newOrder = new Orders();
-            $newOrder->setSlipNumber($order->slip_number)
-                ->setSpecialCode($order->special_code)
-                ->setAdvancedPayment($order->advance_payment)
-                ->setDate(DateTime::createFromFormat('d.m.Y', $order->date))
-                ->setSubtotal($order->subtotal)
-                ->setTotal($order->total)
-                ->setVersion($ordersVersion)
+            $newDispatch = new Dispatches();
+            $newDispatch->setSlipNumber($dispatch->slip_number)
+                ->setSpecialCode($dispatch->special_code)
+                ->setAdvancedPayment($dispatch->advance_payment)
+                ->setDate(DateTime::createFromFormat('d.m.Y', $dispatch->date))
+                ->setSubtotal($dispatch->subtotal)
+                ->setTotal($dispatch->total)
+                ->setVersion($dispatchVersion)
                 ->setStatus(Statuses::ACTIVE)
                 ->setUser($user)
                 ->setCustomer($customer)
@@ -79,16 +81,16 @@ class OrdersController extends AppController {
                 ->setPlant($plant)
                 ->setCurrency($currency);
 
-            $em->persist($newOrder);
-            array_push($res['orders'], $newOrder);
+            $em->persist($newDispatch);
+            array_push($res['dispatches'], $newDispatch);
 
             $items = array();
-            foreach($order->order_items as $item){
+            foreach($dispatch->dispatch_items as $item){
                 $unitDetail = $em->getRepository("MatrixServiceBundle:UnitDetail")->findOneBy(array("id" => $item->unit_detail));
-                $orderItem = new OrderItem();
+                $orderItem = new DispatchItem();
 
                 $orderItem->setItem($item->item)
-                    ->setOrder($newOrder)
+                    ->setDispatch($newDispatch)
                     ->setStatus(Statuses::ACTIVE)
                     ->setType($item->type)
                     ->setVersion($itemsVersion)
@@ -103,14 +105,14 @@ class OrdersController extends AppController {
 
             }
 
-            $newOrder->setOrderItems($items);
+            $newDispatch->setDispatchItems($items);
 
         }
 
         $em->flush();
 
 
-        $res['orders'] = $this->toArray($res['orders']);
+        $res['dispatches'] = $this->toArray($res['dispatches']);
         //var_dump($res['orders']);
         //$res['items'] = $this->toArray($res['items']);
 

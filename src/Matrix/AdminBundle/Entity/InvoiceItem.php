@@ -1,16 +1,16 @@
 <?php
 
-namespace Matrix\ServiceBundle\Entity;
+namespace Matrix\AdminBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * DispatchItem
+ * InvoiceItem
  *
- * @ORM\Table(name="dispatch_item", indexes={@ORM\Index(name="Ref_44", columns={"dispatch"}), @ORM\Index(name="Ref_45", columns={"unit_detail"})})
- * @ORM\Entity(repositoryClass="Matrix\ServiceBundle\Repository\DispatchItemRepository")
+ * @ORM\Table(name="invoice_item", indexes={@ORM\Index(name="Ref_47", columns={"invoice"}), @ORM\Index(name="Ref_48", columns={"unit_detail"})})
+ * @ORM\Entity
  */
-class DispatchItem
+class InvoiceItem
 {
     /**
      * @var integer
@@ -64,14 +64,14 @@ class DispatchItem
     private $price = '0.000';
 
     /**
-     * @var Dispatches
+     * @var Invoices
      *
-     * @ORM\ManyToOne(targetEntity="Dispatches")
+     * @ORM\ManyToOne(targetEntity="Invoices")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="dispatch", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="invoice", referencedColumnName="id")
      * })
      */
-    private $dispatch;
+    private $invoice;
 
     /**
      * @var UnitDetail
@@ -94,7 +94,7 @@ class DispatchItem
             "type" => $this->getType(),
             "version" => $this->getVersion(),
             "status" => $this->getStatus(),
-            "dispatch" => $this->getDispatch()->getId(),
+            "invoice" => $this->getInvoice()->getId(),
             "unit_detail" => $this->getUnitDetail()->getId(),
             "quantity" => $this->getQuantity(),
             "price" => $this->getPrice()
@@ -103,7 +103,7 @@ class DispatchItem
 
     /**
      * @param float $price
-     * @return DispatchItem
+     * @return InvoiceItem
      */
     public function setPrice($price)
     {
@@ -125,7 +125,7 @@ class DispatchItem
 
     /**
      * @param int $quantity
-     * @return DispatchItem
+     * @return InvoiceItem
      */
     public function setQuantity($quantity)
     {
@@ -147,7 +147,7 @@ class DispatchItem
     /**
      * @param UnitDetail $unitDetail
      *
-     * @return DispatchItem
+     * @return InvoiceItem
      */
     public function setUnitDetail($unitDetail)
     {
@@ -181,7 +181,7 @@ class DispatchItem
      * Set item
      *
      * @param integer $item
-     * @return DispatchItem
+     * @return InvoiceItem
      */
     public function setItem($item)
     {
@@ -204,7 +204,7 @@ class DispatchItem
      * Set type
      *
      * @param integer $type
-     * @return DispatchItem
+     * @return InvoiceItem
      */
     public function setType($type)
     {
@@ -227,7 +227,7 @@ class DispatchItem
      * Set version
      *
      * @param integer $version
-     * @return DispatchItem
+     * @return InvoiceItem
      */
     public function setVersion($version)
     {
@@ -250,7 +250,7 @@ class DispatchItem
      * Set status
      *
      * @param integer $status
-     * @return DispatchItem
+     * @return InvoiceItem
      */
     public function setStatus($status)
     {
@@ -272,12 +272,12 @@ class DispatchItem
     /**
      * Set order
      *
-     * @param Dispatches $dispatch
-     * @return DispatchItem
+     * @param Invoices $invoice
+     * @return InvoiceItem
      */
-    public function setDispatch(Dispatches $dispatch)
+    public function setInvoice(Invoices $invoice)
     {
-        $this->dispatch = $dispatch;
+        $this->invoice = $invoice;
 
         return $this;
     }
@@ -285,10 +285,11 @@ class DispatchItem
     /**
      * Get order
      *
-     * @return Dispatches
+     * @return Invoices
      */
-    public function getDispatch()
+    public function getInvoice()
     {
-        return $this->dispatch;
+        return $this->invoice;
     }
+
 }

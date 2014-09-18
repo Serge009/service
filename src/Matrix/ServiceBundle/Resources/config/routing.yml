@@ -28,6 +28,16 @@ service_orders_create:
     defaults:   { _controller: MatrixServiceBundle:Orders:index }
     methods:    [POST]
 
+service_dispatches_create:
+    path:       /dispatches/create
+    defaults:   { _controller: MatrixServiceBundle:Dispatches:index }
+    methods:    [POST]
+
+service_invoices_create:
+    path:       /invoices/create
+    defaults:   { _controller: MatrixServiceBundle:Invoices:index }
+    methods:    [POST]
+
 service_synch:
     path:       /synchronize
     defaults:   { _controller: MatrixServiceBundle:Synch:index }

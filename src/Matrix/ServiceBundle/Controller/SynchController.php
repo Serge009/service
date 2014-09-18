@@ -131,6 +131,34 @@ class SynchController extends AppController
                 $res['orders'] = $units;
             }
 
+            if(isset($data->versions->dispatch_item)){
+                $units = $this->synchDispatchItem($data->versions->dispatch_item,
+                    $session->getDevice()->getUser());
+
+                $res['dispatch_item'] = $units;
+            }
+
+            if(isset($data->versions->dispatches)){
+                $units = $this->synchDispatches($data->versions->dispatches,
+                    $session->getDevice()->getUser());
+
+                $res['dispatches'] = $units;
+            }
+
+            if(isset($data->versions->invoice_item)){
+                $units = $this->synchInvoiceItem($data->versions->invoice_item,
+                    $session->getDevice()->getUser());
+
+                $res['invoice_item'] = $units;
+            }
+
+            if(isset($data->versions->invoices)){
+                $units = $this->synchInvoices($data->versions->invoices,
+                    $session->getDevice()->getUser());
+
+                $res['invoices'] = $units;
+            }
+
             return $this->renderData($res);
 
         } catch (Exception $e) {
@@ -332,6 +360,62 @@ class SynchController extends AppController
         $res = array();
         foreach($orders as $order){
             array_push($res, $order->toArray());
+        }
+
+        return $res;
+    }
+
+    private function synchDispatchItem($version, Users $user)
+    {
+        $items = $this->getDoctrine()
+            ->getRepository("MatrixServiceBundle:DispatchItem")
+            ->findByVersion($version, $user);
+
+        $res = array();
+        foreach($items as $item){
+            array_push($res, $item->toArray());
+        }
+
+        return $res;
+    }
+
+    private function synchDispatches($version, Users $user)
+    {
+        $dispatches = $this->getDoctrine()
+            ->getRepository("MatrixServiceBundle:Dispatches")
+            ->findByVersion($version, $user);
+
+        $res = array();
+        foreach($dispatches as $dispatch){
+            array_push($res, $dispatch->toArray());
+        }
+
+        return $res;
+    }
+
+    private function synchInvoiceItem($version, Users $user)
+    {
+        $items = $this->getDoctrine()
+            ->getRepository("MatrixServiceBundle:InvoiceItem")
+            ->findByVersion($version, $user);
+
+        $res = array();
+        foreach($items as $item){
+            array_push($res, $item->toArray());
+        }
+
+        return $res;
+    }
+
+    private function synchInvoices($version, Users $user)
+    {
+        $invoices = $this->getDoctrine()
+            ->getRepository("MatrixServiceBundle:Invoices")
+            ->findByVersion($version, $user);
+
+        $res = array();
+        foreach($invoices as $invoice){
+            array_push($res, $invoice->toArray());
         }
 
         return $res;
