@@ -43,6 +43,35 @@ service_synch:
     defaults:   { _controller: MatrixServiceBundle:Synch:index }
     methods:    [POST]
 
+###############################################################################
+####################              TEST                      ###################
+###############################################################################
+
+test_all:
+    path:       /test
+    defaults:   { _controller: MatrixServiceBundle:Test:testAll }
+    methods:    [GET]
+
+test_ccpayment:
+    path:       /test/ccpayment
+    defaults:   { _controller: MatrixServiceBundle:Test:testCCPayment }
+    methods:    [GET]
+
+test_bondpayment:
+    path:       /test/bond_payment
+    defaults:   { _controller: MatrixServiceBundle:Test:testBondPayment }
+    methods:    [GET]
+
+test_chequepayment:
+    path:       /test/cheque_payment
+    defaults:   { _controller: MatrixServiceBundle:Test:testChequePayment }
+    methods:    [GET]
+
+test_cashpayment:
+    path:       /test/cash_payment
+    defaults:   { _controller: MatrixServiceBundle:Test:testCashPayment }
+    methods:    [GET]
+
 service_404_1:
     path:     /
     defaults: { _controller: MatrixServiceBundle:NotFound:index }
