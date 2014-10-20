@@ -108,6 +108,20 @@ class CashPayment
 
 
 
+    public function toArray(){
+        return array(
+            "id" => $this->getId(),
+            "version" => $this->getVersion(),
+            "status" => $this->getStatus(),
+            "slip_number" => $this->getSlipNumber(),
+            "date" => $this->getDate()->format("d-m-Y"),
+            "special_code" => $this->getSpecialCode(),
+            "currency_id" => $this->getCurrency()->getId(),
+            "amount" => $this->getAmount(),
+            "description" => $this->getDescription(),
+            "customer_id" => $this->getCustomer()->getId()
+        );
+    }
 
 
     /**

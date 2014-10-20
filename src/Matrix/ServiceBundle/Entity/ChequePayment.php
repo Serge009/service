@@ -129,7 +129,23 @@ class ChequePayment
     private $status = '1';
 
 
-
+    public function toArray(){
+        return array(
+            "id" => $this->getId(),
+            "version" => $this->getVersion(),
+            "status" => $this->getStatus(),
+            "slip_number" => $this->getSlipNumber(),
+            "date" => $this->getDate()->format("d-m-Y"),
+            "special_code" => $this->getSpecialCode(),
+            "currency_id" => $this->getCurrency()->getId(),
+            "amount" => $this->getAmount(),
+            "description" => $this->getDescription(),
+            "customer_id" => $this->getCustomer()->getId(),
+            "issuer_name" => $this->getIssuerName(),
+            "serial_number" => $this->getSerialNumber(),
+            "due_date" => $this->getDueDate()->format("d-m-Y")
+        );
+    }
 
 
     /**

@@ -32,7 +32,12 @@ class Service{
             "dispatches" => 0,
             "dispatch_item" => 0,
             "invoice_item" => 0,
-            "invoices" => 0
+            "invoices" => 0,
+            "bond_payment" => 0,
+            "cash_payment" => 0,
+            "cheque_payment" => 0,
+            "credit_card_payment" => 0
+
         )
     );
 
@@ -49,26 +54,26 @@ class Service{
         //self::synchCustomers();
         self::synch();
         //self::customersList();
-        self::login();
+//        self::login();
         //self::setDefault();
         //self::users();
         //self::setDefault();
         //self::usersList();
         //self::setDefault();
         //self::ordersList();
-        self::logout();
+//        self::logout();
     }
 
     private static  function synch(){
         $name = "Synchronization";
         self::$url = "synchronize";
-        self::test($name);
+//        self::test($name);
 
-        self::$data["session"] = "d07a5600b20b27a6dc4f27e1af535779";
+        self::$data["session"] = "f9da66e0ff18c6622ccbd92104970888";
         self::test($name);
 
         self::$data["session"] = "202b275d522665d8585817e9a6f18537";
-        self::test($name);
+//        self::test($name);
 
     }
 

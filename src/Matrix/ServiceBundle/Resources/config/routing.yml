@@ -43,6 +43,26 @@ service_synch:
     defaults:   { _controller: MatrixServiceBundle:Synch:index }
     methods:    [POST]
 
+bond_payment_create:
+    path:       /bond/create
+    defaults:   { _controller: MatrixServiceBundle:BondPayment:index }
+    methods:    [POST]
+
+cash_payment_create:
+    path:       /cash/create
+    defaults:   { _controller: MatrixServiceBundle:CashPayment:index }
+    methods:    [POST]
+
+cheque_payment_create:
+    path:       /cheque/create
+    defaults:   { _controller: MatrixServiceBundle:ChequePayment:index }
+    methods:    [POST]
+
+card_payment_create:
+    path:       /card/create
+    defaults:   { _controller: MatrixServiceBundle:CreditCardPayment:index }
+    methods:    [POST]
+
 ###############################################################################
 ####################              TEST                      ###################
 ###############################################################################

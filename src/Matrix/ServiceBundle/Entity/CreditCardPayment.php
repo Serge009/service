@@ -136,7 +136,24 @@ class CreditCardPayment
     private $status = '1';
 
 
-
+    public function toArray(){
+        return array(
+            "id" => $this->getId(),
+            "version" => $this->getVersion(),
+            "status" => $this->getStatus(),
+            "slip_number" => $this->getSlipNumber(),
+            "date" => $this->getDate()->format("d-m-Y"),
+            "special_code" => $this->getSpecialCode(),
+            "currency_id" => $this->getCurrency()->getId(),
+            "amount" => $this->getAmount(),
+            "description" => $this->getDescription(),
+            "customer_id" => $this->getCustomer()->getId(),
+            "holder_name" => $this->getHoldersName(),
+            "number" => $this->getCardNumber(),
+            "expiry_date" => $this->getExpiresDate()->format("m-Y"),
+            "cvv_code" => $this->getCvvCode()
+        );
+    }
 
 
     /**

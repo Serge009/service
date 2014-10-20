@@ -159,6 +159,34 @@ class SynchController extends AppController
                 $res['invoices'] = $units;
             }
 
+            if(isset($data->versions->bond_payment)){
+                $bp = $this->synchBondPayment($data->versions->bond_payment,
+                    $session->getDevice()->getUser());
+
+                $res['bond_payment'] = $bp;
+            }
+
+            if(isset($data->versions->cash_payment)){
+                $bp = $this->synchCashPayment($data->versions->cash_payment,
+                    $session->getDevice()->getUser());
+
+                $res['cash_payment'] = $bp;
+            }
+
+            if(isset($data->versions->cheque_payment)){
+                $bp = $this->synchChequePayment($data->versions->cheque_payment,
+                    $session->getDevice()->getUser());
+
+                $res['cheque_payment'] = $bp;
+            }
+
+            if(isset($data->versions->credit_card_payment)){
+                $bp = $this->synchCreditCardPayment($data->versions->credit_card_payment,
+                    $session->getDevice()->getUser());
+
+                $res['credit_card_payment'] = $bp;
+            }
+
             return $this->renderData($res);
 
         } catch (Exception $e) {
@@ -416,6 +444,62 @@ class SynchController extends AppController
         $res = array();
         foreach($invoices as $invoice){
             array_push($res, $invoice->toArray());
+        }
+
+        return $res;
+    }
+
+    private function synchBondPayment($version, Users $user)
+    {
+        $payments = $this->getDoctrine()
+            ->getRepository("MatrixServiceBundle:BondPayment")
+            ->findByVersion($version, $user);
+
+        $res = array();
+        foreach($payments as $payment){
+            array_push($res, $payment->toArray());
+        }
+
+        return $res;
+    }
+
+    private function synchCashPayment($version, Users $user)
+    {
+        $payments = $this->getDoctrine()
+            ->getRepository("MatrixServiceBundle:CashPayment")
+            ->findByVersion($version, $user);
+
+        $res = array();
+        foreach($payments as $payment){
+            array_push($res, $payment->toArray());
+        }
+
+        return $res;
+    }
+
+    private function synchChequePayment($version, Users $user)
+    {
+        $payments = $this->getDoctrine()
+            ->getRepository("MatrixServiceBundle:ChequePayment")
+            ->findByVersion($version, $user);
+
+        $res = array();
+        foreach($payments as $payment){
+            array_push($res, $payment->toArray());
+        }
+
+        return $res;
+    }
+
+    private function synchCreditCardPayment($version, Users $user)
+    {
+        $payments = $this->getDoctrine()
+            ->getRepository("MatrixServiceBundle:CreditCardPayment")
+            ->findByVersion($version, $user);
+
+        $res = array();
+        foreach($payments as $payment){
+            array_push($res, $payment->toArray());
         }
 
         return $res;

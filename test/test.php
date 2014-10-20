@@ -341,26 +341,130 @@ class createOrder{
         )
     );
 
+    private static $bondPayments = array(
+        "session" => "390ed8cd76ccbac2dd02f40210208900", //"3e4ab9ab605a8fd8e12c03ff783e7640",//"41e492078d79082c43dbb8c6c1a57b5c",
+        "payments" => array(
+            array(
+                "slip_number" => "554464",
+                "date" => "23.08.2014",
+                "special_code" => "5645",
+                "currency" => 1,
+                "amount" => "10.2",
+                "description" => "some description",
+                "issuer_name" => "issuer name",
+                "guarantor_name" => "guarantor name",
+                "serial_number" => "serial number",
+                "due_date" => "20.10.2014",
+                "customer" => 1
+            )
+        )
+    );
+
+    private static $cashPayments = array(
+        "session" => "390ed8cd76ccbac2dd02f40210208900", //"3e4ab9ab605a8fd8e12c03ff783e7640",//"41e492078d79082c43dbb8c6c1a57b5c",
+        "payments" => array(
+            array(
+                "slip_number" => "554464",
+                "date" => "23.08.2014",
+                "special_code" => "5645",
+                "currency" => 1,
+                "amount" => "10.2",
+                "description" => "some description",
+                "serial_number" => "serial number",
+                "customer" => 1
+            )
+        )
+    );
+
+    private static $chequePayments = array(
+        "session" => "390ed8cd76ccbac2dd02f40210208900", //"3e4ab9ab605a8fd8e12c03ff783e7640",//"41e492078d79082c43dbb8c6c1a57b5c",
+        "payments" => array(
+            array(
+                "slip_number" => "554464",
+                "date" => "23.08.2014",
+                "special_code" => "5645",
+                "currency" => 1,
+                "amount" => "10.2",
+                "description" => "some description",
+                "serial_number" => "serial number",
+                "customer" => 1,
+                "issuer_name" => "issuer name",
+                "due_date" => "20.10.2014"
+            )
+        )
+    );
+
+    private static $cardPayments = array(
+        "session" => "390ed8cd76ccbac2dd02f40210208900", //"3e4ab9ab605a8fd8e12c03ff783e7640",//"41e492078d79082c43dbb8c6c1a57b5c",
+        "payments" => array(
+            array(
+                "slip_number" => "554464",
+                "date" => "23.08.2014",
+                "special_code" => "5645",
+                "currency" => 1,
+                "amount" => "10.2",
+                "description" => "some description",
+                "customer" => 1,
+                "holder_name" => "holder name",
+                "number" => "2222555222",
+                "expiry_date" => "20.10.2014",
+                "cvv_code" => "666"
+            )
+        )
+    );
+
     public static  function test(){
-        $name = "Create Order";
+        /*$name = "Create Order";
         Service::$url = "mobile/orders/create";
         Service::$data = self::$orders;
-        //Service::test($name);
+        //Service::test($name);*/
 
         ////////////////////////////
         /////////////////////////////
 
-        $name = "Create Dispatch";
+        /*$name = "Create Dispatch";
         Service::$url = "mobile/dispatches/create";
         Service::$data = self::$dispatches;
-        //Service::test($name);
+        //Service::test($name);*/
 
         //////////////////////////////
         /////////////////////////////
 
-        $name = "Create Invoice";
+        /*$name = "Create Invoice";
         Service::$url = "mobile/invoices/create";
         Service::$data = self::$invoices;
+        Service::test($name);*/
+
+        ///////////////////////////
+        ///////////////////////////
+
+        $name = "Create Bond Payment";
+        Service::$url = "mobile/bond/create";
+        Service::$data = self::$bondPayments;
+        Service::test($name);
+
+        /////////////////////////////
+        /////////////////////////////
+
+        $name = "Create Cash Payment";
+        Service::$url = "mobile/cash/create";
+        Service::$data = self::$cashPayments;
+        Service::test($name);
+
+        /////////////////////////////
+        /////////////////////////////
+
+        $name = "Create Cheque Payment";
+        Service::$url = "mobile/cheque/create";
+        Service::$data = self::$chequePayments;
+        Service::test($name);
+
+        /////////////////////////////
+        /////////////////////////////
+
+        $name = "Create Credit Card Payment";
+        Service::$url = "mobile/card/create";
+        Service::$data = self::$cardPayments;
         Service::test($name);
 
     }

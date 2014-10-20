@@ -9,6 +9,7 @@
 namespace Matrix\ServiceBundle\Controller;
 
 
+use Matrix\ServiceBundle\Entity\CreditCardPayment;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
