@@ -46,8 +46,8 @@ class CashPaymentController extends AppController {
 
         foreach($payments as $payment){
 
-            $customer = $custRepo->findOneBy(array("id" => $payment->customer));
-            $currency = $em->getRepository("MatrixServiceBundle:Currency")->findOneBy(array("id" => $payment->currency));
+            $customer = $custRepo->findOneBy(array("id" => $payment->customer_id));
+            $currency = $em->getRepository("MatrixServiceBundle:Currency")->findOneBy(array("id" => $payment->currency_id));
 
             $newPayment = new CashPayment();
             $newPayment
